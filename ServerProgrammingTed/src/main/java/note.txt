@@ -1,0 +1,15 @@
+
+Client-server programming with TCP stream socket.
+
+Primarily, this assignment is the server side of Assignment #6. 
+
+Implement a stateful & concurrent server that 
+    _calculates (& sends reply to its client) one of 3 values: 
+        *nextEvenFib
+        *nextLargerRand
+        *nextPrime (also see server below). 
+
+Implement a basic client software that 
+    _sends requests & outputs 5 nextEvenFib values
+    _then 5 requests for nextLargerRand
+    _finally 5 requests for nextPrime, to test your server.
