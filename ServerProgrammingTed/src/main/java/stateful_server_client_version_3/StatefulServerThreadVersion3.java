@@ -32,15 +32,14 @@ public class StatefulServerThreadVersion3 extends Thread {
 
             boolean flag = true;
 
-//            inputLine = in.readLine();
-            
             do {
+                //get message from client
                 inputLine = in.readLine();
                 System.out.println("server " + mServerID + " received " + "\"" + inputLine + "\"");
                 outputLine = kkp.process(inputLine);
                 
                 out.println("server " + mServerID + " respond to " + outputLine);
-                System.out.println("**inputLine == null result in  " + (inputLine == null));
+//                System.out.println("**inputLine == null result in  " + (inputLine == null));
                 if ( (inputLine.equals("null")) || inputLine.equals("-1")) {
                     flag = false;
                     out.println("Server " + mServerID + " end");
