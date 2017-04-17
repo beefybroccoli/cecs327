@@ -23,7 +23,7 @@ public class LargerRandomNumber {
      */
     public BigDecimal getNextLargerRand() {
         Random rn = new Random();
-        int randomNumber = rn.nextInt(1000) + 1;
+        int randomNumber = rn.nextInt(1000000000) + 1;
         mValue = mValue.add(new BigDecimal(randomNumber));
 
         return mValue.abs();
@@ -35,7 +35,7 @@ public class LargerRandomNumber {
      */
     public static void main(String[] args) {
 
-//        test2();
+        test2();
 //        test1();
     }
 
@@ -46,7 +46,7 @@ public class LargerRandomNumber {
 
         LargerRandomNumber value = new LargerRandomNumber();
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 50; i++) {
 
             System.out.println("value = " + value.getNextLargerRand());
         }

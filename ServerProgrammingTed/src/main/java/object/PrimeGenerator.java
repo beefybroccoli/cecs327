@@ -55,18 +55,18 @@ public class PrimeGenerator {
 
     }
     
-//
-//    public static void main(String[] args) {
-//
+
+    public static void main(String[] args) {
+
 //        demonTestPrimeMthod();
-//        demoGetNextPrime();
-//    }
+        demoGetNextPrime();
+    }
 
     public static void demoGetNextPrime() {
 
         PrimeGenerator obj = new PrimeGenerator();
 
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 100; i++) {
             System.out.println("next prime i = " + (i + 1) + ", " + obj.getNextPrime());
         }
         System.out.println("");
