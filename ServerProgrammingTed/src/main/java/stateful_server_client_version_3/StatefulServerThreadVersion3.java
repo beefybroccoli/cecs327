@@ -1,4 +1,4 @@
-package stateful_server_client_version_2;
+package stateful_server_client_version_3;
 
 import VALUE.VALUE;
 import java.net.*;
@@ -6,12 +6,12 @@ import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class StatefulServerThreadVersion2 extends Thread {
+public class StatefulServerThreadVersion3 extends Thread {
 
     private Socket mSocket = null;
     private int mServerID;
 
-    public StatefulServerThreadVersion2(Socket socket, int id) {
+    public StatefulServerThreadVersion3(Socket socket, int id) {
         super("KKMultiServerThread");
         this.mSocket = socket;
         this.mServerID = id;
@@ -25,12 +25,12 @@ public class StatefulServerThreadVersion2 extends Thread {
                         new InputStreamReader(
                                 mSocket.getInputStream()));) {
             String inputLine, outputLine;
-            StatefulServerProtocolVersion2 kkp = new StatefulServerProtocolVersion2();
+            StatefulServerProtocolVersion3 kkp = new StatefulServerProtocolVersion3();
 
             System.out.println("(Stateful Server ID " + mServerID + "  Started)");
 
-            outputLine = "from server " + mServerID + ", hello client";
-            out.println(outputLine);
+//            outputLine = "from server " + mServerID + ", hello client";
+//            out.println(outputLine);
 
             boolean flag = true;
 
@@ -38,11 +38,16 @@ public class StatefulServerThreadVersion2 extends Thread {
                 inputLine = in.readLine();
                 System.out.println("server " + mServerID + " received " + "\"" + inputLine + "\"");
 
-                if (inputLine.equals("-1") || inputLine.equals(null) || inputLine.length() == 0) {
+                if (inputLine.equals(null) || inputLine.length() == 0) {
                     flag = false;
+                    out.println("Server " + mServerID  + " end");
                 } else {
                     outputLine = kkp.process(inputLine);
                     out.println(outputLine);
+                    
+                    if (inputLine.equals("-1") ){
+                        flag = false;
+                    }
                 }
 
             } while (flag == true);
@@ -55,7 +60,7 @@ public class StatefulServerThreadVersion2 extends Thread {
             try {
                 mSocket.close();
             } catch (IOException ex) {
-                Logger.getLogger(StatefulServerThreadVersion2.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(StatefulServerThreadVersion3.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//end run
@@ -71,7 +76,7 @@ public class StatefulServerThreadVersion2 extends Thread {
         try (ServerSocket serverSocket = new ServerSocket(VALUE.SERVER_PORT_NUMBER)) {
 
             while (mListeningBoolean) {
-                new StatefulServerThreadVersion2(serverSocket.accept(), ++id).start();
+                new StatefulServerThreadVersion3(serverSocket.accept(), ++id).start();
             }
         } catch (IOException e) {
             System.err.println("Could not listen on port " + VALUE.SERVER_PORT_NUMBER);

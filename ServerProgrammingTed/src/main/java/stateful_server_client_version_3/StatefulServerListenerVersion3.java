@@ -1,11 +1,11 @@
 
-package stateful_server_client_version_2;
+package stateful_server_client_version_3;
 
 import VALUE.VALUE;
 import java.io.IOException;
 import java.net.ServerSocket;
 
-public class StatefulServerListenerVersion2 {
+public class StatefulServerListenerVersion3 {
     
         public static void main(String[] args) throws IOException {
 
@@ -18,11 +18,10 @@ public class StatefulServerListenerVersion2 {
         try (ServerSocket serverSocket = new ServerSocket(VALUE.SERVER_PORT_NUMBER)) {
 
             while (mListeningBoolean) {
-                new StatefulServerThreadVersion2(serverSocket.accept(), ++id).start();
+                new StatefulServerThreadVersion3(serverSocket.accept(), ++id).start();
             }
         } catch (IOException e) {
             System.err.println("Could not listen on port " + VALUE.SERVER_PORT_NUMBER);
-            System.exit(-1);
         }
     }
 
