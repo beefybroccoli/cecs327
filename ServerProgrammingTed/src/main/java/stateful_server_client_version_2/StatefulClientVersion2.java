@@ -20,7 +20,14 @@ public class StatefulClientVersion2 extends Thread {
     public void run() {
 
         System.out.println("(Client id " + mClientID + " started)");
-        
+
+        String[] input = {"1", "1", "1", "1", "1",
+            "2", "2", "2", "2", "2",
+            "3", "3", "3", "3", "3",
+            "4", "-1"};
+
+        int index = -1;
+
         try (
                 //client side
                 Socket socket = new Socket(mHostName, mServerPort);
@@ -29,24 +36,22 @@ public class StatefulClientVersion2 extends Thread {
                         new InputStreamReader(socket.getInputStream()));) {
             BufferedReader stdIn
                     = new BufferedReader(new InputStreamReader(System.in));
-            String fromServer;
+            String fromServer = "";
             String fromUser = "";
 
-            while ((fromServer = in.readLine()) != null && fromUser != "-1") {
+            do {
+//                fromUser = stdIn.readLine();
+                fromUser = input[++index];
+
+                System.out.println("Client " + mClientID + ": " + fromUser);
+                out.println(fromUser);
+
                 System.out.println("Server: " + fromServer + "\n");
 
-                fromUser = stdIn.readLine();
-                if (fromUser != "-1") {
-                    System.out.println("Client: " + fromUser);
-                    out.println(fromUser);
-                    
-                }else{
-                    break;
-                }
-            }
-            
+            } while ((fromServer = in.readLine()) != null && fromUser != "-1");
+
             System.out.println("(Client id " + mClientID + " ended)");
-            
+
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host " + mHostName);
             System.exit(1);
@@ -58,10 +63,12 @@ public class StatefulClientVersion2 extends Thread {
 
     public static void main(String[] args) {
 
-        int id = 0;
-        StatefulClientVersion2 client = new StatefulClientVersion2(VALUE.LOCAL_HOST, VALUE.SERVER_PORT_NUMBER, ++id);
-
-        client.start();
+        for ( int i = 0; i < 5; i++){
+            int id = i + 1;
+            StatefulClientVersion2 client = new StatefulClientVersion2(VALUE.LOCAL_HOST, VALUE.SERVER_PORT_NUMBER, ++id);
+            client.start();
+        }
+        
     }
 
 }

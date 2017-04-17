@@ -31,7 +31,7 @@ public class StatefulServerProtocolVersion2 {
         }else if ( input.equals("3")){
             result += "Prime Number " + mPrimeGenerator.getNextPrime().abs();
         }else{
-            result += "invalid input, 1 or 2 or 3";
+            result += "invalid input, 1 - Even Fib Big Decimal, 2 - Larger RandomNumber, 3 - Prime Numbe, -1 for exit";
         }
         
         
