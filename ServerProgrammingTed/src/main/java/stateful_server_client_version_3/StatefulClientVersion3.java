@@ -3,6 +3,8 @@ package stateful_server_client_version_3;
 import VALUE.VALUE;
 import java.io.*;
 import java.net.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class StatefulClientVersion3 extends Thread {
 
@@ -33,23 +35,19 @@ public class StatefulClientVersion3 extends Thread {
                 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                 BufferedReader in = new BufferedReader(
                         new InputStreamReader(socket.getInputStream()));) {
-//            BufferedReader stdIn
-//                    = new BufferedReader(new InputStreamReader(System.in));
+
             String fromServer = "";
             String fromUser = "";
 
             do {
                 System.out.println("Server: " + fromServer + "\n");
-                
+
                 fromUser = input[++index];
 
                 System.out.println("Client " + mClientID + ": " + fromUser);
                 out.println(fromUser);
 
-                
-
             } while ((fromServer = in.readLine()) != null && fromUser != "-1");
-//            } while (fromUser != "-1");
 
             System.out.println("(Client id " + mClientID + " ended)");
 
@@ -62,14 +60,26 @@ public class StatefulClientVersion3 extends Thread {
         }
     }
 
+    public String getUserInput() {
+        BufferedReader stdIn
+                = new BufferedReader(new InputStreamReader(System.in));
+        String result = "";
+        try {
+            result = stdIn.readLine();
+        } catch (IOException ex) {
+            Logger.getLogger(StatefulClientVersion3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
 
-        for ( int i = 0; i < 5; i++){
+        for (int i = 0; i < 5; i++) {
             int id = i + 1;
             StatefulClientVersion3 client = new StatefulClientVersion3(VALUE.LOCAL_HOST, VALUE.SERVER_PORT_NUMBER, ++id);
             client.start();
         }
-        
+
     }
 
 }
