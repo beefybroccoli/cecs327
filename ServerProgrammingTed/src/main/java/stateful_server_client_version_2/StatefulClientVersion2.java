@@ -32,11 +32,8 @@ public class StatefulClientVersion2 extends Thread {
             String fromServer;
             String fromUser = "";
 
-            while ((fromServer = in.readLine()) != "-1" && fromUser != "-1") {
+            while ((fromServer = in.readLine()) != null && fromUser != "-1") {
                 System.out.println("Server: " + fromServer + "\n");
-                if (fromServer.equals("-1")) {
-                    break;
-                }
 
                 fromUser = stdIn.readLine();
                 if (fromUser != "-1") {
