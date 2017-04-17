@@ -1,5 +1,5 @@
 
-how to test version 3
+how to test version 2
 
     run StatefulServerListenerVersion3.java
     run StatefulServerClientVersoin3.java then input the following values

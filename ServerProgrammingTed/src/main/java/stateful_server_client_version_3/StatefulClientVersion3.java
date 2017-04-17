@@ -40,11 +40,11 @@ public class StatefulClientVersion3 extends Thread {
             String fromUser = "";
 
             do {
-                System.out.println("Client " + mClientID + " receive: " + fromServer + "\n");
+                System.out.println("Client " + mClientID + "receive : " + fromServer + "\n");
 
                 fromUser = input[++index];
 
-                System.out.println("Client " + mClientID + " send   : " + fromUser);
+                System.out.println("Client " + mClientID + "send    : " + fromUser);
                 out.println(fromUser);
 
             } while ((fromServer = in.readLine()) != null && fromUser != "-1");
