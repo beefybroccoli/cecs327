@@ -13,100 +13,78 @@ public class Prime {
         mPrimeNumber = new BigDecimal(1);
     }
 
-    public BigDecimal getNextPrime() {
-        BigDecimal result = new BigDecimal(-1);
-
-        BigDecimal number = mPrimeNumber;
-
+    public boolean testPrime(BigDecimal number) {
         boolean flag = true;
 
-        do {
-            number = number.add(new BigDecimal(1));
+        if (number.equals(new BigDecimal(2))) {
+            flag = true;
+        }
+        else if ((number.remainder(new BigDecimal(2))).equals(new BigDecimal(0))) {
+            flag = false;
+        } else {
 
-            if ((number.remainder(new BigDecimal(2))).equals(new BigDecimal(0))) {
-                flag = false;
-            } else {
-                for (int j = 2; j < Math.sqrt(number.floatValue()) && flag == true; j++) {
-                    if ((number.remainder(new BigDecimal(j))).equals(new BigDecimal(0))) {
-                        flag = false;
-                        break;
-                    }
+            for (int j = 2; j < Math.sqrt(number.doubleValue()) + 1 && flag == true; j++) {
+                if ((number.remainder(new BigDecimal(j))).equals(new BigDecimal(0))) {
+                    flag = false;
+                    continue;
                 }
             }
+        }
+        return flag;
+
+    }
+
+    public BigDecimal getNextPrime() {
+
+        BigDecimal result = mPrimeNumber;
+
+        boolean flag = false;
+
+        do {
+
+            result = result.add(new BigDecimal(1));
+
+            flag = testPrime(result);
 
             if (flag == true) {
-                result = number;
-
-                System.out.println("prime number : " + number.abs());
+                mPrimeNumber = result;
             }
-        } while (result.equals(new BigDecimal(-1)));
+        } while (flag == false);
 
-        mPrimeNumber = result;
         return result;
 
     }
+    
+//
+//    public static void main(String[] args) {
+//
+//        demonTestPrimeMthod();
+//        demoGetNextPrime();
+//    }
 
-    public static void main(String[] args) {
+    public static void demoGetNextPrime() {
 
         Prime obj = new Prime();
 
-        for (int i = 0; i < 100; i++) {
-            obj.getNextPrime().abs();
+        for (int i = 0; i < 25; i++) {
+            System.out.println("next prime i = " + (i + 1) + ", " + obj.getNextPrime());
         }
+        System.out.println("");
 
-//        test1GeneratePrimeNumber();
     }
 
-    public static void test1GeneratePrimeNumber() {
-        for (int i = 2; i < 1000; i++) {
+    public static void demonTestPrimeMthod() {
+        Prime obj = new Prime();
 
-            boolean flag = true;
+        for (int i = 2; i < 100; i++) {
 
-            int number = i;
+            boolean result = obj.testPrime(new BigDecimal(i));
 
-            if (number % 2 == 0) {
-                flag = false;
-            } else {
-                for (int j = 2; j < Math.sqrt((double) number) && flag == true; j++) {
-                    if (number % j == 0) {
-                        flag = false;
-                        break;
-                    }
-                }
-            }
-
-            if (flag == true) {
-                System.out.println("prime number : " + number);
+            if (result == true) {
+                System.out.println("test prime number " + i + " : " + obj.testPrime(new BigDecimal(i)));
             }
         }
+        System.out.println("");
     }
 
 }
-
-
-/*
-void main()
-{
-   int num,i;
-   int FLAG=1;
-   printf(“Enter any Positive Number : “);
-   scanf(“%d”,&num);
-   for(i=2;i<sqrt(num);i++)
-   {
-      if(num%i == 0)
-      {
-         FLAG = 0;
-         break;
-      }
-   }
-   if(FLAG == 1)
-   {
-      printf(“%d is Prime Number n“,num);
-   }
-   else
-   {
-      printf(“%d is not a Prime Number n“,num);
-   }
-   return;
-}
- */
