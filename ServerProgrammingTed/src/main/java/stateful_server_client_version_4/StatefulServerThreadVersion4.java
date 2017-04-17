@@ -1,4 +1,4 @@
-package stateful_server_client_version_3;
+package stateful_server_client_version_4;
 
 import VALUE.VALUE;
 import java.net.*;
@@ -6,12 +6,12 @@ import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class StatefulServerThreadVersion3 extends Thread {
+public class StatefulServerThreadVersion4 extends Thread {
 
     private Socket mSocket = null;
     private int mServerID;
 
-    public StatefulServerThreadVersion3(Socket socket, int id) {
+    public StatefulServerThreadVersion4(Socket socket, int id) {
         super("KKMultiServerThread");
         this.mSocket = socket;
         this.mServerID = id;
@@ -25,9 +25,12 @@ public class StatefulServerThreadVersion3 extends Thread {
                         new InputStreamReader(
                                 mSocket.getInputStream()));) {
             String inputLine, outputLine;
-            StatefulServerProtocolVersion3 kkp = new StatefulServerProtocolVersion3(mServerID);
+            StatefulServerProtocolVersion4 kkp = new StatefulServerProtocolVersion4(mServerID);
 
             System.out.println("(Stateful Server ID " + mServerID + "  Started)");
+
+//            outputLine = "from server " + mServerID + ", hello client";
+//            out.println(outputLine);
 
             boolean flag = true;
 
@@ -57,7 +60,7 @@ public class StatefulServerThreadVersion3 extends Thread {
             try {
                 mSocket.close();
             } catch (IOException ex) {
-                Logger.getLogger(StatefulServerThreadVersion3.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(StatefulServerThreadVersion4.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//end run
@@ -73,7 +76,7 @@ public class StatefulServerThreadVersion3 extends Thread {
         try (ServerSocket serverSocket = new ServerSocket(VALUE.SERVER_PORT_NUMBER)) {
 
             while (mListeningBoolean) {
-                new StatefulServerThreadVersion3(serverSocket.accept(), ++id).start();
+                new StatefulServerThreadVersion4(serverSocket.accept(), ++id).start();
             }
         } catch (IOException e) {
             System.err.println("Could not listen on port " + VALUE.SERVER_PORT_NUMBER);

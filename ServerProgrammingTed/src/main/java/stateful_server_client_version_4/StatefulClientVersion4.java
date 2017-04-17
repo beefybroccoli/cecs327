@@ -1,4 +1,4 @@
-package stateful_server_client_version_3;
+package stateful_server_client_version_4;
 
 import VALUE.VALUE;
 import java.io.*;
@@ -6,13 +6,13 @@ import java.net.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class StatefulClientVersion3 extends Thread {
+public class StatefulClientVersion4 extends Thread {
 
     private String mHostName;
     private int mServerPort;
     private int mClientID;
 
-    public StatefulClientVersion3(String hostName, int serverPort, int ClientID) {
+    public StatefulClientVersion4(String hostName, int serverPort, int ClientID) {
         mHostName = hostName;
         mServerPort = serverPort;
         mClientID = ClientID;
@@ -67,7 +67,7 @@ public class StatefulClientVersion3 extends Thread {
         try {
             result = stdIn.readLine();
         } catch (IOException ex) {
-            Logger.getLogger(StatefulClientVersion3.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StatefulClientVersion4.class.getName()).log(Level.SEVERE, null, ex);
         }
         return result;
     }
@@ -76,7 +76,7 @@ public class StatefulClientVersion3 extends Thread {
 
         for (int i = 0; i < 5; i++) {
             int id = i + 1;
-            StatefulClientVersion3 client = new StatefulClientVersion3(VALUE.LOCAL_HOST, VALUE.SERVER_PORT_NUMBER, ++id);
+            StatefulClientVersion4 client = new StatefulClientVersion4(VALUE.LOCAL_HOST, VALUE.SERVER_PORT_NUMBER, ++id);
             client.start();
         }
 
