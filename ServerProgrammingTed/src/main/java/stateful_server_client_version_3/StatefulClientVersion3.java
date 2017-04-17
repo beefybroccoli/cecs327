@@ -22,7 +22,7 @@ public class StatefulClientVersion3 extends Thread {
 
         System.out.println("(Client id " + mClientID + " started)");
 
-        String[] input = {"hi","1", "1", "1", "1", "1",
+        String[] input = {"hi", "1", "1", "1", "1", "1",
             "2", "2", "2", "2", "2",
             "3", "3", "3", "3", "3",
             "4", "-1"};
@@ -39,15 +39,28 @@ public class StatefulClientVersion3 extends Thread {
             String fromServer = "";
             String fromUser = "";
 
+            boolean flag = true;
+            
+//            fromUser = input[++index];
+//            out.println(fromUser);
+//            System.out.println("Client " + mClientID + " send    : " + fromUser);
+//            System.out.println("Client " + mClientID + " receive : " + fromServer + "\n");
             do {
-                System.out.println("Client " + mClientID + " receive : " + fromServer + "\n");
 
-                fromUser = input[++index];
+//                fromUser = input[++index];
+                fromUser = getUserInput();
 
                 System.out.println("Client " + mClientID + " send    : " + fromUser);
                 out.println(fromUser);
 
-            } while ((fromServer = in.readLine()) != null && fromUser != "-1");
+                fromServer = in.readLine();
+                System.out.println("Client " + mClientID + " receive : " + fromServer + "\n");
+                
+                if (fromUser.equals("-1")){
+                    flag = false;
+                }
+
+            } while (flag == true);
 
             System.out.println("(Client id " + mClientID + " ended)");
 
@@ -76,9 +89,9 @@ public class StatefulClientVersion3 extends Thread {
 
         int numberOfClients = 1;
 //        numberOfClients = 5;
-        
+
         for (int i = 0; i < numberOfClients; i++) {
-            
+
             int id = i + 1;
             StatefulClientVersion3 client = new StatefulClientVersion3(VALUE.LOCAL_HOST, VALUE.SERVER_PORT_NUMBER, ++id);
             client.start();

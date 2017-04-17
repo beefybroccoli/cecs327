@@ -13,7 +13,7 @@ public class StatefulServerListenerVersion3 {
 
         int id = 0;
 
-        System.out.println("Server Listener started");
+        System.out.println("Server Listener version 3 started");
 
         try (ServerSocket serverSocket = new ServerSocket(VALUE.SERVER_PORT_NUMBER)) {
 

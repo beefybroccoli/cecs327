@@ -1,6 +1,7 @@
 package stateful_server_client_version_3;
 
 import VALUE.VALUE;
+import com.sun.xml.internal.ws.util.StringUtils;
 import java.net.*;
 import java.io.*;
 import java.util.logging.Level;
@@ -24,28 +25,28 @@ public class StatefulServerThreadVersion3 extends Thread {
                 BufferedReader in = new BufferedReader(
                         new InputStreamReader(
                                 mSocket.getInputStream()));) {
-            String inputLine, outputLine;
+            String inputLine, outputLine = "";
             StatefulServerProtocolVersion3 kkp = new StatefulServerProtocolVersion3(mServerID);
 
             System.out.println("(Stateful Server ID " + mServerID + "  Started)");
 
             boolean flag = true;
 
+//            inputLine = in.readLine();
+            
             do {
                 inputLine = in.readLine();
                 System.out.println("server " + mServerID + " received " + "\"" + inputLine + "\"");
-
-                if (inputLine.equals(null) || inputLine.length() == 0) {
+                outputLine = kkp.process(inputLine);
+                
+                out.println("server " + mServerID + " respond to " + outputLine);
+                System.out.println("**inputLine == null result in  " + (inputLine == null));
+                if ( (inputLine.equals("null")) || inputLine.equals("-1")) {
                     flag = false;
-                    out.println("Server " + mServerID  + " end");
-                } else {
-                    outputLine = kkp.process(inputLine);
-                    out.println("server " + mServerID + " respond to " + outputLine);
-                    
-                    if (inputLine.equals("-1") ){
-                        flag = false;
-                    }
+                    out.println("Server " + mServerID + " end");
                 }
+                
+                inputLine = "";
 
             } while (flag == true);
 
