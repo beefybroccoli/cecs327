@@ -13,9 +13,9 @@ public class StatefulServerListenerVersion2 {
 
         int id = 0;
 
-        System.out.println("Server Listener started");
+        System.out.println("Server Listener version 2 started");
 
-        try (ServerSocket serverSocket = new ServerSocket(VALUE.SERVER_PORT_NUMBER)) {
+        try (ServerSocket serverSocket = new ServerSocket(VALUE.SERVER_PORT_NUMBER + 2)) {
 
             while (mListeningBoolean) {
                 new StatefulServerThreadVersion2(serverSocket.accept(), ++id).start();

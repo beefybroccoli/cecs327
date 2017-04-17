@@ -62,7 +62,7 @@ public class StatefulClientVersion2 extends Thread {
 
     public static void main(String[] args) {
 
-        for ( int i = 0; i < 5; i++){
+        for ( int i = 0; i < 1; i++){
             int id = i + 1;
             StatefulClientVersion2 client = new StatefulClientVersion2(VALUE.LOCAL_HOST, VALUE.SERVER_PORT_NUMBER, ++id);
             client.start();
