@@ -35,8 +35,6 @@ public class EvenFibBigDecimalType {
         return result;
     }
 
-    //return the next fib number
-
     /**
      *get the next Fib number
      * @return fib number in BigDecimal type
@@ -53,8 +51,6 @@ public class EvenFibBigDecimalType {
 
         return valueN;
     }
-
-    //test if a number is even
 
     /**
      *test if an input is even number or not
