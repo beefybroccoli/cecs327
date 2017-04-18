@@ -1,10 +1,10 @@
-package stateful_server_client_version_5;
+package stateful_server_client_version_6;
 
 import object.EvenFibBigDecimalType;
 import object.LargerRandomNumber;
 import object.PrimeGenerator;
 
-public class StatefulServerProtocolVersion5 {
+public class StatefulServerProtocolVersion6 {
 
     EvenFibBigDecimalType mEvenFibBigDecimalType;
     LargerRandomNumber mLargerRandomNumber;
@@ -12,7 +12,7 @@ public class StatefulServerProtocolVersion5 {
     int mServerID;
     public int mOtherCounter;
 
-    public StatefulServerProtocolVersion5(int inputServerID) {
+    public StatefulServerProtocolVersion6(int inputServerID) {
         mEvenFibBigDecimalType = new EvenFibBigDecimalType();
         mLargerRandomNumber = new LargerRandomNumber();
         mPrimeGenerator = new PrimeGenerator();

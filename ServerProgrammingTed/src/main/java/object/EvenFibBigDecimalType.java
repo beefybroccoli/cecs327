@@ -75,7 +75,7 @@ public class EvenFibBigDecimalType {
     public static void test3() {
         EvenFibBigDecimalType obj = new EvenFibBigDecimalType();
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 200; i++) {
             BigDecimal result = obj.getNextEvenFib();
             System.out.println("even Fib_"+i + " = " + result.abs());
         }

@@ -1,25 +1,25 @@
-package stateful_server_client_version_5;
+package stateful_server_client_version_6;
 
 import java.net.*;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class StatefulServerThreadVersion5 extends Thread {
+public class StatefulServerThreadVersion6 extends Thread {
 
     private Socket mSocket;
     private int mServerID;
     private PrintWriter mOut;
     private BufferedReader mIn;
-    private StatefulServerProtocolVersion5 mProtocol;
+    private StatefulServerProtocolVersion6 mProtocol;
     private String mInputLine, mOutputLine;
     private boolean mFlag;
     private int mNullCounter;
 
-    public StatefulServerThreadVersion5(Socket socket, int id) {
+    public StatefulServerThreadVersion6(Socket socket, int id) {
         mSocket = socket;
         mServerID = id;
-        mProtocol = new StatefulServerProtocolVersion5(mServerID);
+        mProtocol = new StatefulServerProtocolVersion6(mServerID);
         mInputLine = "";
         mOutputLine = "";
         mFlag = true;
@@ -28,7 +28,7 @@ public class StatefulServerThreadVersion5 extends Thread {
             mOut = new PrintWriter(mSocket.getOutputStream(), true);
             mIn = new BufferedReader(new InputStreamReader(mSocket.getInputStream()));
         } catch (IOException ex) {
-            Logger.getLogger(StatefulServerThreadVersion5.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StatefulServerThreadVersion6.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -66,14 +66,14 @@ public class StatefulServerThreadVersion5 extends Thread {
             System.out.println("(Stateful Server ID " + mServerID + "  ended)");
 
         } catch (IOException ex) {
-            Logger.getLogger(StatefulServerThreadVersion5.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StatefulServerThreadVersion6.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 //tell the client that sever will quit
                 mOut.println("-1");
                 mSocket.close();
             } catch (IOException ex) {
-                Logger.getLogger(StatefulServerThreadVersion5.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(StatefulServerThreadVersion6.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//end run
