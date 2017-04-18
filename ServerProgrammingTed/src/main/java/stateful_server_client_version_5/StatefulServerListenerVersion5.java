@@ -13,16 +13,16 @@ public class StatefulServerListenerVersion5 {
 
         int id = 0;
 
-        System.out.println("Server Listener version 4 started");
+        System.out.println("Server Listener version 5 started");
 
         try (ServerSocket serverSocket = new ServerSocket(VALUE.SERVER_PORT_NUMBER)) {
-
             while (mListeningBoolean) {
                 new StatefulServerThreadVersion5(serverSocket.accept(), ++id).start();
             }
         } catch (IOException e) {
             System.err.println("Could not listen on port " + VALUE.SERVER_PORT_NUMBER);
         }
+        
     }
 
 }

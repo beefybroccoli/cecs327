@@ -20,21 +20,31 @@ public class StatefulServerProtocolVersion5 {
 
     public String process(String input) {
         String result = input + " - ";
-        if (input.equals("hi")) {
-            result += "hello from server " + mServerID;
-        }else if (input.equals("-1")) {
-            result += "exit thread";
-        }else if (input.equals("1")) {
-            result += "Even Fib Big Decimal " + mEvenFibBigDecimalType.getNextEvenFib().abs();
-        } else if (input.equals("2")) {
-            result += "Larger RandomNumber " + mLargerRandomNumber.getNextLargerRand().abs();
-        } else if (input.equals("3")) {
-            result += "Prime Number " + mPrimeGenerator.getNextPrime().abs();
-        } else {
-            result += "invalid input, 1 - Even Fib Big Decimal, 2 - Larger RandomNumber, 3 - Prime Numbe, -1 for exit";
-        }
 
+        switch (input) {
+            case "hi":
+                result += "hello from server " + mServerID;
+                break;
+                
+            case "-1":
+                result += "exit thread";
+                break;
+
+            case "1":
+                result += "Even Fib Big Decimal " + mEvenFibBigDecimalType.getNextEvenFib().abs();
+                break;
+
+            case "2":
+                result += "Larger RandomNumber " + mLargerRandomNumber.getNextLargerRand().abs();
+                break;
+
+            case "3":
+                result += "Prime Number " + mPrimeGenerator.getNextPrime().abs();
+                break;
+
+            default:
+                result += "invalid input, 1 - Even Fib Big Decimal, 2 - Larger RandomNumber, 3 - Prime Numbe, -1 for exit";
+        }
         return result;
     }
-
 }
