@@ -7,200 +7,192 @@ how to test version 2
 result 1
     
     StatefulServerListenerVersion3 output
-        Server Listener started
-        (Stateful Server ID 10  Started)
-        server 10 received "hi"
-        server 10 received "1"
-        server 10 received "1"
-        server 10 received "1"
-        server 10 received "1"
-        server 10 received "1"
-        server 10 received "2"
-        server 10 received "2"
-        server 10 received "2"
-        server 10 received "2"
-        server 10 received "2"
-        server 10 received "3"
-        server 10 received "3"
-        server 10 received "3"
-        server 10 received "3"
-        server 10 received "3"
-        server 10 received "4"
-        server 10 received "-1"
-        (Stateful Server ID 10  ended)
+        --- exec-maven-plugin:1.2.1:exec (default-cli) @ ServerProgrammingTed ---
+        Server Listener version 3 started
+        (Stateful Server ID 1  Started)
+        server 1 received "hi"
+        server 1 received "1"
+        server 1 received "2"
+        server 1 received "3"
+        server 1 received "4"
+        server 1 received "-1"
+        (Stateful Server ID 1  ended)
        
 
     
     StatefulServerClientVersoin3 output
+       --- exec-maven-plugin:1.2.1:exec (default-cli) @ ServerProgrammingTed ---
         (Client id 2 started)
-        Client 2 receive: 
+        hi
+        Client 2 send    : hi
+        Client 2 receive : server 1 respond to hi - hello from server 1
 
-        Client 2 send   : hi
-        Client 2 receive: server 10 respond to hi - hello from server 10
+        1
+        Client 2 send    : 1
+        Client 2 receive : server 1 respond to 1 - Even Fib Big Decimal 0
 
-        Client 2 send   : 1
-        Client 2 receive: server 10 respond to 1 - Even Fib Big Decimal 0
+        2
+        Client 2 send    : 2
+        Client 2 receive : server 1 respond to 2 - Larger RandomNumber 179040416
 
-        Client 2 send   : 1
-        Client 2 receive: server 10 respond to 1 - Even Fib Big Decimal 2
+        3
+        Client 2 send    : 3
+        Client 2 receive : server 1 respond to 3 - Prime Number 2
 
-        Client 2 send   : 1
-        Client 2 receive: server 10 respond to 1 - Even Fib Big Decimal 8
+        4
+        Client 2 send    : 4
+        Client 2 receive : server 1 respond to 4 - invalid input, 1 - Even Fib Big Decimal, 2 - Larger RandomNumber, 3 - Prime Numbe, -1 for exit
 
-        Client 2 send   : 1
-        Client 2 receive: server 10 respond to 1 - Even Fib Big Decimal 34
+        -1
+        Client 2 send    : -1
+        Client 2 receive : server 1 respond to -1 - exit thread
 
-        Client 2 send   : 1
-        Client 2 receive: server 10 respond to 1 - Even Fib Big Decimal 144
-
-        Client 2 send   : 2
-        Client 2 receive: server 10 respond to 2 - Larger RandomNumber 921
-
-        Client 2 send   : 2
-        Client 2 receive: server 10 respond to 2 - Larger RandomNumber 1167
-
-        Client 2 send   : 2
-        Client 2 receive: server 10 respond to 2 - Larger RandomNumber 1271
-
-        Client 2 send   : 2
-        Client 2 receive: server 10 respond to 2 - Larger RandomNumber 1554
-
-        Client 2 send   : 2
-        Client 2 receive: server 10 respond to 2 - Larger RandomNumber 2109
-
-        Client 2 send   : 3
-        Client 2 receive: server 10 respond to 3 - Prime Number 2
-
-        Client 2 send   : 3
-        Client 2 receive: server 10 respond to 3 - Prime Number 3
-
-        Client 2 send   : 3
-        Client 2 receive: server 10 respond to 3 - Prime Number 5
-
-        Client 2 send   : 3
-        Client 2 receive: server 10 respond to 3 - Prime Number 7
-
-        Client 2 send   : 3
-        Client 2 receive: server 10 respond to 3 - Prime Number 11
-
-        Client 2 send   : 4
-        Client 2 receive: server 10 respond to 4 - invalid input, 1 - Even Fib Big Decimal, 2 - Larger RandomNumber, 3 - Prime Numbe, -1 for exit
-
-        Client 2 send   : -1
         (Client id 2 ended)
         ------------------------------------------------------------------------
         BUILD SUCCESS
         ------------------------------------------------------------------------
-        Total time: 0.603s
-        Finished at: Mon Apr 17 00:38:24 PDT 2017
-        Final Memory: 7M/245M
+        Total time: 8.957s
+        Finished at: Tue Apr 18 09:47:26 PDT 2017
+        Final Memory: 8M/309M
         ------------------------------------------------------------------------
         
 
 result 2
     
+    server side
+        --- exec-maven-plugin:1.2.1:exec (default-cli) @ ServerProgrammingTed ---
+        Server Listener version 3 started
+        (Stateful Server ID 1  Started)
+        server 1 received "hi"
+        server 1 received "1"
+        server 1 received "2"
+        server 1 received "3"
+        server 1 received "null"
+        (Stateful Server ID 1  ended)
+    
+
+    client side
+        --- exec-maven-plugin:1.2.1:exec (default-cli) @ ServerProgrammingTed ---
+        (Client id 2 started)
+        hi
+        Client 2 send    : hi
+        Client 2 receive : server 1 respond to hi - hello from server 1
+
+        1
+        Client 2 send    : 1
+        Client 2 receive : server 1 respond to 1 - Even Fib Big Decimal 0
+
+        2
+        Client 2 send    : 2
+        Client 2 receive : server 1 respond to 2 - Larger RandomNumber 951924056
+
+        3
+        Client 2 send    : 3
+        Client 2 receive : server 1 respond to 3 - Prime Number 2
+
+result 3
+    
     StatefulServerListenerVersion3 output
-        Server Listener started
+        (Stateful Server ID 7  Started)
+        (Stateful Server ID 8  Started)
+        (Stateful Server ID 9  Started)
+        (Stateful Server ID 10  Started)
         (Stateful Server ID 11  Started)
-        (Stateful Server ID 12  Started)
-        (Stateful Server ID 13  Started)
-        (Stateful Server ID 14  Started)
-        (Stateful Server ID 15  Started)
-        server 12 received "hi"
-        server 14 received "hi"
-        server 13 received "hi"
+        server 8 received "hi"
+        server 9 received "hi"
+        server 10 received "hi"
+        server 7 received "hi"
         server 11 received "hi"
-        server 15 received "hi"
-        server 14 received "1"
-        server 13 received "1"
-        server 14 received "1"
-        server 13 received "1"
-        server 15 received "1"
+        server 9 received "1"
+        server 10 received "1"
+        server 7 received "1"
+        server 9 received "1"
+        server 10 received "1"
         server 11 received "1"
-        server 14 received "1"
+        server 8 received "1"
+        server 7 received "1"
         server 11 received "1"
-        server 13 received "1"
-        server 14 received "1"
-        server 12 received "1"
-        server 15 received "1"
-        server 13 received "1"
+        server 8 received "1"
+        server 7 received "1"
+        server 9 received "1"
+        server 10 received "1"
+        server 8 received "1"
         server 11 received "1"
-        server 12 received "1"
-        server 14 received "1"
-        server 13 received "1"
-        server 14 received "2"
-        server 12 received "1"
+        server 7 received "1"
+        server 9 received "1"
+        server 10 received "1"
         server 11 received "1"
-        server 15 received "1"
-        server 14 received "2"
-        server 13 received "2"
+        server 7 received "1"
+        server 8 received "1"
+        server 9 received "1"
+        server 10 received "1"
         server 11 received "1"
-        server 13 received "2"
-        server 14 received "2"
-        server 15 received "1"
+        server 8 received "1"
+        server 9 received "2"
+        server 10 received "2"
+        server 7 received "2"
+        server 8 received "2"
         server 11 received "2"
-        server 14 received "2"
-        server 12 received "1"
-        server 13 received "2"
-        server 15 received "1"
+        server 9 received "2"
+        server 10 received "2"
+        server 7 received "2"
+        server 8 received "2"
+        server 9 received "2"
+        server 10 received "2"
         server 11 received "2"
-        server 12 received "1"
-        server 14 received "2"
-        server 15 received "2"
-        server 13 received "2"
-        server 12 received "2"
-        server 15 received "2"
+        server 7 received "2"
+        server 8 received "2"
         server 11 received "2"
-        server 12 received "2"
-        server 14 received "3"
+        server 9 received "2"
+        server 7 received "2"
+        server 8 received "2"
+        server 10 received "2"
         server 11 received "2"
-        server 13 received "2"
-        server 15 received "2"
-        server 14 received "3"
-        server 13 received "3"
+        server 9 received "2"
         server 11 received "2"
-        server 13 received "3"
+        server 7 received "2"
+        server 8 received "2"
+        server 10 received "2"
+        server 9 received "3"
+        server 7 received "3"
+        server 8 received "3"
         server 11 received "3"
-        server 15 received "2"
-        server 12 received "2"
-        server 13 received "3"
-        server 14 received "3"
-        server 12 received "2"
-        server 15 received "2"
+        server 10 received "3"
+        server 9 received "3"
+        server 7 received "3"
+        server 8 received "3"
         server 11 received "3"
-        server 15 received "3"
-        server 14 received "3"
-        server 12 received "2"
-        server 13 received "3"
+        server 10 received "3"
+        server 9 received "3"
+        server 8 received "3"
         server 11 received "3"
-        server 14 received "3"
-        server 12 received "3"
+        server 10 received "3"
+        server 9 received "3"
+        server 7 received "3"
+        server 8 received "3"
         server 11 received "3"
-        server 13 received "3"
-        server 12 received "3"
-        server 15 received "3"
+        server 10 received "3"
+        server 7 received "3"
+        server 8 received "3"
+        server 9 received "3"
+        server 10 received "3"
         server 11 received "3"
-        server 14 received "4"
-        server 15 received "3"
-        server 12 received "3"
-        server 14 received "-1"
+        server 8 received "4"
+        server 7 received "3"
+        server 9 received "4"
+        server 10 received "4"
+        server 8 received "-1"
+        (Stateful Server ID 8  ended)
         server 11 received "4"
-        server 13 received "4"
-        (Stateful Server ID 14  ended)
-        server 15 received "3"
-        server 12 received "3"
+        server 7 received "4"
         server 11 received "-1"
+        server 10 received "-1"
+        (Stateful Server ID 10  ended)
+        server 9 received "-1"
+        server 7 received "-1"
         (Stateful Server ID 11  ended)
-        server 13 received "-1"
-        server 15 received "3"
-        (Stateful Server ID 13  ended)
-        server 12 received "3"
-        server 15 received "4"
-        server 12 received "4"
-        server 15 received "-1"
-        (Stateful Server ID 15  ended)
-        server 12 received "-1"
-        (Stateful Server ID 12  ended)
+        (Stateful Server ID 9  ended)
+        (Stateful Server ID 7  ended)
             
         
 
@@ -208,290 +200,290 @@ result 2
         
         --- exec-maven-plugin:1.2.1:exec (default-cli) @ ServerProgrammingTed ---
         (Client id 2 started)
+        (Client id 5 started)
         (Client id 4 started)
         (Client id 3 started)
-        (Client id 5 started)
         (Client id 6 started)
-        Client 6 receive: 
+        Client 6 send    : hi
+        Client 4 send    : hi
+        Client 2 send    : hi
+        Client 3 send    : hi
+        Client 5 send    : hi
+        Client 5 receive : server 9 respond to hi - hello from server 9
 
-        Client 2 receive: 
+        Client 5 send    : 1
+        Client 3 receive : server 10 respond to hi - hello from server 10
 
-        Client 2 send   : hi
-        Client 5 receive: 
+        Client 3 send    : 1
+        Client 2 receive : server 7 respond to hi - hello from server 7
 
-        Client 5 send   : hi
-        Client 4 receive: 
+        Client 2 send    : 1
+        Client 5 receive : server 9 respond to 1 - Even Fib Big Decimal 0
 
-        Client 4 send   : hi
-        Client 3 receive: 
+        Client 5 send    : 1
+        Client 4 receive : server 11 respond to hi - hello from server 11
 
-        Client 6 send   : hi
-        Client 3 send   : hi
-        Client 3 receive: server 14 respond to hi - hello from server 14
+        Client 3 receive : server 10 respond to 1 - Even Fib Big Decimal 0
 
-        Client 3 send   : 1
-        Client 6 receive: server 13 respond to hi - hello from server 13
+        Client 3 send    : 1
+        Client 4 send    : 1
+        Client 6 receive : server 8 respond to hi - hello from server 8
 
-        Client 6 send   : 1
-        Client 3 receive: server 14 respond to 1 - Even Fib Big Decimal 0
+        Client 6 send    : 1
+        Client 2 receive : server 7 respond to 1 - Even Fib Big Decimal 0
 
-        Client 3 send   : 1
-        Client 5 receive: server 11 respond to hi - hello from server 11
+        Client 2 send    : 1
+        Client 4 receive : server 11 respond to 1 - Even Fib Big Decimal 0
 
-        Client 6 receive: server 13 respond to 1 - Even Fib Big Decimal 0
+        Client 4 send    : 1
+        Client 6 receive : server 8 respond to 1 - Even Fib Big Decimal 0
 
-        Client 6 send   : 1
-        Client 4 receive: server 15 respond to hi - hello from server 15
+        Client 6 send    : 1
+        Client 2 receive : server 7 respond to 1 - Even Fib Big Decimal 2
 
-        Client 4 send   : 1
-        Client 5 send   : 1
-        Client 3 receive: server 14 respond to 1 - Even Fib Big Decimal 2
+        Client 2 send    : 1
+        Client 5 receive : server 9 respond to 1 - Even Fib Big Decimal 2
 
-        Client 3 send   : 1
-        Client 2 receive: server 12 respond to hi - hello from server 12
+        Client 5 send    : 1
+        Client 3 receive : server 10 respond to 1 - Even Fib Big Decimal 2
 
-        Client 5 receive: server 11 respond to 1 - Even Fib Big Decimal 0
+        Client 3 send    : 1
+        Client 4 receive : server 11 respond to 1 - Even Fib Big Decimal 2
 
-        Client 5 send   : 1
-        Client 6 receive: server 13 respond to 1 - Even Fib Big Decimal 2
+        Client 4 send    : 1
+        Client 6 receive : server 8 respond to 1 - Even Fib Big Decimal 2
 
-        Client 6 send   : 1
-        Client 3 receive: server 14 respond to 1 - Even Fib Big Decimal 8
+        Client 6 send    : 1
+        Client 2 receive : server 7 respond to 1 - Even Fib Big Decimal 8
 
-        Client 3 send   : 1
-        Client 2 send   : 1
-        Client 4 receive: server 15 respond to 1 - Even Fib Big Decimal 0
+        Client 2 send    : 1
+        Client 5 receive : server 9 respond to 1 - Even Fib Big Decimal 8
 
-        Client 4 send   : 1
-        Client 6 receive: server 13 respond to 1 - Even Fib Big Decimal 8
+        Client 5 send    : 1
+        Client 3 receive : server 10 respond to 1 - Even Fib Big Decimal 8
 
-        Client 6 send   : 1
-        Client 5 receive: server 11 respond to 1 - Even Fib Big Decimal 2
+        Client 3 send    : 1
+        Client 4 receive : server 11 respond to 1 - Even Fib Big Decimal 8
 
-        Client 5 send   : 1
-        Client 3 receive: server 14 respond to 1 - Even Fib Big Decimal 34
+        Client 4 send    : 1
+        Client 6 receive : server 8 respond to 1 - Even Fib Big Decimal 8
 
-        Client 2 receive: server 12 respond to 1 - Even Fib Big Decimal 0
+        Client 6 send    : 1
+        Client 2 receive : server 7 respond to 1 - Even Fib Big Decimal 34
 
-        Client 2 send   : 1
-        Client 3 send   : 1
-        Client 4 receive: server 15 respond to 1 - Even Fib Big Decimal 2
+        Client 2 send    : 1
+        Client 5 receive : server 9 respond to 1 - Even Fib Big Decimal 34
 
-        Client 5 receive: server 11 respond to 1 - Even Fib Big Decimal 8
+        Client 5 send    : 1
+        Client 3 receive : server 10 respond to 1 - Even Fib Big Decimal 34
 
-        Client 6 receive: server 13 respond to 1 - Even Fib Big Decimal 34
+        Client 3 send    : 1
+        Client 4 receive : server 11 respond to 1 - Even Fib Big Decimal 34
 
-        Client 6 send   : 1
-        Client 3 receive: server 14 respond to 1 - Even Fib Big Decimal 144
+        Client 4 send    : 1
+        Client 6 receive : server 8 respond to 1 - Even Fib Big Decimal 34
 
-        Client 3 send   : 2
-        Client 2 receive: server 12 respond to 1 - Even Fib Big Decimal 2
+        Client 6 send    : 1
+        Client 2 receive : server 7 respond to 1 - Even Fib Big Decimal 144
 
-        Client 2 send   : 1
-        Client 5 send   : 1
-        Client 4 send   : 1
-        Client 3 receive: server 14 respond to 2 - Larger RandomNumber 207
+        Client 2 send    : 2
+        Client 5 receive : server 9 respond to 1 - Even Fib Big Decimal 144
 
-        Client 3 send   : 2
-        Client 6 receive: server 13 respond to 1 - Even Fib Big Decimal 144
+        Client 5 send    : 2
+        Client 3 receive : server 10 respond to 1 - Even Fib Big Decimal 144
 
-        Client 6 send   : 2
-        Client 5 receive: server 11 respond to 1 - Even Fib Big Decimal 34
+        Client 3 send    : 2
+        Client 6 receive : server 8 respond to 1 - Even Fib Big Decimal 144
 
-        Client 5 send   : 1
-        Client 2 receive: server 12 respond to 1 - Even Fib Big Decimal 8
+        Client 6 send    : 2
+        Client 4 receive : server 11 respond to 1 - Even Fib Big Decimal 144
 
-        Client 6 receive: server 13 respond to 2 - Larger RandomNumber 115
+        Client 4 send    : 2
+        Client 5 receive : server 9 respond to 2 - Larger RandomNumber 225944255
 
-        Client 6 send   : 2
-        Client 3 receive: server 14 respond to 2 - Larger RandomNumber 433
+        Client 5 send    : 2
+        Client 2 receive : server 7 respond to 2 - Larger RandomNumber 255550585
 
-        Client 3 send   : 2
-        Client 4 receive: server 15 respond to 1 - Even Fib Big Decimal 8
+        Client 2 send    : 2
+        Client 3 receive : server 10 respond to 2 - Larger RandomNumber 353060665
 
-        Client 4 send   : 1
-        Client 5 receive: server 11 respond to 1 - Even Fib Big Decimal 144
+        Client 3 send    : 2
+        Client 6 receive : server 8 respond to 2 - Larger RandomNumber 334524543
 
-        Client 5 send   : 2
-        Client 3 receive: server 14 respond to 2 - Larger RandomNumber 678
+        Client 6 send    : 2
+        Client 4 receive : server 11 respond to 2 - Larger RandomNumber 543996908
 
-        Client 3 send   : 2
-        Client 2 send   : 1
-        Client 6 receive: server 13 respond to 2 - Larger RandomNumber 316
+        Client 4 send    : 2
+        Client 5 receive : server 9 respond to 2 - Larger RandomNumber 412444604
 
-        Client 6 send   : 2
-        Client 4 receive: server 15 respond to 1 - Even Fib Big Decimal 34
+        Client 5 send    : 2
+        Client 3 receive : server 10 respond to 2 - Larger RandomNumber 1244019051
 
-        Client 4 send   : 1
-        Client 5 receive: server 11 respond to 2 - Larger RandomNumber 737
+        Client 3 send    : 2
+        Client 2 receive : server 7 respond to 2 - Larger RandomNumber 553416115
 
-        Client 5 send   : 2
-        Client 2 receive: server 12 respond to 1 - Even Fib Big Decimal 34
+        Client 2 send    : 2
+        Client 6 receive : server 8 respond to 2 - Larger RandomNumber 1046463701
 
-        Client 2 send   : 1
-        Client 3 receive: server 14 respond to 2 - Larger RandomNumber 980
+        Client 6 send    : 2
+        Client 5 receive : server 9 respond to 2 - Larger RandomNumber 1370815794
 
-        Client 3 send   : 2
-        Client 4 receive: server 15 respond to 1 - Even Fib Big Decimal 144
+        Client 4 receive : server 11 respond to 2 - Larger RandomNumber 1469594961
 
-        Client 4 send   : 2
-        Client 6 receive: server 13 respond to 2 - Larger RandomNumber 850
+        Client 4 send    : 2
+        Client 5 send    : 2
+        Client 2 receive : server 7 respond to 2 - Larger RandomNumber 1075824162
 
-        Client 6 send   : 2
-        Client 2 receive: server 12 respond to 1 - Even Fib Big Decimal 144
+        Client 2 send    : 2
+        Client 6 receive : server 8 respond to 2 - Larger RandomNumber 1142793832
 
-        Client 2 send   : 2
-        Client 4 receive: server 15 respond to 2 - Larger RandomNumber 896
+        Client 6 send    : 2
+        Client 3 receive : server 10 respond to 2 - Larger RandomNumber 2241904708
 
-        Client 4 send   : 2
-        Client 5 receive: server 11 respond to 2 - Larger RandomNumber 1108
+        Client 3 send    : 2
+        Client 4 receive : server 11 respond to 2 - Larger RandomNumber 2004034453
 
-        Client 5 send   : 2
-        Client 2 receive: server 12 respond to 2 - Larger RandomNumber 858
+        Client 4 send    : 2
+        Client 5 receive : server 9 respond to 2 - Larger RandomNumber 1454327921
 
-        Client 2 send   : 2
-        Client 6 receive: server 13 respond to 2 - Larger RandomNumber 1029
+        Client 5 send    : 2
+        Client 6 receive : server 8 respond to 2 - Larger RandomNumber 1456567679
 
-        Client 5 receive: server 11 respond to 2 - Larger RandomNumber 1717
+        Client 4 receive : server 11 respond to 2 - Larger RandomNumber 2584230854
 
-        Client 3 receive: server 14 respond to 2 - Larger RandomNumber 1778
+        Client 4 send    : 2
+        Client 2 receive : server 7 respond to 2 - Larger RandomNumber 1645604598
 
-        Client 3 send   : 3
-        Client 5 send   : 2
-        Client 6 send   : 2
-        Client 4 receive: server 15 respond to 2 - Larger RandomNumber 1468
+        Client 2 send    : 2
+        Client 6 send    : 2
+        Client 3 receive : server 10 respond to 2 - Larger RandomNumber 2843374746
 
-        Client 4 send   : 2
-        Client 3 receive: server 14 respond to 3 - Prime Number 2
+        Client 3 send    : 2
+        Client 5 receive : server 9 respond to 2 - Larger RandomNumber 2339172808
 
-        Client 3 send   : 3
-        Client 2 receive: server 12 respond to 2 - Larger RandomNumber 1323
+        Client 5 send    : 3
+        Client 4 receive : server 11 respond to 2 - Larger RandomNumber 2806792761
 
-        Client 6 receive: server 13 respond to 2 - Larger RandomNumber 1487
+        Client 4 send    : 3
+        Client 2 receive : server 7 respond to 2 - Larger RandomNumber 2395742828
 
-        Client 6 send   : 3
-        Client 5 receive: server 11 respond to 2 - Larger RandomNumber 2016
+        Client 2 send    : 3
+        Client 6 receive : server 8 respond to 2 - Larger RandomNumber 2185240847
 
-        Client 5 send   : 2
-        Client 3 receive: server 14 respond to 3 - Prime Number 3
+        Client 6 send    : 3
+        Client 3 receive : server 10 respond to 2 - Larger RandomNumber 3739173337
 
-        Client 6 receive: server 13 respond to 3 - Prime Number 2
+        Client 3 send    : 3
+        Client 5 receive : server 9 respond to 3 - Prime Number 2
 
-        Client 6 send   : 3
-        Client 5 receive: server 11 respond to 2 - Larger RandomNumber 2193
+        Client 5 send    : 3
+        Client 2 receive : server 7 respond to 3 - Prime Number 2
 
-        Client 5 send   : 3
-        Client 4 receive: server 15 respond to 2 - Larger RandomNumber 1930
+        Client 2 send    : 3
+        Client 6 receive : server 8 respond to 3 - Prime Number 2
 
-        Client 4 send   : 2
-        Client 2 send   : 2
-        Client 5 receive: server 11 respond to 3 - Prime Number 2
+        Client 6 send    : 3
+        Client 3 receive : server 10 respond to 3 - Prime Number 2
 
-        Client 6 receive: server 13 respond to 3 - Prime Number 3
+        Client 4 receive : server 11 respond to 3 - Prime Number 2
 
-        Client 6 send   : 3
-        Client 3 send   : 3
-        Client 2 receive: server 12 respond to 2 - Larger RandomNumber 2083
+        Client 4 send    : 3
+        Client 3 send    : 3
+        Client 5 receive : server 9 respond to 3 - Prime Number 3
 
-        Client 2 send   : 2
-        Client 4 receive: server 15 respond to 2 - Larger RandomNumber 2916
+        Client 5 send    : 3
+        Client 2 receive : server 7 respond to 3 - Prime Number 3
 
-        Client 4 send   : 2
-        Client 3 receive: server 14 respond to 3 - Prime Number 5
+        Client 2 send    : 3
+        Client 6 receive : server 8 respond to 3 - Prime Number 3
 
-        Client 5 send   : 3
-        Client 4 receive: server 15 respond to 2 - Larger RandomNumber 3832
+        Client 6 send    : 3
+        Client 4 receive : server 11 respond to 3 - Prime Number 3
 
-        Client 4 send   : 3
-        Client 3 send   : 3
-        Client 2 receive: server 12 respond to 2 - Larger RandomNumber 2990
+        Client 4 send    : 3
+        Client 3 receive : server 10 respond to 3 - Prime Number 3
 
-        Client 2 send   : 2
-        Client 6 receive: server 13 respond to 3 - Prime Number 5
+        Client 3 send    : 3
+        Client 5 receive : server 9 respond to 3 - Prime Number 5
 
-        Client 6 send   : 3
-        Client 5 receive: server 11 respond to 3 - Prime Number 3
+        Client 5 send    : 3
+        Client 6 receive : server 8 respond to 3 - Prime Number 5
 
-        Client 5 send   : 3
-        Client 3 receive: server 14 respond to 3 - Prime Number 7
+        Client 6 send    : 3
+        Client 4 receive : server 11 respond to 3 - Prime Number 5
 
-        Client 3 send   : 3
-        Client 2 receive: server 12 respond to 2 - Larger RandomNumber 3748
+        Client 4 send    : 3
+        Client 3 receive : server 10 respond to 3 - Prime Number 5
 
-        Client 2 send   : 3
-        Client 4 receive: server 15 respond to 3 - Prime Number 2
+        Client 3 send    : 3
+        Client 5 receive : server 9 respond to 3 - Prime Number 7
 
-        Client 5 receive: server 11 respond to 3 - Prime Number 5
+        Client 2 receive : server 7 respond to 3 - Prime Number 5
 
-        Client 5 send   : 3
-        Client 6 receive: server 13 respond to 3 - Prime Number 7
+        Client 2 send    : 3
+        Client 6 receive : server 8 respond to 3 - Prime Number 7
 
-        Client 6 send   : 3
-        Client 2 receive: server 12 respond to 3 - Prime Number 2
+        Client 6 send    : 3
+        Client 4 receive : server 11 respond to 3 - Prime Number 7
 
-        Client 2 send   : 3
-        Client 4 send   : 3
-        Client 5 receive: server 11 respond to 3 - Prime Number 7
+        Client 4 send    : 3
+        Client 5 send    : 3
+        Client 3 receive : server 10 respond to 3 - Prime Number 7
 
-        Client 5 send   : 3
-        Client 3 receive: server 14 respond to 3 - Prime Number 11
+        Client 3 send    : 3
+        Client 2 receive : server 7 respond to 3 - Prime Number 7
 
-        Client 3 send   : 4
-        Client 4 receive: server 15 respond to 3 - Prime Number 3
+        Client 2 send    : 3
+        Client 6 receive : server 8 respond to 3 - Prime Number 11
 
-        Client 4 send   : 3
-        Client 2 receive: server 12 respond to 3 - Prime Number 3
+        Client 6 send    : 4
+        Client 5 receive : server 9 respond to 3 - Prime Number 11
 
-        Client 2 send   : 3
-        Client 5 receive: server 11 respond to 3 - Prime Number 11
+        Client 5 send    : 4
+        Client 3 receive : server 10 respond to 3 - Prime Number 11
 
-        Client 5 send   : 4
-        Client 3 receive: server 14 respond to 4 - invalid input, 1 - Even Fib Big Decimal, 2 - Larger RandomNumber, 3 - Prime Numbe, -1 for exit
+        Client 3 send    : 4
+        Client 6 receive : server 8 respond to 4 - invalid input, 1 - Even Fib Big Decimal, 2 - Larger RandomNumber, 3 - Prime Numbe, -1 for exit
 
-        Client 3 send   : -1
-        Client 6 receive: server 13 respond to 3 - Prime Number 11
+        Client 6 send    : -1
+        Client 4 receive : server 11 respond to 3 - Prime Number 11
 
-        Client 6 send   : 4
-        Client 4 receive: server 15 respond to 3 - Prime Number 5
+        Client 4 send    : 4
+        Client 2 receive : server 7 respond to 3 - Prime Number 11
 
-        Client 4 send   : 3
-        (Client id 3 ended)
-        Client 5 receive: server 11 respond to 4 - invalid input, 1 - Even Fib Big Decimal, 2 - Larger RandomNumber, 3 - Prime Numbe, -1 for exit
+        Client 2 send    : 4
+        Client 5 receive : server 9 respond to 4 - invalid input, 1 - Even Fib Big Decimal, 2 - Larger RandomNumber, 3 - Prime Numbe, -1 for exit
 
-        Client 5 send   : -1
-        Client 2 receive: server 12 respond to 3 - Prime Number 5
+        Client 5 send    : -1
+        Client 3 receive : server 10 respond to 4 - invalid input, 1 - Even Fib Big Decimal, 2 - Larger RandomNumber, 3 - Prime Numbe, -1 for exit
 
-        Client 2 send   : 3
-        Client 6 receive: server 13 respond to 4 - invalid input, 1 - Even Fib Big Decimal, 2 - Larger RandomNumber, 3 - Prime Numbe, -1 for exit
+        Client 3 send    : -1
+        Client 6 receive : server 8 respond to -1 - exit thread
 
-        Client 6 send   : -1
-        (Client id 5 ended)
-        Client 4 receive: server 15 respond to 3 - Prime Number 7
-
-        Client 4 send   : 3
         (Client id 6 ended)
-        Client 2 receive: server 12 respond to 3 - Prime Number 7
+        Client 4 receive : server 11 respond to 4 - invalid input, 1 - Even Fib Big Decimal, 2 - Larger RandomNumber, 3 - Prime Numbe, -1 for exit
 
-        Client 2 send   : 3
-        Client 4 receive: server 15 respond to 3 - Prime Number 11
+        Client 4 send    : -1
+        Client 2 receive : server 7 respond to 4 - invalid input, 1 - Even Fib Big Decimal, 2 - Larger RandomNumber, 3 - Prime Numbe, -1 for exit
 
-        Client 4 send   : 4
-        Client 2 receive: server 12 respond to 3 - Prime Number 11
+        Client 3 receive : server 10 respond to -1 - exit thread
 
-        Client 2 send   : 4
-        Client 4 receive: server 15 respond to 4 - invalid input, 1 - Even Fib Big Decimal, 2 - Larger RandomNumber, 3 - Prime Numbe, -1 for exit
+        (Client id 3 ended)
+        Client 4 receive : server 11 respond to -1 - exit thread
 
-        Client 4 send   : -1
-        Client 2 receive: server 12 respond to 4 - invalid input, 1 - Even Fib Big Decimal, 2 - Larger RandomNumber, 3 - Prime Numbe, -1 for exit
-
-        Client 2 send   : -1
         (Client id 4 ended)
+        Client 2 send    : -1
+        Client 5 receive : server 9 respond to -1 - exit thread
+
+        (Client id 5 ended)
+        Client 2 receive : server 7 respond to -1 - exit thread
+
         (Client id 2 ended)
         ------------------------------------------------------------------------
         BUILD SUCCESS
         ------------------------------------------------------------------------
-        Total time: 0.648s
-        Finished at: Mon Apr 17 00:40:22 PDT 2017
+        Total time: 0.649s
+        Finished at: Tue Apr 18 09:51:10 PDT 2017
         Final Memory: 7M/245M
         ------------------------------------------------------------------------
         
