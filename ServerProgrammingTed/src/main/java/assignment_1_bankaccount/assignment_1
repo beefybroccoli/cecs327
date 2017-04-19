@@ -1,0 +1,4 @@
+Assignment #1 (program): Due 1/31 (10 pts)
+Objective: Using Java lock
+Modify the bank account program to use Lock (ReentrantLock) instead (of synchronized). 
+Do not use busy wait loop in this assignment.

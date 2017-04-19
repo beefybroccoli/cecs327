@@ -1,0 +1,384 @@
+
+how to test version 2
+
+    run StatefulServerListenerVersion2.java
+    run StatefulServerClientVersoin2.java then input the following values
+
+result 
+    
+    StatefulServerListenerVersion2 output
+        Server Listener started
+        (Stateful Server ID 5  Started)
+        (Stateful Server ID 2  Started)
+        (Stateful Server ID 1  Started)
+        (Stateful Server ID 3  Started)
+        (Stateful Server ID 4  Started)
+        server 1 received "1"
+        server 4 received "1"
+        server 1 received "1"
+        server 4 received "1"
+        server 3 received "1"
+        server 3 received "1"
+        server 5 received "1"
+        server 5 received "1"
+        server 2 received "1"
+        server 2 received "1"
+        server 4 received "1"
+        server 5 received "1"
+        server 1 received "1"
+        server 4 received "1"
+        server 3 received "1"
+        server 1 received "1"
+        server 2 received "1"
+        server 3 received "1"
+        server 5 received "1"
+        server 5 received "1"
+        server 3 received "1"
+        server 4 received "1"
+        server 5 received "2"
+        server 3 received "2"
+        server 2 received "1"
+        server 3 received "2"
+        server 1 received "1"
+        server 5 received "2"
+        server 4 received "2"
+        server 1 received "2"
+        server 4 received "2"
+        server 2 received "1"
+        server 5 received "2"
+        server 3 received "2"
+        server 1 received "2"
+        server 2 received "2"
+        server 5 received "2"
+        server 1 received "2"
+        server 1 received "2"
+        server 2 received "2"
+        server 4 received "2"
+        server 2 received "2"
+        server 5 received "2"
+        server 3 received "2"
+        server 2 received "2"
+        server 1 received "2"
+        server 5 received "3"
+        server 4 received "2"
+        server 2 received "2"
+        server 1 received "3"
+        server 5 received "3"
+        server 4 received "2"
+        server 5 received "3"
+        server 2 received "3"
+        server 3 received "2"
+        server 1 received "3"
+        server 1 received "3"
+        server 2 received "3"
+        server 1 received "3"
+        server 4 received "3"
+        server 5 received "3"
+        server 4 received "3"
+        server 2 received "3"
+        server 3 received "3"
+        server 2 received "3"
+        server 1 received "3"
+        server 5 received "3"
+        server 4 received "3"
+        server 1 received "4"
+        server 1 received "-1"
+        (Stateful Server ID 1  ended)
+        server 2 received "3"
+        server 3 received "3"
+        server 4 received "3"
+        server 3 received "3"
+        server 4 received "3"
+        server 2 received "4"
+        server 2 received "-1"
+        (Stateful Server ID 2  ended)
+        server 5 received "4"
+        server 5 received "-1"
+        server 3 received "3"
+        (Stateful Server ID 5  ended)
+        server 3 received "3"
+        server 4 received "4"
+        server 4 received "-1"
+        (Stateful Server ID 4  ended)
+        server 3 received "4"
+        server 3 received "-1"
+        (Stateful Server ID 3  ended)
+       
+
+    
+    StatefulServerClientVersoin2 output
+
+        (Client id 2 started)
+        (Client id 4 started)
+        (Client id 3 started)
+        (Client id 6 started)
+        (Client id 5 started)
+        Client 2: 1
+        Client 6: 1
+        Client 5: 1
+        Client 3: 1
+        Client 4: 1
+        Server: 
+
+        Server: 
+
+        Server: 
+
+        Server: 
+
+        Server: 
+
+        Client 6: 1
+        Server: from server 5, hello client
+
+        Client 2: 1
+        Client 5: 1
+        Server: from server 3, hello client
+
+        Server: from server 4, hello client
+
+        Client 4: 1
+        Server: from server 1, hello client
+
+        Client 3: 1
+        Server: from server 2, hello client
+
+        Client 4: 1
+        Server: 1 - Even Fib Big Decimal 0
+
+        Client 5: 1
+        Server: 1 - Even Fib Big Decimal 0
+
+        Client 2: 1
+        Client 6: 1
+        Server: 1 - Even Fib Big Decimal 0
+
+        Server: 1 - Even Fib Big Decimal 0
+
+        Client 3: 1
+        Client 2: 1
+        Client 5: 1
+        Client 4: 1
+        Server: 1 - Even Fib Big Decimal 2
+
+        Client 6: 1
+        Server: 1 - Even Fib Big Decimal 2
+
+        Client 6: 1
+        Server: 1 - Even Fib Big Decimal 2
+
+        Server: 1 - Even Fib Big Decimal 8
+
+        Client 2: 1
+        Server: 1 - Even Fib Big Decimal 8
+
+        Server: 1 - Even Fib Big Decimal 0
+
+        Client 5: 1
+        Client 6: 2
+        Server: 1 - Even Fib Big Decimal 2
+
+        Server: 1 - Even Fib Big Decimal 34
+
+        Server: 1 - Even Fib Big Decimal 8
+
+        Client 2: 2
+        Client 3: 1
+        Server: 1 - Even Fib Big Decimal 34
+
+        Client 2: 2
+        Server: 1 - Even Fib Big Decimal 144
+
+        Client 5: 2
+        Client 6: 2
+        Client 4: 1
+        Server: 1 - Even Fib Big Decimal 8
+
+        Client 4: 2
+        Server: 1 - Even Fib Big Decimal 144
+
+        Server: 1 - Even Fib Big Decimal 34
+
+        Client 5: 2
+        Server: 1 - Even Fib Big Decimal 2
+
+        Client 3: 1
+        Client 6: 2
+        Server: 1 - Even Fib Big Decimal 34
+
+        Client 2: 2
+        Client 4: 2
+        Server: 2 - Larger RandomNumber 410
+
+        Server: 1 - Even Fib Big Decimal 8
+
+        Server: 1 - Even Fib Big Decimal 144
+
+        Client 3: 2
+        Client 6: 2
+        Server: 1 - Even Fib Big Decimal 144
+
+        Client 4: 2
+        Server: 2 - Larger RandomNumber 283
+
+        Server: 2 - Larger RandomNumber 327
+
+        Client 4: 2
+        Server: 2 - Larger RandomNumber 672
+
+        Server: 1 - Even Fib Big Decimal 34
+
+        Client 3: 2
+        Client 5: 2
+        Server: 1 - Even Fib Big Decimal 144
+
+        Client 3: 2
+        Client 6: 2
+        Server: 2 - Larger RandomNumber 378
+
+        Server: 2 - Larger RandomNumber 1095
+
+        Client 2: 2
+        Client 4: 2
+        Client 3: 2
+        Server: 2 - Larger RandomNumber 1330
+
+        Client 6: 3
+        Server: 2 - Larger RandomNumber 884
+
+        Client 5: 2
+        Server: 2 - Larger RandomNumber 2117
+
+        Server: 2 - Larger RandomNumber 1001
+
+        Server: 2 - Larger RandomNumber 1148
+
+        Client 3: 2
+        Server: 2 - Larger RandomNumber 493
+
+        Server: 2 - Larger RandomNumber 1409
+
+        Client 4: 3
+        Client 6: 3
+        Server: 2 - Larger RandomNumber 1072
+
+        Client 5: 2
+        Server: 2 - Larger RandomNumber 2690
+
+        Client 6: 3
+        Server: 2 - Larger RandomNumber 2032
+
+        Client 3: 3
+        Client 2: 2
+        Server: 2 - Larger RandomNumber 2095
+
+        Client 4: 3
+        Server: 2 - Larger RandomNumber 2756
+
+        Client 4: 3
+        Server: 3 - Prime Number 2
+
+        Server: 2 - Larger RandomNumber 1515
+
+        Server: 3 - Prime Number 2
+
+        Client 3: 3
+        Server: 2 - Larger RandomNumber 962
+
+        Server: 2 - Larger RandomNumber 3007
+
+        Client 4: 3
+        Client 5: 3
+        Client 6: 3
+        Server: 2 - Larger RandomNumber 1926
+
+        Client 5: 3
+        Server: 3 - Prime Number 3
+
+        Client 3: 3
+        Client 2: 3
+        Server: 3 - Prime Number 2
+
+        Client 3: 3
+        Server: 3 - Prime Number 3
+
+        Client 4: 3
+        Server: 2 - Larger RandomNumber 2476
+
+        Server: 3 - Prime Number 3
+
+        Client 6: 3
+        Client 5: 3
+        Server: 3 - Prime Number 5
+
+        Client 4: 4
+        Server: 3 - Prime Number 7
+
+        Client 4: -1
+        Server: 3 - Prime Number 11
+
+        (Client id 4 ended)
+        Client 3: 3
+        Server: 3 - Prime Number 5
+
+        Server: 2 - Larger RandomNumber 1847
+
+        Client 2: 3
+        Server: 2 - Larger RandomNumber 2374
+
+        Client 2: 3
+        Server: 3 - Prime Number 2
+
+        Server: 3 - Prime Number 2
+
+        Client 5: 3
+        Server: 3 - Prime Number 3
+
+        Client 5: 3
+        Client 3: 4
+        Server: 3 - Prime Number 5
+
+        Client 6: 4
+        Server: 3 - Prime Number 7
+
+        Client 6: -1
+        Server: 3 - Prime Number 5
+
+        Server: 3 - Prime Number 7
+
+        Client 3: -1
+        Server: 3 - Prime Number 11
+
+        Client 2: 3
+        Server: 3 - Prime Number 3
+
+        Server: 3 - Prime Number 11
+
+        (Client id 6 ended)
+        Client 2: 3
+        Server: 3 - Prime Number 5
+
+        Client 5: 4
+        (Client id 3 ended)
+        Server: 3 - Prime Number 7
+
+        Client 5: -1
+        Client 2: 4
+        Server: 3 - Prime Number 11
+
+        Server: 3 - Prime Number 7
+
+        (Client id 5 ended)
+        Client 2: -1
+        Server: 3 - Prime Number 11
+
+        (Client id 2 ended)
+        ------------------------------------------------------------------------
+        BUILD SUCCESS
+        ------------------------------------------------------------------------
+        Total time: 0.663s
+        Finished at: Sun Apr 16 23:23:14 PDT 2017
+        Final Memory: 8M/309M
+        ------------------------------------------------------------------------
+
+        
