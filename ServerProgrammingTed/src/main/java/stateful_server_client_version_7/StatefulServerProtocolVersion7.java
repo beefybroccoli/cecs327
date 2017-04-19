@@ -21,7 +21,8 @@ public class StatefulServerProtocolVersion7 {
 
         switch (input) {
             case "hi":
-                result += "hello from server " + mServerID;
+                result += "hello from server " + mServerID + " : "
+                        + "1 - Even Fib Big Decimal, 2 - Larger RandomNumber, 3 - Prime Numbe, -1 for exit.";
                 break;
                 
             case "-1":
