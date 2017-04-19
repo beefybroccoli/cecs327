@@ -36,17 +36,18 @@ public class StatefulServerThreadVersion7 extends Thread {
     public void run() {
 
         try {
-            System.out.println("(Stateful Server ID " + mServerID + "  Started)");
+            System.out.println("(Stateful Server ID " + mServerID + "  Started)" + "\n");
 
             //the server stay alive whenever the mFlag is true
             do {
                 //get message from client
                 mInputLine = mIn.readLine();
-                System.out.println("server " + mServerID + " received " + "\"" + mInputLine + "\"");
+                System.out.println("server " + mServerID + " received " + "\"" + mInputLine + "\"" + "\n");
                 mOutputLine = mProtocol.process(mInputLine);
 
                 //respond to user
                 mOut.println("server " + mServerID + " respond to " + mOutputLine);
+//                System.out.println("\n");
 
                 //count how many times server received message "null"
                 if (mInputLine.equals("null")) {
@@ -58,7 +59,8 @@ public class StatefulServerThreadVersion7 extends Thread {
                 //the server will quit when user send "-1"
                 if (mNullCounter == 5 || mProtocol.mOtherCounter == 5 || mInputLine.equals("-1")) {
                     mFlag = false;
-                    mOut.println("Server " + mServerID + " end" + "\n");
+                    mOut.println("Server " + mServerID + " end");
+//                    System.out.println("\n");
                 }
 
             } while (mFlag == true);

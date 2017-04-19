@@ -6,14 +6,14 @@ import java.util.Random;
 /**
  * generate the next larger random number
  */
-public class LargerRandomNumber {
+public class LargerRandomNumberBigDecimal {
 
     private BigDecimal mValue;
 
     /**
      * initialize a LargerRandomNumber object with seed value of 0
      */
-    public LargerRandomNumber() {
+    public LargerRandomNumberBigDecimal() {
         mValue = new BigDecimal(0);
     }
 
@@ -40,11 +40,11 @@ public class LargerRandomNumber {
     }
 
     /**
-     * generate a list of random value using LargerRandomNumber object
+     * generate a list of random value using LargerRandomNumberBigDecimal object
      */
     public static void test2() {
 
-        LargerRandomNumber value = new LargerRandomNumber();
+        LargerRandomNumberBigDecimal value = new LargerRandomNumberBigDecimal();
 
         for (int i = 0; i < 50; i++) {
 

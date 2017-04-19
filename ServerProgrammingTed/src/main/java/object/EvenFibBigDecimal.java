@@ -6,7 +6,7 @@ import java.math.BigDecimal;
  *calculate the next even fib
  */
 
-public class EvenFibBigDecimalType {
+public class EvenFibBigDecimal {
 
     private BigDecimal valueNMinus2;
     private BigDecimal valueNMinus1;
@@ -15,7 +15,7 @@ public class EvenFibBigDecimalType {
     /**
      *initialize EvenFibBigDecimalType with seed 0 and 1
      */
-    public EvenFibBigDecimalType() {
+    public EvenFibBigDecimal() {
         valueNMinus2 = new BigDecimal("0");
         valueNMinus1 = new BigDecimal("1");
         valueN = new BigDecimal("-1");
@@ -73,7 +73,7 @@ public class EvenFibBigDecimalType {
      *test if the object generate a sequence of even fib numbers correctly
      */
     public static void test3() {
-        EvenFibBigDecimalType obj = new EvenFibBigDecimalType();
+        EvenFibBigDecimal obj = new EvenFibBigDecimal();
 
         for (int i = 0; i < 200; i++) {
             BigDecimal result = obj.getNextEvenFib();
@@ -85,7 +85,7 @@ public class EvenFibBigDecimalType {
      *test if the object generate a sequence of fib numbers correctly
      */
     public static void test2() {
-        EvenFibBigDecimalType obj = new EvenFibBigDecimalType();
+        EvenFibBigDecimal obj = new EvenFibBigDecimal();
 
         for (int i = 0; i < 100; i++) {
             BigDecimal result = obj.getNextFib();

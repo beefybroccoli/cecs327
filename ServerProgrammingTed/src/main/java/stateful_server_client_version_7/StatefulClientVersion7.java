@@ -17,8 +17,13 @@ public class StatefulClientVersion7 extends Thread {
     private String mFromServer, mFromUser;
     private boolean mFlag;
 
-    public static String[] input = {"hi", "1", "1", "1", "1", "1",
-            "2", "2", "2", "2", "2", "3", "3", "3", "3", "3", "4", "-1"};
+    public static String[] input = {
+        "hi"
+        , "1", "1", "1", "1", "1"
+        ,"2", "2", "2", "2", "2"
+        , "3", "3", "3", "3", "3"
+        , "4"
+        , "-1"};
 
     public StatefulClientVersion7(String hostName, int serverPort, int ClientID) {
         mHostName = hostName;
@@ -63,7 +68,7 @@ public class StatefulClientVersion7 extends Thread {
 
             } while (mFlag == true);
 
-            System.out.println("(Client id " + mClientID + " ended)");
+            System.out.println("(Client id " + mClientID + " ended) "+ "\n");
 
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host " + mHostName);
@@ -96,7 +101,7 @@ public class StatefulClientVersion7 extends Thread {
     public static void main(String[] args) {
 
         int numberOfClients = 1;
-        numberOfClients = 10;
+//        numberOfClients = 10;
 
         for (int i = 0; i < numberOfClients; i++) {
 

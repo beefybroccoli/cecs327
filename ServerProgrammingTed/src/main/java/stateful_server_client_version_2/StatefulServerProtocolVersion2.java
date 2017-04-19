@@ -1,19 +1,19 @@
 
 package stateful_server_client_version_2;
 
-import object.EvenFibBigDecimalType;
-import object.LargerRandomNumber;
-import object.PrimeGenerator;
+import object.EvenFibBigDecimal;
+import object.LargerRandomNumberBigDecimal;
+import object.PrimeGeneratorBigDecimal;
 
 public class StatefulServerProtocolVersion2 {
-   EvenFibBigDecimalType mEvenFibBigDecimalType;
-   LargerRandomNumber mLargerRandomNumber;
-   PrimeGenerator mPrimeGenerator;
+   EvenFibBigDecimal mEvenFibBigDecimalType;
+   LargerRandomNumberBigDecimal mLargerRandomNumber;
+   PrimeGeneratorBigDecimal mPrimeGenerator;
    
    public StatefulServerProtocolVersion2(){
-       mEvenFibBigDecimalType = new EvenFibBigDecimalType();
-       mLargerRandomNumber = new LargerRandomNumber();
-       mPrimeGenerator = new PrimeGenerator();
+       mEvenFibBigDecimalType = new EvenFibBigDecimal();
+       mLargerRandomNumber = new LargerRandomNumberBigDecimal();
+       mPrimeGenerator = new PrimeGeneratorBigDecimal();
    }
     
     public String process(String input){

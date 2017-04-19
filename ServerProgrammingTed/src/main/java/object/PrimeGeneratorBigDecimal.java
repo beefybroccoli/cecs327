@@ -5,11 +5,11 @@ import java.math.BigDecimal;
 /*
 calculate the next prime number
  */
-public class PrimeGenerator {
+public class PrimeGeneratorBigDecimal {
 
     private BigDecimal mPrimeNumber;
 
-    public PrimeGenerator() {
+    public PrimeGeneratorBigDecimal() {
         mPrimeNumber = new BigDecimal(1);
     }
 
@@ -64,7 +64,7 @@ public class PrimeGenerator {
 
     public static void demoGetNextPrime() {
 
-        PrimeGenerator obj = new PrimeGenerator();
+        PrimeGeneratorBigDecimal obj = new PrimeGeneratorBigDecimal();
 
         for (int i = 0; i < 100; i++) {
             System.out.println("next prime i = " + (i + 1) + ", " + obj.getNextPrime());
@@ -74,7 +74,7 @@ public class PrimeGenerator {
     }
 
     public static void demonTestPrimeMthod() {
-        PrimeGenerator obj = new PrimeGenerator();
+        PrimeGeneratorBigDecimal obj = new PrimeGeneratorBigDecimal();
 
         for (int i = 2; i < 100; i++) {
 

@@ -1,18 +1,18 @@
-
 package stateful_server_client_version_7;
 
 import VALUE.VALUE;
 import java.io.IOException;
 import java.net.ServerSocket;
 
-public class StatefulServerListenerVersion7 {
-    
-        public static void main(String[] args) throws IOException {
+public class StatefulServerListenerVersion7 extends Thread {
 
+    @Override
+    public void run() {
+        
         boolean mListeningBoolean = true;
 
         int id = 0;
-        
+
         SharedResource sharedResource = new SharedResource();
 
         System.out.println("Server Listener version 7 started");
@@ -24,7 +24,7 @@ public class StatefulServerListenerVersion7 {
         } catch (IOException e) {
             System.err.println("Could not listen on port " + VALUE.SERVER_PORT_NUMBER);
         }
-        
+
     }
 
 }

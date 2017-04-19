@@ -1,0 +1,45 @@
+Server Error
+    
+    server 11717 received "1"
+    Apr 18, 2017 7:51:34 PM stateful_server_client_version_7.StatefulServerThreadVersion7 run
+    SEVERE: null
+    java.net.SocketException: Connection reset
+            at java.net.SocketInputStream.read(SocketInputStream.java:209)
+            at java.net.SocketInputStream.read(SocketInputStream.java:141)
+            at sun.nio.cs.StreamDecoder.readBytes(StreamDecoder.java:284)
+            at sun.nio.cs.StreamDecoder.implRead(StreamDecoder.java:326)
+            at sun.nio.cs.StreamDecoder.read(StreamDecoder.java:178)
+            at java.io.InputStreamReader.read(InputStreamReader.java:184)
+            at java.io.BufferedReader.fill(BufferedReader.java:161)
+            at java.io.BufferedReader.readLine(BufferedReader.java:324)
+            at java.io.BufferedReader.readLine(BufferedReader.java:389)
+            at stateful_server_client_version_7.StatefulServerThreadVersion7.run(StatefulServerThreadVersion7.java:44)
+
+    Apr 18, 2017 7:51:34 PM stateful_server_client_version_7.StatefulServerThreadVersion7 run
+    SEVERE: null
+    java.net.SocketException: Connection reset
+            at java.net.SocketInputStream.read(SocketInputStream.java:209)
+            at java.net.SocketInputStream.read(SocketInputStream.java:141)
+            at sun.nio.cs.StreamDecoder.readBytes(StreamDecoder.java:284)
+            at sun.nio.cs.StreamDecoder.implRead(StreamDecoder.java:326)
+            at sun.nio.cs.StreamDecoder.read(StreamDecoder.java:178)
+            at java.io.InputStreamReader.read(InputStreamReader.java:184)
+            at java.io.BufferedReader.fill(BufferedReader.java:161)
+            at java.io.BufferedReader.readLine(BufferedReader.java:324)
+            at java.io.BufferedReader.readLine(BufferedReader.java:389)
+            at stateful_server_client_version_7.StatefulServerThreadVersion7.run(StatefulServerThreadVersion7.java:44)
+
+    Apr 18, 2017 7:51:34 PM stateful_server_client_version_7.StatefulServerThreadVersion7 run
+    SEVERE: null
+    java.net.SocketException: Connection reset
+            at java.net.SocketInputStream.read(SocketInputStream.java:209)
+            at java.net.SocketInputStream.read(SocketInputStream.java:141)
+            at sun.nio.cs.StreamDecoder.readBytes(StreamDecoder.java:284)
+            at sun.nio.cs.StreamDecoder.implRead(StreamDecoder.java:326)
+            at sun.nio.cs.StreamDecoder.read(StreamDecoder.java:178)
+            at java.io.InputStreamReader.read(InputStreamReader.java:184)
+            at java.io.BufferedReader.fill(BufferedReader.java:161)
+            at java.io.BufferedReader.readLine(BufferedReader.java:324)
+            at java.io.BufferedReader.readLine(BufferedReader.java:389)
+            at stateful_server_client_version_7.StatefulServerThreadVersion7.run(StatefulServerThreadVersion7.java:44)
+

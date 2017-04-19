@@ -1,21 +1,18 @@
 package stateful_server_client_version_7;
 
 import java.util.concurrent.locks.ReentrantLock;
-import object.EvenFibBigDecimalType;
-import object.LargerRandomNumber;
-import object.PrimeGenerator;
+import object.EvenFibBigInteger;
+import object.LargerRandomNumberBigInteger;
+import object.PrimeGeneratorBigInteger;
 
 public class SharedResource {
 
-    EvenFibBigDecimalType mEvenFibBigDecimalType;
-    LargerRandomNumber mLargerRandomNumber;
-    PrimeGenerator mPrimeGenerator;
+    EvenFibBigInteger mEvenFibBig = new EvenFibBigInteger();
+    LargerRandomNumberBigInteger mLargerRandomNumber = new LargerRandomNumberBigInteger();
+    PrimeGeneratorBigInteger mPrimeGenerator = new PrimeGeneratorBigInteger();
     private ReentrantLock mSharedLock = new ReentrantLock();
 
     public SharedResource() {
-        mEvenFibBigDecimalType = new EvenFibBigDecimalType();
-        mLargerRandomNumber = new LargerRandomNumber();
-        mPrimeGenerator = new PrimeGenerator();
 
     }
 
@@ -23,7 +20,7 @@ public class SharedResource {
         String result = "";
         mSharedLock.lock();
         try {
-            result = "" + mEvenFibBigDecimalType.getNextEvenFib().abs();
+            result = "" + mEvenFibBig.getNextEvenFib().abs();
         } finally {
             mSharedLock.unlock();
         }
