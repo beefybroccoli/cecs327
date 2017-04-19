@@ -1,7 +1,5 @@
 package reference;
 
-import static sun.security.jgss.GSSToken.debug;
-
 /*
 calculate the next even fib
  */

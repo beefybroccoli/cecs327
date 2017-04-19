@@ -1,5 +1,6 @@
 package stateful_server_client_version_7;
 
+import object.SharedResource;
 import java.net.*;
 import java.io.*;
 import java.util.logging.Level;

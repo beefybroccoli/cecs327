@@ -6,6 +6,10 @@ import java.util.logging.Logger;
 
 public class StartClients extends Thread {
 
+    /**
+     * repeat the process in a continuous loop.
+     * process - start 100 threads, then sleep for 1000 ms.
+     */
     public void run() {
 
         int id = 0;

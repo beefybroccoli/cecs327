@@ -1,5 +1,7 @@
 package stateful_server_client_version_7;
 
+import object.SharedResource;
+
 public class StatefulServerProtocolVersion7 {
 
 

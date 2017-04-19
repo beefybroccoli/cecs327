@@ -1,5 +1,6 @@
 package stateful_server_client_version_7;
 
+import object.SharedResource;
 import VALUE.VALUE;
 import java.io.IOException;
 import java.net.ServerSocket;
