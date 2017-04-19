@@ -1,4 +1,4 @@
-package stateful_server_client_version_6;
+package stateful_server_client_version_7;
 
 import VALUE.VALUE;
 import java.io.*;
@@ -6,7 +6,7 @@ import java.net.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class StatefulClientVersion6 extends Thread {
+public class StatefulClientVersion7 extends Thread {
 
     private String mHostName;
     private int mServerPort;
@@ -20,7 +20,7 @@ public class StatefulClientVersion6 extends Thread {
     public static String[] input = {"hi", "1", "1", "1", "1", "1",
             "2", "2", "2", "2", "2", "3", "3", "3", "3", "3", "4", "-1"};
 
-    public StatefulClientVersion6(String hostName, int serverPort, int ClientID) {
+    public StatefulClientVersion7(String hostName, int serverPort, int ClientID) {
         mHostName = hostName;
         mServerPort = serverPort;
         mClientID = ClientID;
@@ -33,23 +33,23 @@ public class StatefulClientVersion6 extends Thread {
             mIn = new BufferedReader(
                     new InputStreamReader(mSocket.getInputStream()));
         } catch (IOException ex) {
-            Logger.getLogger(StatefulClientVersion6.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StatefulClientVersion7.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public void run() {
 
-        System.out.println("(Client id " + mClientID + " started)");
+        System.out.println("(Client id " + mClientID + " started)" + "\n");
         int index = -1;
 
         try {
             //the loop will continue when the mFlag is true
             do {
-//                mFromUser = input[++index];
-                mFromUser = getUserInput();
+                mFromUser = input[++index];
+//                mFromUser = getUserInput();
 
                 //send message to server
-                System.out.println("Client " + mClientID + " send    : " + mFromUser);
+                System.out.println("Client " + mClientID + " send    : " + mFromUser + "\n");
                 mOut.println(mFromUser);
 
                 //received messge from server
@@ -77,7 +77,7 @@ public class StatefulClientVersion6 extends Thread {
                 mOut.println("-1");
                 mSocket.close();
             } catch (IOException ex) {
-                Logger.getLogger(StatefulClientVersion6.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(StatefulClientVersion7.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -88,7 +88,7 @@ public class StatefulClientVersion6 extends Thread {
         try {
             result = stdIn.readLine();
         } catch (IOException ex) {
-            Logger.getLogger(StatefulClientVersion6.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StatefulClientVersion7.class.getName()).log(Level.SEVERE, null, ex);
         }
         return result;
     }
@@ -96,12 +96,12 @@ public class StatefulClientVersion6 extends Thread {
     public static void main(String[] args) {
 
         int numberOfClients = 1;
-//        numberOfClients = 1000;
+        numberOfClients = 10;
 
         for (int i = 0; i < numberOfClients; i++) {
 
             int id = i + 1;
-            StatefulClientVersion6 client = new StatefulClientVersion6(VALUE.LOCAL_HOST, VALUE.SERVER_PORT_NUMBER, ++id);
+            StatefulClientVersion7 client = new StatefulClientVersion7(VALUE.LOCAL_HOST, VALUE.SERVER_PORT_NUMBER, ++id);
             client.start();
         }
 
