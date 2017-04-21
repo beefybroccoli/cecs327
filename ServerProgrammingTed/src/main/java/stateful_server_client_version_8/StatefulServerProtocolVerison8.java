@@ -1,16 +1,15 @@
 package stateful_server_client_version_8;
 
-import stateful_server_client_version_alpha.*;
 import object.SharedResource;
 
-public class StatefulServerProtocol {
+public class StatefulServerProtocolVerison8 {
 
 
     int mServerID;
     public int mOtherCounter;
     private SharedResource mSharedResource;
 
-    public StatefulServerProtocol(int inputServerID, SharedResource inputSharedResource) {
+    public StatefulServerProtocolVerison8(int inputServerID, SharedResource inputSharedResource) {
 
         mServerID = inputServerID;
         mOtherCounter = 0;

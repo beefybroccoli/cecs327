@@ -1,13 +1,12 @@
 package stateful_server_client_version_8;
 
-import stateful_server_client_version_alpha.*;
 import VALUE.VALUE;
 import java.io.*;
 import java.net.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class StatefulClient extends Thread {
+public class StatefulClientVersion8 extends Thread {
 
     private String mHostName;
     private int mServerPort;
@@ -26,7 +25,7 @@ public class StatefulClient extends Thread {
         , "4"
         , "-1"};
 
-    public StatefulClient(String hostName, int serverPort, int ClientID) {
+    public StatefulClientVersion8(String hostName, int serverPort, int ClientID) {
         mHostName = hostName;
         mServerPort = serverPort;
         mClientID = ClientID;
@@ -39,7 +38,7 @@ public class StatefulClient extends Thread {
             mIn = new BufferedReader(
                     new InputStreamReader(mSocket.getInputStream()));
         } catch (IOException ex) {
-            Logger.getLogger(StatefulClient.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StatefulClientVersion8.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -83,7 +82,7 @@ public class StatefulClient extends Thread {
                 mOut.println("-1");
                 mSocket.close();
             } catch (IOException ex) {
-                Logger.getLogger(StatefulClient.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(StatefulClientVersion8.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -94,7 +93,7 @@ public class StatefulClient extends Thread {
         try {
             result = stdIn.readLine();
         } catch (IOException ex) {
-            Logger.getLogger(StatefulClient.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StatefulClientVersion8.class.getName()).log(Level.SEVERE, null, ex);
         }
         return result;
     }
@@ -107,7 +106,7 @@ public class StatefulClient extends Thread {
         for (int i = 0; i < numberOfClients; i++) {
 
             int id = i + 1;
-            StatefulClient client = new StatefulClient(VALUE.LOCAL_HOST, VALUE.SERVER_PORT_NUMBER, ++id);
+            StatefulClientVersion8 client = new StatefulClientVersion8(VALUE.LOCAL_HOST, VALUE.SERVER_PORT_NUMBER, ++id);
             client.start();
         }
 

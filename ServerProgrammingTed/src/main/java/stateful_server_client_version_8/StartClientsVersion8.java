@@ -1,15 +1,14 @@
 package stateful_server_client_version_8;
 
-import stateful_server_client_version_alpha.*;
 import VALUE.VALUE;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class StartClients extends Thread {
+public class StartClientsVersion8 extends Thread {
 
     private String HOST_NAME;
     
-    public StartClients(String inputHOST_NAME){
+    public StartClientsVersion8(String inputHOST_NAME){
         HOST_NAME = inputHOST_NAME;
     }
     
@@ -28,14 +27,14 @@ public class StartClients extends Thread {
 
             for (int i = 0; i < numberOfClients; i++) {
 
-                StatefulClient client = new StatefulClient(HOST_NAME, VALUE.SERVER_PORT_NUMBER, ++id);
+                StatefulClientVersion8 client = new StatefulClientVersion8(HOST_NAME, VALUE.SERVER_PORT_NUMBER, ++id);
                 client.start();
             }
 
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException ex) {
-                Logger.getLogger(StartClients.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(StartClientsVersion8.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -44,7 +43,7 @@ public class StartClients extends Thread {
 
         String HOST_NAME = VALUE.LOCAL_HOST;
 //        HOST_NAME = "192.168.1.2";
-        StartClients ss = new StartClients(HOST_NAME);
+        StartClientsVersion8 ss = new StartClientsVersion8(HOST_NAME);
         ss.start();
     }
 }
