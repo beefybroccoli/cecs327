@@ -1,11 +1,18 @@
-package stateful_server_client_version_7;
+package stateful_server_client_version_8;
 
+import stateful_server_client_version_alpha.*;
 import VALUE.VALUE;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class StartClients extends Thread {
 
+    private String HOST_NAME;
+    
+    public StartClients(String inputHOST_NAME){
+        HOST_NAME = inputHOST_NAME;
+    }
+    
     /**
      * repeat the process in a continuous loop.
      * process - start 100 threads, then sleep for 1000 ms.
@@ -21,7 +28,7 @@ public class StartClients extends Thread {
 
             for (int i = 0; i < numberOfClients; i++) {
 
-                StatefulClientVersion7 client = new StatefulClientVersion7(VALUE.LOCAL_HOST, VALUE.SERVER_PORT_NUMBER, ++id);
+                StatefulClient client = new StatefulClient(HOST_NAME, VALUE.SERVER_PORT_NUMBER, ++id);
                 client.start();
             }
 
@@ -35,7 +42,9 @@ public class StartClients extends Thread {
 
     public static void main(String[] args) {
 
-        StartClients ss = new StartClients();
+        String HOST_NAME = VALUE.LOCAL_HOST;
+//        HOST_NAME = "192.168.1.2";
+        StartClients ss = new StartClients(HOST_NAME);
         ss.start();
     }
 }

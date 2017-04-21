@@ -1,11 +1,11 @@
-package stateful_server_client_version_7;
+package stateful_server_client_version_alpha;
 
 import object.SharedResource;
 import VALUE.VALUE;
 import java.io.IOException;
 import java.net.ServerSocket;
 
-public class StatefulServerListenerVersion7 extends Thread {
+public class StatefulServerListenerAlpha extends Thread {
 
     @Override
     public void run() {
@@ -20,12 +20,16 @@ public class StatefulServerListenerVersion7 extends Thread {
 
         try (ServerSocket serverSocket = new ServerSocket(VALUE.SERVER_PORT_NUMBER)) {
             while (mListeningBoolean) {
-                new StatefulServerThreadVersion7(serverSocket.accept(), ++id, sharedResource).start();
+                new StatefulServerThreadAlpha(serverSocket.accept(), ++id, sharedResource).start();
             }
         } catch (IOException e) {
             System.err.println("Could not listen on port " + VALUE.SERVER_PORT_NUMBER);
         }
 
+    }
+    
+    public static void main(String[] args){
+        new StatefulServerListenerAlpha().start();
     }
 
 }

@@ -1,4 +1,4 @@
-package stateful_server_client_version_7;
+package stateful_server_client_version_alpha;
 
 import VALUE.VALUE;
 import java.io.*;
@@ -6,7 +6,7 @@ import java.net.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class StatefulClientVersion7 extends Thread {
+public class StatefulClientAlpha extends Thread {
 
     private String mHostName;
     private int mServerPort;
@@ -25,7 +25,7 @@ public class StatefulClientVersion7 extends Thread {
         , "4"
         , "-1"};
 
-    public StatefulClientVersion7(String hostName, int serverPort, int ClientID) {
+    public StatefulClientAlpha(String hostName, int serverPort, int ClientID) {
         mHostName = hostName;
         mServerPort = serverPort;
         mClientID = ClientID;
@@ -38,7 +38,7 @@ public class StatefulClientVersion7 extends Thread {
             mIn = new BufferedReader(
                     new InputStreamReader(mSocket.getInputStream()));
         } catch (IOException ex) {
-            Logger.getLogger(StatefulClientVersion7.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StatefulClientAlpha.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -82,7 +82,7 @@ public class StatefulClientVersion7 extends Thread {
                 mOut.println("-1");
                 mSocket.close();
             } catch (IOException ex) {
-                Logger.getLogger(StatefulClientVersion7.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(StatefulClientAlpha.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -93,7 +93,7 @@ public class StatefulClientVersion7 extends Thread {
         try {
             result = stdIn.readLine();
         } catch (IOException ex) {
-            Logger.getLogger(StatefulClientVersion7.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StatefulClientAlpha.class.getName()).log(Level.SEVERE, null, ex);
         }
         return result;
     }
@@ -101,12 +101,12 @@ public class StatefulClientVersion7 extends Thread {
     public static void main(String[] args) {
 
         int numberOfClients = 1;
-//        numberOfClients = 10;
+        numberOfClients = 5;
 
         for (int i = 0; i < numberOfClients; i++) {
 
             int id = i + 1;
-            StatefulClientVersion7 client = new StatefulClientVersion7(VALUE.LOCAL_HOST, VALUE.SERVER_PORT_NUMBER, ++id);
+            StatefulClientAlpha client = new StatefulClientAlpha(VALUE.LOCAL_HOST, VALUE.SERVER_PORT_NUMBER, ++id);
             client.start();
         }
 

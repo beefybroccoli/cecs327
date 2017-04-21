@@ -1,15 +1,15 @@
-package stateful_server_client_version_7;
+package stateful_server_client_version_alpha;
 
 import object.SharedResource;
 
-public class StatefulServerProtocolVersion7 {
+public class StatefulServerProtocolAlpha {
 
 
     int mServerID;
     public int mOtherCounter;
     private SharedResource mSharedResource;
 
-    public StatefulServerProtocolVersion7(int inputServerID, SharedResource inputSharedResource) {
+    public StatefulServerProtocolAlpha(int inputServerID, SharedResource inputSharedResource) {
 
         mServerID = inputServerID;
         mOtherCounter = 0;
@@ -21,8 +21,7 @@ public class StatefulServerProtocolVersion7 {
 
         switch (input) {
             case "hi":
-                result += "hello from server " + mServerID + " : "
-                        + "1 - Even Fib Big Decimal, 2 - Larger RandomNumber, 3 - Prime Numbe, -1 for exit.";
+                result += "hello from server " + mServerID;
                 break;
                 
             case "-1":
