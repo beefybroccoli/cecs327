@@ -44,17 +44,19 @@ public class StatefulServerThreadVerison8 extends Thread {
                 //get message from client
                 mInputLine = mIn.readLine();
                 System.out.println("server " + mServerID + " received " + "\"" + mInputLine + "\"" + "\n");
+
+                //count how many times server received message "null"
+                if (mInputLine == null) {
+                    mNullCounter++;
+                    mInputLine = "null";
+                }
+
                 mOutputLine = mProtocol.process(mInputLine);
 
                 //respond to user
                 mOut.println("server " + mServerID + " respond to " + mOutputLine);
 //                System.out.println("\n");
 
-                //count how many times server received message "null"
-                if (mInputLine.equals("null")) {
-                    mNullCounter++;
-                } 
-                
                 //the server will quit after received message "null" for 5 times
                 //the server will quit other messages for 5 times
                 //the server will quit when user send "-1"

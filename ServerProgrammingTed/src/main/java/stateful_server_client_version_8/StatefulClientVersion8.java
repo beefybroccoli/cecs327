@@ -15,15 +15,12 @@ public class StatefulClientVersion8 extends Thread {
     private PrintWriter mOut;
     private BufferedReader mIn;
     private String mFromServer, mFromUser;
-    private boolean mFlag;
+    private boolean mWhileFlag;
+    private int mConnectionRetryCount;
+    private int mMaxConnectionRetryCount = 5;
 
     public static String[] input = {
-        "hi"
-        , "1", "1", "1", "1", "1"
-        ,"2", "2", "2", "2", "2"
-        , "3", "3", "3", "3", "3"
-        , "4"
-        , "-1"};
+        "hi", "1", "1", "1", "1", "1", "2", "2", "2", "2", "2", "3", "3", "3", "3", "3", "4", "-1"};
 
     public StatefulClientVersion8(String hostName, int serverPort, int ClientID) {
         mHostName = hostName;
@@ -31,60 +28,86 @@ public class StatefulClientVersion8 extends Thread {
         mClientID = ClientID;
         mFromServer = "";
         mFromUser = "";
-        mFlag = true;
+        mWhileFlag = true;
+        mConnectionRetryCount = 0;
         try {
+            System.out.println("(Client id " + mClientID + " started)" + "\n");
             mSocket = new Socket(mHostName, mServerPort);
             mOut = new PrintWriter(mSocket.getOutputStream(), true);
             mIn = new BufferedReader(
                     new InputStreamReader(mSocket.getInputStream()));
+        } catch (ConnectException ex) {
+            System.out.println("Connection Error in default constructor" + "\n");
         } catch (IOException ex) {
+            Logger.getLogger(StatefulClientVersion8.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void sleepForAwhile() {
+        try {
+            long time = 5000;
+            System.out.println("Thread ID " + Thread.currentThread().getId() + " sleep for " + time + " miliseconds" + "\n");
+            Thread.sleep(time);
+        } catch (InterruptedException ex) {
             Logger.getLogger(StatefulClientVersion8.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public void run() {
 
-        System.out.println("(Client id " + mClientID + " started)" + "\n");
         int index = -1;
 
+        //the loop will continue when the mFlag is true
         try {
-            //the loop will continue when the mFlag is true
+
             do {
+
                 mFromUser = input[++index];
 //                mFromUser = getUserInput();
 
                 //send message to server
-                System.out.println("Client " + mClientID + " send    : " + mFromUser + "\n");
+                System.out.println("Thread ID " + Thread.currentThread().getId() + " Client " + mClientID + " send    : " + mFromUser + "\n");
                 mOut.println(mFromUser);
 
                 //received messge from server
                 mFromServer = mIn.readLine();
-                System.out.println("Client " + mClientID + " receive : " + mFromServer + "\n");
+                System.out.println("Thread ID " + Thread.currentThread().getId() + " Client " + mClientID + " receive : " + mFromServer + "\n");
 
                 //quit the loop when the server or user receive -1
                 if (mFromUser.equals("-1") || mFromServer.equals("-1")) {
-                    mFlag = false;
+                    mWhileFlag = false;
                 }
+            } while (mWhileFlag == true);
 
-            } while (mFlag == true);
-
-            System.out.println("(Client id " + mClientID + " ended) "+ "\n");
-
-        } catch (UnknownHostException e) {
+        } catch (ConnectException e) {
             System.err.println("Don't know about host " + mHostName);
             System.exit(1);
         } catch (IOException e) {
             System.err.println("Couldn't get I/O for the connection to " + mHostName);
             System.exit(1);
+        } catch (NullPointerException ex) {
+            System.out.println("Thread ID " + Thread.currentThread().getId() + " Connection Error in run" + "\n");
+            /*
+                    the client will sleep for a wihle before re-attemp another connection to the server
+             */
+            if (mConnectionRetryCount <= mMaxConnectionRetryCount) {
+                sleepForAwhile();
+            } else {
+                mWhileFlag = false;
+            }
         } finally {
+
             try {
                 //tell server, the client will quit
                 mOut.println("-1");
+
+                System.out.println("(Client id " + mClientID + " ended) " + "\n");
                 mSocket.close();
             } catch (IOException ex) {
-                Logger.getLogger(StatefulClientVersion8.class.getName()).log(Level.SEVERE, null, ex);
+//                Logger.getLogger(StatefulClientVersion8.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+
     }
 
     public String getUserInput() {
@@ -101,7 +124,7 @@ public class StatefulClientVersion8 extends Thread {
     public static void main(String[] args) {
 
         int numberOfClients = 1;
-        numberOfClients = 5;
+//        numberOfClients = 5;
 
         for (int i = 0; i < numberOfClients; i++) {
 

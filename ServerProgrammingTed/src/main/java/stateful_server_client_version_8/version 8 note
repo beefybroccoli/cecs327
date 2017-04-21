@@ -1,0 +1,2 @@
+version 8
+    _the client will re-attempt to connect the server for 5 tries. After the 5 tries, the client stop trying to connect.

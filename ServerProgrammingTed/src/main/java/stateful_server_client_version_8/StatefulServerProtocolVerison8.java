@@ -20,6 +20,11 @@ public class StatefulServerProtocolVerison8 {
         String result = input + " - ";
 
         switch (input) {
+  
+            case "null":
+                result += "null " + mServerID;
+                break;
+                
             case "hi":
                 result += "hello from server " + mServerID;
                 break;
