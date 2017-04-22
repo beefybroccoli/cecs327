@@ -1,4 +1,4 @@
-package Executor_Service;
+package java_8_Concurrency_Tutorial;
 
 import static VALUE.VALUE.echo;
 import java.util.Arrays;
@@ -15,7 +15,12 @@ import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Execute_Task {
+
+/*
+source : http://winterbe.com/posts/2015/04/07/java8-concurrency-tutorial-thread-executor-examples/
+java_8_Concurrency_Tutorial_part_1_Threads_and_Executors
+ */
+public class Part_1_Threads_and_Executors {
 
     public static void main(String[] args) {
 
@@ -41,23 +46,26 @@ public class Execute_Task {
 //
 //        scheduled_executors_scheduleWithFixedDelay();
 //
-
     }
 
-    /*
-    A ScheduledExecutorService is capable of scheduling tasks to run either periodically 
-        or once after a certain amount of time has elapsed.
-
-    This code sample schedules a task to run after an initial delay of three seconds has passed:
-    
-    Scheduling a task produces a specialized future of type ScheduledFuture 
-        which - in addition to Future - provides the method getDelay() to retrieve the remaining delay. 
-        After this delay has elapsed the task will be executed concurrently.
-
-    In order to schedule tasks to be executed periodically, 
-        executors provide the two methods scheduleAtFixedRate() and scheduleWithFixedDelay().
-    
-    This code sample schedules a task to run after an initial delay of three seconds has passed:
+    //--------------------------------------------------------------------------------------------------
+    /**
+     * A ScheduledExecutorService is capable of scheduling tasks to run either
+     * periodically or once after a certain amount of time has elapsed.
+     *
+     * This code sample schedules a task to run after an initial delay of three
+     * seconds has passed:
+     *
+     * Scheduling a task produces a specialized future of type ScheduledFuture
+     * which - in addition to Future - provides the method getDelay() to
+     * retrieve the remaining delay. After this delay has elapsed the task will
+     * be executed concurrently.
+     *
+     * In order to schedule tasks to be executed periodically, executors provide
+     * the two methods scheduleAtFixedRate() and scheduleWithFixedDelay().
+     *
+     * This code sample schedules a task to run after an initial delay of three
+     * seconds has passed:
      */
     public static void scheduled_executors_with_initial_delay() {
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
@@ -68,7 +76,7 @@ public class Execute_Task {
         try {
             TimeUnit.MILLISECONDS.sleep(1337);
         } catch (InterruptedException ex) {
-            Logger.getLogger(Execute_Task.class.getName()).log(Level.SEVERE, null, ex);
+            echo("InterruptedException occured");
         }
 
         long remainingDelay = future.getDelay(TimeUnit.MILLISECONDS);
@@ -91,20 +99,20 @@ public class Execute_Task {
         }
     }
 
-    /*
-    In order to schedule tasks to be executed periodically, 
-        executors provide the two methods scheduleAtFixedRate() and scheduleWithFixedDelay(). 
-    
-    The first method is capable of executing tasks with a fixed time rate,
-        e.g. once every second as demonstrated in this example:
-    
-    Additionally this method accepts an initial delay which describes 
-        the leading wait time before the task will be executed for the first time.
-    
-    Please keep in mind that scheduleAtFixedRate() 
-        doesn't take into account the actual duration of the task. 
-        So if you specify a period of one second but the task needs 2 seconds 
-        to be executed then the thread pool will working to capacity very soon.
+    //--------------------------------------------------------------------------------------------------
+    /**
+     * In order to schedule tasks to be executed periodically, executors provide
+     * the two methods scheduleAtFixedRate() and scheduleWithFixedDelay(). * The
+     * first method is capable of executing tasks with a fixed time rate, e.g.
+     * once every second as demonstrated in this example:
+     *
+     * Additionally this method accepts an initial delay which describes the
+     * leading wait time before the task will be executed for the first time.
+     *
+     * Please keep in mind that scheduleAtFixedRate() doesn't take into account
+     * the actual duration of the task. So if you specify a period of one second
+     * but the task needs 2 seconds to be executed then the thread pool will
+     * working to capacity very soon.
      */
     public static void scheduled_executors_scheduleAtFixedRate() {
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
@@ -132,12 +140,18 @@ public class Execute_Task {
         }
     }
 
-    /*
-    In that case you should consider using scheduled_executors_scheduleAtFixedRate() instead. 
-        scheduleWithFixedDelay method works just like the counterpart described above. 
-    
-    The difference is that the wait time period applies between the end of a task 
-        and the start of the next task. 
+    //--------------------------------------------------------------------------------------------------
+    /**
+     * In that case you should consider using
+     * scheduled_executors_scheduleAtFixedRate() instead. scheduleWithFixedDelay
+     * method works just like the counterpart described above. * The difference
+     * is that the wait time period applies between the end of a task and the
+     * start of the next task. * This example schedules a task with a fixed
+     * delay of one second between the end of an execution and the start of the
+     * next execution. The initial delay is zero and the tasks duration is two
+     * seconds. So we end up with an execution interval of 0s, 3s, 6s, 9s and so
+     * on. As you can see scheduleWithFixedDelay() is handy if you cannot
+     * predict the duration of the scheduled tasks.
      */
     public static void scheduled_executors_scheduleWithFixedDelay() {
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
@@ -171,6 +185,7 @@ public class Execute_Task {
 
     }
 
+    //--------------------------------------------------------------------------------------------------
     /**
      * Helper method for invoke_any In order to test this behavior we use this
      * helper method to simulate callables with different durations. The method
@@ -188,6 +203,7 @@ public class Execute_Task {
         };
     }
 
+    //--------------------------------------------------------------------------------------------------
     /**
      * We use this method to create a bunch of callables with different
      * durations from one to three seconds.
@@ -208,16 +224,28 @@ public class Execute_Task {
             result = executor.invokeAny(callables);
         } catch (InterruptedException ex) {
             echo("InterruptedException occured");
-//            Logger.getLogger(Execute_Task.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ExecutionException ex) {
             echo("ExecutionException occured");
-//            Logger.getLogger(Execute_Task.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             System.out.println(result);
         }
 
     }
 
+    //--------------------------------------------------------------------------------------------------
+    /**
+     * Executors support batch submitting of multiple callables at once via
+     * invokeAll(). This method accepts a collection of callables and returns a
+     * list of futures.
+     *
+     * In this example we utilize Java 8 functional streams in order to process
+     * all futures returned by the invocation of invokeAll.
+     *
+     * We first map each future to its return value and then print each value to
+     * the console.
+     *
+     * If you're not yet familiar with streams read my Java 8 Stream Tutorial.
+     */
     public static void invoke_all_tasks() {
 
 //        Callable<Integer> task1 = () -> {
@@ -271,7 +299,7 @@ public class Execute_Task {
                     })
                     .forEach(System.out::println);
         } catch (InterruptedException ex) {
-            Logger.getLogger(Execute_Task.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Part_1_Threads_and_Executors.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         /*
@@ -294,8 +322,10 @@ public class Execute_Task {
 
     }
 
-    /*
-    a task run longer than expected time so, it get error and shut the task down.
+    //--------------------------------------------------------------------------------------------------
+    /**
+     * a task run longer than expected time so, it get error and shut the task
+     * down.
      */
     public static void feature_with_timeout() {
 
@@ -335,8 +365,9 @@ public class Execute_Task {
 
     }
 
-    /*
-    use callable and feature to get result, then shut down the task
+    //--------------------------------------------------------------------------------------------------
+    /**
+     * use callable and feature to get result, then shut down the task
      */
     public static void callable_future() {
         Callable<Integer> task = () -> {
@@ -357,9 +388,9 @@ public class Execute_Task {
         try {
             result = future.get();
         } catch (InterruptedException ex) {
-            Logger.getLogger(Execute_Task.class.getName()).log(Level.SEVERE, null, ex);
+            echo("InterruptedException occured");
         } catch (ExecutionException ex) {
-            Logger.getLogger(Execute_Task.class.getName()).log(Level.SEVERE, null, ex);
+            echo("ExecutionException occured");
         }
 
         System.out.println("future done? " + future.isDone());
@@ -370,6 +401,11 @@ public class Execute_Task {
 
     }
 
+    //--------------------------------------------------------------------------------------------------
+    /**
+     * This lambda expression defines a callable returning an integer after
+     * sleeping for one second:
+     */
     public static void lambda_callable() {
 
 //        Integer result;
@@ -378,6 +414,7 @@ public class Execute_Task {
                 TimeUnit.SECONDS.sleep(1);
                 return 123;
             } catch (InterruptedException e) {
+                echo("InterruptedException occured");
                 throw new IllegalStateException("task interrupted", e);
             }
         };
@@ -385,13 +422,9 @@ public class Execute_Task {
         System.out.println("lambda_callable()  : " + task.toString());
     }
 
-    public static Integer get_integer_from_calalble() {
-
-        return null;
-    }
-
-    /*
-    start execute with size of 1 and end thread with shutdown()
+    //--------------------------------------------------------------------------------------------------
+    /**
+     * start execute with size of 1 and end thread with shutdown()
      */
     public static void execute_pool_size_of_1_and_shutdownnow() {
         ExecutorService executor2 = Executors.newSingleThreadExecutor();
@@ -405,6 +438,13 @@ public class Execute_Task {
         System.out.println("executor2's status " + executor2.isTerminated());
     }
 
+    //--------------------------------------------------------------------------------------------------
+    /**
+     * Runnable is a functional interface we can utilize Java 8 lambda
+     * expressions to print the current threads name to the console. First we
+     * execute the runnable directly on the main thread before starting a new
+     * thread.
+     */
     public static void execute_runnable() {
         Runnable runnable = () -> {
             try {
@@ -413,7 +453,7 @@ public class Execute_Task {
                 TimeUnit.SECONDS.sleep(1);
                 System.out.println("Bar " + name);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                echo("InterruptedException occured");
             }
         };
 
@@ -427,8 +467,9 @@ public class Execute_Task {
         task.run();
     }
 
-    /*
-    start execute with size of 1 and end thread with shutdown()
+    //--------------------------------------------------------------------------------------------------
+    /**
+     * start execute with size of 1 and end thread with shutdown()
      */
     public static void execute_pool_size_of_1_and_shutdown() {
         /*
