@@ -44,4 +44,8 @@ public class VALUE {
     public int getSERVER_PORT_NUMBER() {
         return SERVER_PORT_NUMBER;
     }
+    
+    public static void echo(String input){
+        System.out.println(input);
+    }
 }
