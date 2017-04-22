@@ -1,7 +1,6 @@
 package java_8_Concurrency_Tutorial;
 
 import static VALUE.VALUE.echo;
-import static java.lang.Thread.sleep;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
@@ -11,8 +10,6 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.concurrent.locks.StampedLock;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Part_2_Synchronization_and_Locks {
 
@@ -76,7 +73,8 @@ public class Part_2_Synchronization_and_Locks {
                     long stamp = lock.writeLock();
                     try {
                         try {
-                            sleep(1);
+                            //sleep for one second
+                            TimeUnit.MILLISECONDS.sleep(1);
                         } catch (InterruptedException ex) {
                             echo("InterruptedException occured");
                         }
@@ -92,7 +90,8 @@ public class Part_2_Synchronization_and_Locks {
             try {
                 System.out.println(map.get("foo"));
                 try {
-                    sleep(1);
+                    //sleep for one second
+                    TimeUnit.MILLISECONDS.sleep(1);
                 } catch (InterruptedException ex) {
                     echo("InterruptedException occured");
                 }
@@ -138,13 +137,15 @@ public class Part_2_Synchronization_and_Locks {
                     try {
                         System.out.println("Optimistic Lock Valid: " + lock.validate(stamp));
                         try {
-                            sleep(1);
+                            //sleep for one second
+                            TimeUnit.MILLISECONDS.sleep(1);
                         } catch (InterruptedException ex) {
                             echo("InterruptedException occured");
                         }
                         System.out.println("Optimistic Lock Valid: " + lock.validate(stamp));
                         try {
-                            sleep(2);
+                            //sleep for one second
+                            TimeUnit.MILLISECONDS.sleep(2);
                         } catch (InterruptedException ex) {
                             echo("InterruptedException occured");
                         }
@@ -161,7 +162,8 @@ public class Part_2_Synchronization_and_Locks {
                     try {
                         System.out.println("Write Lock acquired");
                         try {
-                            sleep(2);
+                            //sleep for one second
+                            TimeUnit.MILLISECONDS.sleep(2);
                         } catch (InterruptedException ex) {
                             echo("InterruptedException occured");
                         }
@@ -200,13 +202,15 @@ public class Part_2_Synchronization_and_Locks {
                     try {
                         System.out.println("Optimistic Lock Valid: " + lock.validate(stamp));
                         try {
-                            sleep(1);
+                            //sleep for one second
+                            TimeUnit.MILLISECONDS.sleep(1);
                         } catch (InterruptedException ex) {
                             echo("InterruptedException occured");
                         }
                         System.out.println("Optimistic Lock Valid: " + lock.validate(stamp));
                         try {
-                            sleep(2);
+                            //sleep for one second
+                            TimeUnit.MILLISECONDS.sleep(2);
                         } catch (InterruptedException ex) {
                             echo("InterruptedException occured");
                         }
@@ -267,7 +271,8 @@ public class Part_2_Synchronization_and_Locks {
                     lock.writeLock().lock();
                     try {
                         try {
-                            sleep(1);
+                            //sleep for one second
+                            TimeUnit.MILLISECONDS.sleep(1);
                         } catch (InterruptedException ex) {
                             echo("InterruptedException occured");
                         }
@@ -292,7 +297,8 @@ public class Part_2_Synchronization_and_Locks {
             try {
                 System.out.println(map.get("foo"));
                 try {
-                    sleep(1);
+                    //sleep for one second
+                    TimeUnit.MILLISECONDS.sleep(1);
                 } catch (InterruptedException ex) {
                     echo("InterruptedException occured");
                 }
@@ -333,13 +339,30 @@ public class Part_2_Synchronization_and_Locks {
         ExecutorService executor = Executors.newFixedThreadPool(2);
         ReentrantLock lock = new ReentrantLock();
 
+        Runnable task1 = () -> {
+            lock.lock();
+            try {
+                String name = Thread.currentThread().getName();
+                System.out.println("Foo " + name);
+                TimeUnit.SECONDS.sleep(1);
+                System.out.println("Bar " + name);
+            } catch (InterruptedException e) {
+                echo("InterruptedException occured");
+            } finally {
+                lock.unlock();
+            }
+        };
+
+        executor.submit(task1);
+
         executor.submit(
                 () -> {
                     lock.lock();
                     try {
-                        Thread.sleep(1);
+                        //sleep for one second
+                        TimeUnit.SECONDS.sleep(1);
                     } catch (InterruptedException ex) {
-                        Logger.getLogger(Part_2_Synchronization_and_Locks.class.getName()).log(Level.SEVERE, null, ex);
+                        echo("InterruptedException occured");
                     } finally {
                         lock.unlock();
                     }

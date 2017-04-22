@@ -36,7 +36,7 @@ public class Part_1_Threads_and_Executors {
 //        
 //        feature_with_timeout();
 //
-//        invoke_all_tasks();
+        invoke_all_tasks();
 //        
 //        invoke_any();
 //        
@@ -289,6 +289,42 @@ public class Part_1_Threads_and_Executors {
 
         try {
             executor.invokeAll(callables)
+                    .stream()
+                    .map(
+                            future -> {
+                                try {
+                                    return future.get();
+                                } catch (Exception e) {
+                                    throw new IllegalStateException(e);
+                                }
+                            }
+                    )
+                    .forEach(System.out::println);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Part_1_Threads_and_Executors.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Callable<Integer> task = () -> {
+            try {
+                echo("(start task)");
+                int value = 1;
+                TimeUnit.SECONDS.sleep(1);
+                echo("" + value);
+                value = value + 1;
+                echo("" + value);
+                value = value + 1;
+                echo("" + value);
+                echo("(end task)");
+                return value;
+            } catch (InterruptedException e) {
+                throw new IllegalStateException("task interrupted", e);
+            }
+        };
+
+        List<Callable<Integer>> callables2 = Arrays.asList(task,task, task);
+
+        try {
+            executor.invokeAll(callables2)
                     .stream()
                     .map(
                             future -> {

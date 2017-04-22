@@ -24,9 +24,10 @@ public class Part_3_AtomicVariables_and_ConcurrentMap {
 
     public static void main(String[] args) {
 
-        demo_atomic_integer();
-        concurrent_map();
-        concurrent_hash_map();
+        demo_atomic_intger_accumulateAndGet();
+//        demo_atomic_integer();
+//        concurrent_map();
+//        concurrent_hash_map();
 
     }
 
@@ -283,7 +284,9 @@ public class Part_3_AtomicVariables_and_ConcurrentMap {
         LongAdder adder = new LongAdder();
 
         IntStream.range(0, 1000)
-                .forEach(i -> executor.submit(adder::increment));
+                .forEach(
+                        i -> executor.submit(adder::increment)
+                );
 
         stop(executor);
 
@@ -310,7 +313,11 @@ public class Part_3_AtomicVariables_and_ConcurrentMap {
         ExecutorService executor = Executors.newFixedThreadPool(2);
 
         IntStream.range(0, 10)
-                .forEach(i -> executor.submit(() -> accumulator.accumulate(i)));
+                .forEach(
+                        i -> executor.submit(
+                                () -> accumulator.accumulate(i)
+                        )
+                );
 
         stop(executor);
 
@@ -318,8 +325,6 @@ public class Part_3_AtomicVariables_and_ConcurrentMap {
     }
 
     //--------------------------------------------------------------------------
-
-    
     /**
      * The package java.concurrent.atomic contains many useful classes to
      * perform atomic operations. An operation is atomic when you can safely
@@ -337,14 +342,16 @@ public class Part_3_AtomicVariables_and_ConcurrentMap {
         ExecutorService executor = Executors.newFixedThreadPool(2);
 
         IntStream.range(0, 1000)
-                .forEach(i -> executor.submit(atomicInt::incrementAndGet));
+                .forEach(
+                        i -> executor.submit(atomicInt::incrementAndGet)
+                );
 
         stop(executor);
 
         System.out.println(atomicInt.get());    // => 1000
-        
+
         demo_atomic_intger_updateAndGet();
-        
+
         demo_atomic_intger_accumulateAndGet();
     }
 
@@ -365,11 +372,13 @@ public class Part_3_AtomicVariables_and_ConcurrentMap {
         ExecutorService executor = Executors.newFixedThreadPool(2);
 
         IntStream.range(0, 1000)
-                .forEach(i -> {
-                    Runnable task = ()
+                .forEach(
+                        i -> {
+                            Runnable task = ()
                             -> atomicInt.updateAndGet(n -> n + 2);
-                    executor.submit(task);
-                });
+                            executor.submit(task);
+                        }
+                );
 
         stop(executor);
 
@@ -387,11 +396,13 @@ public class Part_3_AtomicVariables_and_ConcurrentMap {
         ExecutorService executor = Executors.newFixedThreadPool(2);
 
         IntStream.range(0, 1000)
-                .forEach(i -> {
-                    Runnable task = ()
+                .forEach(
+                        i -> {
+                            Runnable task = ()
                             -> atomicInt.accumulateAndGet(i, (n, m) -> n + m);
-                    executor.submit(task);
-                });
+                            executor.submit(task);
+                        }
+                );
 
         stop(executor);
 
