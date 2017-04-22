@@ -290,13 +290,15 @@ public class Part_1_Threads_and_Executors {
         try {
             executor.invokeAll(callables)
                     .stream()
-                    .map(future -> {
-                        try {
-                            return future.get();
-                        } catch (Exception e) {
-                            throw new IllegalStateException(e);
-                        }
-                    })
+                    .map(
+                            future -> {
+                                try {
+                                    return future.get();
+                                } catch (Exception e) {
+                                    throw new IllegalStateException(e);
+                                }
+                            }
+                    )
                     .forEach(System.out::println);
         } catch (InterruptedException ex) {
             Logger.getLogger(Part_1_Threads_and_Executors.class.getName()).log(Level.SEVERE, null, ex);
@@ -331,14 +333,16 @@ public class Part_1_Threads_and_Executors {
 
         ExecutorService executor = Executors.newFixedThreadPool(1);
 
-        Future<Integer> future = executor.submit(() -> {
-            try {
-                TimeUnit.MILLISECONDS.sleep(10000);
-                return 123;
-            } catch (InterruptedException e) {
-                throw new IllegalStateException("task interrupted", e);
-            }
-        });
+        Future<Integer> future = executor.submit(
+                () -> {
+                    try {
+                        TimeUnit.MILLISECONDS.sleep(10000);
+                        return 123;
+                    } catch (InterruptedException e) {
+                        throw new IllegalStateException("task interrupted", e);
+                    }
+                }
+        );
 
         Integer result = null;
 
@@ -428,10 +432,12 @@ public class Part_1_Threads_and_Executors {
      */
     public static void execute_pool_size_of_1_and_shutdownnow() {
         ExecutorService executor2 = Executors.newSingleThreadExecutor();
-        executor2.submit(() -> {
-            String threadName = Thread.currentThread().getName();
-            System.out.println("Hello " + threadName);
-        });
+        executor2.submit(
+                () -> {
+                    String threadName = Thread.currentThread().getName();
+                    System.out.println("Hello " + threadName);
+                }
+        );
 
         System.out.println("attempt to shutdownnow() executor");
         executor2.shutdownNow();
@@ -446,7 +452,7 @@ public class Part_1_Threads_and_Executors {
      * thread.
      */
     public static void execute_runnable() {
-        Runnable runnable = () -> {
+        Runnable task1 = () -> {
             try {
                 String name = Thread.currentThread().getName();
                 System.out.println("Foo " + name);
@@ -457,14 +463,14 @@ public class Part_1_Threads_and_Executors {
             }
         };
 
-        runnable.run();
+        task1.run();
 
-        Runnable task = () -> {
+        Runnable task2 = () -> {
             String threadName = Thread.currentThread().getName();
             System.out.println("Hello " + threadName);
         };
 
-        task.run();
+        task2.run();
     }
 
     //--------------------------------------------------------------------------------------------------
@@ -487,8 +493,6 @@ public class Part_1_Threads_and_Executors {
         An ExecutorService provides two methods for that purpose: 
             _shutdown() waits for currently running tasks to finish 
             _shutdownNow() interrupts all running tasks and shut the executor down immediately.
-
-        This is the preferred way how I typically shutdown executors:
          */
         try {
             System.out.println("attempt to shutdown executor");
