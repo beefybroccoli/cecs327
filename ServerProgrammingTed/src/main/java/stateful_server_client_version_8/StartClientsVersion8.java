@@ -1,6 +1,7 @@
 package stateful_server_client_version_8;
 
 import VALUE.VALUE;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,7 +33,7 @@ public class StartClientsVersion8 extends Thread {
             }
 
             try {
-                Thread.sleep(1000);
+                TimeUnit.MILLISECONDS.sleep(1000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(StartClientsVersion8.class.getName()).log(Level.SEVERE, null, ex);
             }
