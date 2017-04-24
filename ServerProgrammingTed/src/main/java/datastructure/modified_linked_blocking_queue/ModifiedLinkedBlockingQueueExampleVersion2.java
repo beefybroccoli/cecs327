@@ -1,4 +1,4 @@
-package Executor_Thread_Pool;
+package datastructure.modified_linked_blocking_queue;
 
 import java.util.Random;
 import java.util.concurrent.ExecutorService;

@@ -1,4 +1,4 @@
-package datastructure.blockingqueue;
+package datastructure.blocking_queue;
 
 import java.util.concurrent.SynchronousQueue;
 import java.util.Random;

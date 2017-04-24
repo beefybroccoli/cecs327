@@ -1,5 +1,5 @@
 
-package datastructure.blockingqueue;
+package datastructure.blocking_queue;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.PriorityBlockingQueue;

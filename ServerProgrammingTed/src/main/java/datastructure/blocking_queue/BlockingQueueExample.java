@@ -1,4 +1,4 @@
-package datastructure.blockingqueue;
+package datastructure.blocking_queue;
 
 import static VALUE.VALUE.echo;
 import java.util.concurrent.ArrayBlockingQueue;
