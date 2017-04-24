@@ -21,7 +21,7 @@ public class StartClients extends Thread {
         int id = 0;
         
         int numberOfClients = 1;
-        numberOfClients = 100;
+//        numberOfClients = 100;
 
         while (true) {
 

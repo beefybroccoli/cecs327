@@ -151,29 +151,23 @@ https://examples.javacodegeeks.com/core-java/util/concurrent/linkedblockingqueue
 
  /*
 1. ArrayBlockingQueue vs LinkedBlockingQueue
-
 In a previous article (java.util.concurrent.ArrayBlockingQueue Example), 
     we talked about ArrayBlockingQueue and its usage. 
     Here, we will try to make some comparisons between ArrayBlockingQueue 
     and LinkedBlockingQueue to make clear in which cases we should prefer each one.
     It is important to make clear distinctions, as both data structures serve very similar needs, 
     but performance and implementation varies.
-
 1.1 Performance
-
 ArrayBlockingQueue: It uses an internal array in which the elements are kept, 
     and the Queue interface imposes certain rules (like the FIFO rule, which is essential to any queue). 
     Because it uses an array, it has a fixed size which is given in the constructor.
-
 LinkedBlocking Queue: It uses nodes (like a linked list), to keep track of the order of the elements, 
     which increases the complexity of the data structure. 
     It can have a fixed-size limit as well, but if we don’t define one the limit is Integer.MAX_VALUE by default.
-
 According to the previous information, you can clearly see why ArrayBlockingQueue is faster than LinkedBlockingQueue,
     which is backed by a benchmark that was published in an older JavaCodeGeeks article. 
     The benchmark specifics and results can be found here. 
     In every case, the performance of ArrayBlockingQueue is better.
-
 1.2 Implementation in synchronization
     The major implementation difference between the two data structures (synchronization-wise) 
     is that because ArrayBlockingQueue keeps the elements in an array it needs only one lock 

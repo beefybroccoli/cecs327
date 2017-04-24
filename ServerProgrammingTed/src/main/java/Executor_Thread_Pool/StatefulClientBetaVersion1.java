@@ -1,12 +1,19 @@
-package stateful_server_client_version_alpha;
+package Executor_Thread_Pool;
 
 import VALUE.VALUE;
 import java.io.*;
 import java.net.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class StatefulClientAlpha extends Thread {
+//implements Callable<String>
+public class StatefulClientBetaVersion1 extends Thread {
 
     private String mHostName;
     private int mServerPort;
@@ -17,15 +24,13 @@ public class StatefulClientAlpha extends Thread {
     private String mFromServer, mFromUser;
     private boolean mFlag;
 
-    public static String[] mInput = {
-        "hi", "1", "1", "1", "1", "1", "2", "2", "2", "2", "2", "3", "3", "3", "3", "3", "4", "-1"};
 
-    public StatefulClientAlpha(String hostName, int serverPort, int ClientID) {
+    public StatefulClientBetaVersion1(String hostName, int serverPort, int ClientID, String input) {
         mHostName = hostName;
         mServerPort = serverPort;
         mClientID = ClientID;
         mFromServer = "";
-        mFromUser = "";
+        mFromUser = input;
         mFlag = true;
         try {
             mSocket = new Socket(mHostName, mServerPort);
@@ -33,7 +38,7 @@ public class StatefulClientAlpha extends Thread {
             mIn = new BufferedReader(
                     new InputStreamReader(mSocket.getInputStream()));
         } catch (IOException ex) {
-            Logger.getLogger(StatefulClientAlpha.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StatefulClientBetaVersion1.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -43,10 +48,6 @@ public class StatefulClientAlpha extends Thread {
         int index = -1;
 
         try {
-            //the loop will continue when the mFlag is true
-            do {
-                mFromUser = mInput[++index];
-//                mFromUser = getUserInput();
 
                 //send message to server
                 System.out.println("Client " + mClientID + " send    : " + mFromUser + "\n");
@@ -61,9 +62,8 @@ public class StatefulClientAlpha extends Thread {
                     mFlag = false;
                 }
 
-            } while (mFlag == true);
 
-            System.out.println("(Client id " + mClientID + " ended) " + "\n");
+            System.out.println("(Client id " + mClientID + " ended) "+ "\n");
 
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host " + mHostName);
@@ -77,34 +77,44 @@ public class StatefulClientAlpha extends Thread {
                 mOut.println("-1");
                 mSocket.close();
             } catch (IOException ex) {
-                Logger.getLogger(StatefulClientAlpha.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(StatefulClientBetaVersion1.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
 
-    public String getUserInput() {
-        BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
-        String result = "";
-        try {
-            result = stdIn.readLine();
-        } catch (IOException ex) {
-            Logger.getLogger(StatefulClientAlpha.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return result;
+//    @Override
+//    public String call() throws Exception {
+//        return mResult;
+//    }
+
+    public static void main(String[] args) throws InterruptedException {
+
+        int id = 1;
+        String input = "1";
+        StatefulClientBetaVersion1 client = new StatefulClientBetaVersion1(VALUE.LOCAL_HOST, VALUE.SERVER_PORT_NUMBER, id, input);
+        client.start();
+
     }
 
-    public static void main(String[] args) {
-
-        int numberOfClients = 1;
-        numberOfClients = 5;
-
-        for (int i = 0; i < numberOfClients; i++) {
-
-            int id = i + 1;
-            StatefulClientAlpha client = new StatefulClientAlpha(VALUE.LOCAL_HOST, VALUE.SERVER_PORT_NUMBER, ++id);
-            client.start();
-        }
-
+    public static void test2() throws InterruptedException {
+//        int id = 1;
+//        String input = "1";
+//        StatefulClientBetaVersion1 client = new StatefulClientBetaVersion1(VALUE.LOCAL_HOST, VALUE.SERVER_PORT_NUMBER, id, input);
+//        Callable<String> task = client;
+//
+//        ExecutorService es = Executors.newFixedThreadPool(2);
+//        Future<String> future = es.submit(task);
+//
+//        System.out.println("future done? " + future.isDone());
+//
+//        try {
+//            System.out.println(future.get());
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(StatefulClientBetaVersion1.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (ExecutionException ex) {
+//            Logger.getLogger(StatefulClientBetaVersion1.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        es.awaitTermination(5, TimeUnit.SECONDS);
     }
 
 }
