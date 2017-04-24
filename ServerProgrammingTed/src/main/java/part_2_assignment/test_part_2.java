@@ -9,6 +9,17 @@ public class test_part_2 {
 
     public static void main(String[] args) {
 
+        String inputHostName = VALUE.VALUE.LOCAL_HOST;
+//        inputHostName = "192.168.1.5";
+
+        start_listener_on_local_machine();
+
+        runTest_one_time(inputHostName);
+
+//        repeat_test_1000_times(inputHostName);
+    }
+
+    public static void repeat_test_1000_times(String inputHostName) {
         int index = 0;
         int max = 10000;
 
@@ -16,28 +27,21 @@ public class test_part_2 {
 
             try {
                 TimeUnit.SECONDS.sleep(5);
-                runTest();
+                runTest_one_time(inputHostName);
             } catch (InterruptedException ex) {
                 echo("InterruptedExceptoin occured");
             }
             index++;
         }
-
-        runTest();
-
     }
 
-    public static void runTest() {
-        String inputHostName = VALUE.VALUE.LOCAL_HOST;
-//        inputHostName = "192.168.1.5";
+    public static void runTest_one_time(String inputHostName) {
+
         RuntimeThr runtime = new RuntimeThr(inputHostName);
-        Stateful_Server_Listener_VersionCharlie listener = new Stateful_Server_Listener_VersionCharlie();
 
         ExecutorService executor = Executors.newFixedThreadPool(2);
 
         try {
-
-//            executor.submit(listener);
             executor.submit(runtime);
 
             executor.awaitTermination(5, TimeUnit.SECONDS);
@@ -57,4 +61,10 @@ public class test_part_2 {
             }
         }
     }
+
+    public static void start_listener_on_local_machine() {
+        Stateful_Server_Listener_VersionCharlie listener = new Stateful_Server_Listener_VersionCharlie();
+        listener.start();
+    }
+
 }
