@@ -1,4 +1,4 @@
-package stateful_server_client_version_alpha;
+package part_1_stateful_server_client_version_alpha;
 
 import VALUE.VALUE;
 import java.io.*;
