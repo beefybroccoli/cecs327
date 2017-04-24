@@ -24,16 +24,6 @@ public class RuntimeThr implements Runnable {
     private String mHOST_NAME;
     private int mHOST_SERVER_PORT;
 
-    public RuntimeThr() {
-
-        mRequestQue = new LinkedBlockingQueue();
-        mResultQue = new LinkedBlockingQueue();
-        mLock = new ReentrantLock();
-        mNumberShareResource = new Number(mLock);
-        mHOST_NAME = VALUE.LOCAL_HOST;
-        mHOST_SERVER_PORT = VALUE.SERVER_PORT_NUMBER;
-    }
-
     public RuntimeThr(String inputHostName) {
 
         mRequestQue = new LinkedBlockingQueue();
@@ -152,7 +142,5 @@ public class RuntimeThr implements Runnable {
         }
         return result;
     }
-
-
 
 }

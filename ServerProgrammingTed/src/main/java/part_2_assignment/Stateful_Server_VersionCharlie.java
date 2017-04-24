@@ -89,18 +89,18 @@ public class Stateful_Server_VersionCharlie extends Thread {
     public void run() {
 
         try {
-//            System.out.println("(Stateful Server ID " + mServerID + "  Started)" + "\n");
+            System.out.println("(Stateful Server ID " + mServerID + "  Started)" + "\n");
 
             //the server stay alive whenever the mFlag is true
             do {
                 //get message from client
                 mInputLine = mIn.readLine();
-//                System.out.println("server " + mServerID + " received " + "\"" + mInputLine + "\"" + "\n");
+                System.out.println("server " + mServerID + " received " + "\"" + mInputLine + "\"" + "\n");
                 mOutputLine = mProtocol.process(mInputLine);
 
                 //respond to user
                 mOut.println(mOutputLine);
-//                mOut.println("server " + mServerID + " respond to " + mOutputLine);
+                mOut.println("server " + mServerID + " respond to " + mOutputLine);
 //                System.out.println("\n");
 
                 //count how many times server received message "null"
@@ -129,7 +129,7 @@ public class Stateful_Server_VersionCharlie extends Thread {
             System.out.println("Producer InterruptedException occured");
             mFlag = false;
         } finally {
-//             System.out.println("(Stateful Server ID " + mServerID + "  ended)" + "\n");
+             System.out.println("(Stateful Server ID " + mServerID + "  ended)" + "\n");
             try {
                 //tell the client that sever will quit
                 mOut.println("-1");
