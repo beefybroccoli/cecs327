@@ -1,6 +1,7 @@
-package datastructure.blockingqueue;
+package Executor_Thread_Pool;
 
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 class Producer implements Runnable {
 
@@ -44,44 +45,16 @@ class Producer implements Runnable {
 
 }
 
-class ObservingConsumer implements Runnable {
-
-    private LinkedBlockingQueue queue;
-    private Producer producer;
-
-    public ObservingConsumer(LinkedBlockingQueue queue, Producer producer) {
-        this.queue = queue;
-        this.producer = producer;
-    }
-
-    @Override
-    public void run() {
-
-        // As long as the producer is running,
-        // we want to check for elements.
-        while (producer.isRunning()) {
-            System.out.println("OC\tElements right now: " + queue);
-
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-        System.out.println("OC Completed.");
-        System.out.println("Final elements in the queue: " + queue);
-    }
-}
-
 class Consumer implements Runnable {
 
     private LinkedBlockingQueue queue;
     private Producer producer;
+    private Integer mID;
 
-    public Consumer(LinkedBlockingQueue queue, Producer producer) {
+    public Consumer(Integer id, LinkedBlockingQueue queue, Producer producer) {
         this.queue = queue;
         this.producer = producer;
+        mID = id;
     }
 
     @Override
@@ -92,9 +65,9 @@ class Consumer implements Runnable {
         while (producer.isRunning()) {
 
             try {
-                System.out.println("RC\tRemoving element: " + queue.take());
+                System.out.println("Consumer " + mID + " removing element: " + queue.take());
 
-                Thread.sleep(2000);
+                TimeUnit.MILLISECONDS.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -104,19 +77,19 @@ class Consumer implements Runnable {
     }
 }
 
-public class LinkedBlockingQueueExample {
+
+/*
+ *modify this to have one producer, multiple clietns taking different objects from the queue 
+ */
+public class ModifiedLinkedBlockingQueueExample {
 
     public static void main(String[] args) {
-        tedTest();
-    }
-
-    public static void tedTest() {
         //create a queue
         LinkedBlockingQueue queue = new LinkedBlockingQueue(10);
 
         Producer producer = new Producer(queue);
-        Consumer consumer1 = new Consumer(queue, producer);
-        Consumer consumer2 = new Consumer(queue, producer);
+        Consumer consumer1 = new Consumer(1, queue, producer);
+        Consumer consumer2 = new Consumer(2, queue, producer);
 
         Thread producerThread = new Thread(producer);
         Thread consumerThread1 = new Thread(consumer1);
@@ -127,22 +100,6 @@ public class LinkedBlockingQueueExample {
         consumerThread2.start();
     }
 
-    public static void originalTest() {
-        //create a queue
-        LinkedBlockingQueue queue = new LinkedBlockingQueue(10);
-
-        Producer producer = new Producer(queue);
-        ObservingConsumer obsConsumer = new ObservingConsumer(queue, producer);
-        Consumer remConsumer = new Consumer(queue, producer);
-
-        Thread producerThread = new Thread(producer);
-        Thread obsConsumerThread = new Thread(obsConsumer);
-        Thread remConsumerThread = new Thread(remConsumer);
-
-        producerThread.start();
-        obsConsumerThread.start();
-        remConsumerThread.start();
-    }
 }
 
 /*
