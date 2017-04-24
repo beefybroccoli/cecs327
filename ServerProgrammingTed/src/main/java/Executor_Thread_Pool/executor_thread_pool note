@@ -1,5 +1,4 @@
 
 ModifiedLinkedBlockingQueueExampleVersion4 class is a simulation of 10 consumers and 1 producer
 
-StatefulClientBetaVersion2 class simulate a task, which is a client connecting to a server and ask for a response.
 

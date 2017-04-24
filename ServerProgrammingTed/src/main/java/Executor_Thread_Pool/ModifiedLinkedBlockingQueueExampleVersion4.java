@@ -34,8 +34,8 @@ class ProducerVersion4 implements Runnable {
         result = "" + rand;
         return result;
     }
-    
-    public void setCounter(int input){
+
+    public void setCounter(int input) {
         mCounter = input;
     }
 
@@ -128,10 +128,9 @@ class ConsumerVersion4 implements Runnable {
 
 }//end class ConsumerVersion4
 
-
 /*
- *modify this to have one producer, multiple clietns taking different objects from the queue 
- */
+    ModifiedLinkedBlockingQueueExampleVersion4 class is a simulation of 10 consumers and 1 producer
+*/
 public class ModifiedLinkedBlockingQueueExampleVersion4 {
 
     public static void main(String[] args) {
@@ -147,7 +146,7 @@ public class ModifiedLinkedBlockingQueueExampleVersion4 {
         LinkedBlockingQueue queue = new LinkedBlockingQueue();
 
         ProducerVersion4 producer = new ProducerVersion4(queue);
-        producer.setCounter(numberOfConsumers*100);
+        producer.setCounter(numberOfConsumers * 10);
         ConsumerVersion4[] consumers = new ConsumerVersion4[10];
         for (int i = 0; i < numberOfConsumers; i++) {
             consumers[i] = new ConsumerVersion4(i + 1, queue, producer);
@@ -161,7 +160,6 @@ public class ModifiedLinkedBlockingQueueExampleVersion4 {
 
         ExecutorService executor = Executors.newFixedThreadPool(numberOfConsumers);
 
-
         /*
         An ExecutorService provides two methods for that purpose: 
             _shutdown() waits for currently running tasks to finish 
@@ -173,7 +171,7 @@ public class ModifiedLinkedBlockingQueueExampleVersion4 {
                 executor.submit(consumerThreads[i]);
             }
 //            executor.awaitTermination(120, TimeUnit.SECONDS);
-            executor.awaitTermination(2, TimeUnit.MINUTES);
+            executor.awaitTermination(1, TimeUnit.MINUTES);
 
         } catch (InterruptedException e) {
             System.err.println("tasks interrupted");
@@ -192,7 +190,6 @@ public class ModifiedLinkedBlockingQueueExampleVersion4 {
 /*
 https://examples.javacodegeeks.com/core-java/util/concurrent/linkedblockingqueue/java-util-concurrent-linkedblockingqueue-example/
  */
-
 /**
  *
  * 1. ArrayBlockingQueue vs LinkedBlockingQueue

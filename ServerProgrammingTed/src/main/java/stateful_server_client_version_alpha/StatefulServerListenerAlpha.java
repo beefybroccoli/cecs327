@@ -16,7 +16,7 @@ public class StatefulServerListenerAlpha extends Thread {
 
         SharedResource sharedResource = new SharedResource();
 
-        System.out.println("Server Listener version 7 started");
+        System.out.println("Server Listener version alpha started");
 
         try (ServerSocket serverSocket = new ServerSocket(VALUE.SERVER_PORT_NUMBER)) {
             while (mListeningBoolean) {
