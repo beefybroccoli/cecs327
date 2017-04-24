@@ -5,11 +5,11 @@ import VALUE.VALUE;
 import java.io.IOException;
 import java.net.ServerSocket;
 
-public class StatefulServerListenerVersionCharlie extends Thread {
+public class Stateful_Server_Listener_VersionCharlie extends Thread {
 
     private boolean mListeningBoolean;
 
-    public StatefulServerListenerVersionCharlie() {
+    public Stateful_Server_Listener_VersionCharlie() {
         mListeningBoolean = true;
     }
 
@@ -20,25 +20,25 @@ public class StatefulServerListenerVersionCharlie extends Thread {
 
         SharedResource sharedResource = new SharedResource();
 
-        System.out.println("(Server Listener Version Charlie 1 started)");
+        System.out.println("(Server Listener Version Charlie started)");
 
         try (ServerSocket serverSocket = new ServerSocket(VALUE.SERVER_PORT_NUMBER)) {
 
             while (mListeningBoolean) {
                 
-                new StatefulServerThreadVersionCharlie(serverSocket.accept(), ++id, sharedResource).start();
+                new Stateful_Server_VersionCharlie(serverSocket.accept(), ++id, sharedResource).start();
 
             }
         } catch (IOException e) {
             System.err.println("Could not listen on port " + VALUE.SERVER_PORT_NUMBER);
         } finally {
-            System.out.println("(Server Listener version beta version 1 ended)");
+            System.out.println("(Server Listener Version Charlie ended)");
         }
 
     }
 
     public static void main(String[] args) {
-        new StatefulServerListenerVersionCharlie().start();
+        new Stateful_Server_Listener_VersionCharlie().start();
     }
 
 }

@@ -58,7 +58,7 @@ class StatefulServerProtocolBetaVersion1 {
     }
 }
 
-public class StatefulServerThreadVersionCharlie extends Thread {
+public class Stateful_Server_VersionCharlie extends Thread {
 
     private Socket mSocket;
     private int mServerID;
@@ -69,7 +69,7 @@ public class StatefulServerThreadVersionCharlie extends Thread {
     private boolean mFlag;
     private int mNullCounter;
 
-    public StatefulServerThreadVersionCharlie(Socket socket, int id, SharedResource inputSharedResource) {
+    public Stateful_Server_VersionCharlie(Socket socket, int id, SharedResource inputSharedResource) {
         mSocket = socket;
         mServerID = id;
         mProtocol = new StatefulServerProtocolBetaVersion1(mServerID, inputSharedResource);
@@ -81,7 +81,7 @@ public class StatefulServerThreadVersionCharlie extends Thread {
             mOut = new PrintWriter(mSocket.getOutputStream(), true);
             mIn = new BufferedReader(new InputStreamReader(mSocket.getInputStream()));
         } catch (IOException ex) {
-            Logger.getLogger(StatefulServerThreadVersionCharlie.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Stateful_Server_VersionCharlie.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -124,7 +124,7 @@ public class StatefulServerThreadVersionCharlie extends Thread {
            
 
         } catch (IOException ex) {
-            Logger.getLogger(StatefulServerThreadVersionCharlie.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Stateful_Server_VersionCharlie.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
             System.out.println("Producer InterruptedException occured");
             mFlag = false;
@@ -135,7 +135,7 @@ public class StatefulServerThreadVersionCharlie extends Thread {
                 mOut.println("-1");
                 mSocket.close();
             } catch (IOException ex) {
-                Logger.getLogger(StatefulServerThreadVersionCharlie.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Stateful_Server_VersionCharlie.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//end run

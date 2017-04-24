@@ -153,34 +153,6 @@ public class RuntimeThr implements Runnable {
         return result;
     }
 
-    public static void main(String[] args) {
-        RuntimeThr runtime = new RuntimeThr();
 
-        ExecutorService executor = Executors.newFixedThreadPool(1);
-
-        try {
-
-            StatefulServerListenerVersionCharlie listener = new StatefulServerListenerVersionCharlie();
-
-            executor.submit(runtime);
-
-            executor.awaitTermination(5, TimeUnit.MINUTES);
-
-        } catch (InterruptedException e) {
-            System.err.println("tasks interrupted  in runtime line 164");
-        } finally {
-            executor.shutdown();
-            System.err.println("executor.isTerminated() status = " + executor.isTerminated());
-            if (!executor.isTerminated()) {
-                System.err.println("canceled non-finished tasks");
-
-                executor.shutdownNow();
-
-            } else {
-                System.out.println("shutdown finished");
-            }
-        }
-
-    }
 
 }
