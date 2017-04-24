@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package part_2_assignment;
+package part_2_assignment_version_1;
 
 import java.util.concurrent.locks.ReentrantLock;
 
-public class Number {
+public class Number_version_1 {
 
     private int mEvenNumber;
     private int mOddNumber;
     private ReentrantLock mLock;
 
-    public Number(ReentrantLock lock) {
+    public Number_version_1(ReentrantLock lock) {
         mEvenNumber = 2;
         mOddNumber = 1;
         mLock = lock;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package part_2_assignment;
+package part_2_assignment_version_1;
 
 import java.util.Random;
 
@@ -11,7 +11,7 @@ import java.util.Random;
  *
  * @author fred
  */
-public class Command {
+public class Command_version_1 {
 
     private int mCommandID;
     private int mRequestorID;
@@ -19,7 +19,7 @@ public class Command {
     private String mResult;
     private boolean mResultStatus;
 
-    public Command(int commandID, int requestorID) {
+    public Command_version_1(int commandID, int requestorID) {
         mCommandID = commandID;
         mRequestorID = requestorID;
         mCommand = new Random().nextInt(5) + 1;
@@ -69,12 +69,12 @@ public class Command {
     }
     
     public static void main(String[] args){
-        Command[] commands = new Command[10];
+        Command_version_1[] commands = new Command_version_1[10];
         
         for ( int i = 0; i < 10; i++){
             int commandID = i+1;
             int reqestorID = 1;
-            commands[i] = new Command(commandID, reqestorID);
+            commands[i] = new Command_version_1(commandID, reqestorID);
             commands[i].setmResult("" + (new Random().nextInt(5) + -1));
             commands[i].printOut();
         }

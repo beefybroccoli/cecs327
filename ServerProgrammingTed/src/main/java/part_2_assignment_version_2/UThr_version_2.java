@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package part_2_assignment;
+package part_2_assignment_version_2;
 
+import part_2_assignment_version_1.*;
 import static VALUE.VALUE.echo;
 import java.util.Random;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -16,14 +17,14 @@ import java.util.logging.Logger;
  *
  * @author fred
  */
-public class UThr implements Runnable {
+public class UThr_version_2 implements Runnable {
 
     private int mUThrID;
     private LinkedBlockingQueue mRequestQue, mResultQue;
-    private Command[] commands;
+    private Command_version_2[] commands;
     private int mCounter;
 
-    public UThr(int inputID, LinkedBlockingQueue inputRequestQue, LinkedBlockingQueue inputResultQue) {
+    public UThr_version_2(int inputID, LinkedBlockingQueue inputRequestQue, LinkedBlockingQueue inputResultQue) {
         mUThrID = inputID;
         mRequestQue = inputRequestQue;
         mResultQue = inputResultQue;
@@ -35,11 +36,11 @@ public class UThr implements Runnable {
 
         System.out.println("(uThr " + mUThrID + " Started)");
 
-        commands = new Command[mCounter];
+        commands = new Command_version_2[mCounter];
         for (int i = 0; i < 20; i++) {
             int commandID = i + 1;
             int reqestorID = mUThrID;
-            commands[i] = new Command(commandID, reqestorID);
+            commands[i] = new Command_version_2(commandID, reqestorID);
             try {
                 mRequestQue.put(commands[i]);
             } catch (InterruptedException ex) {
@@ -50,7 +51,7 @@ public class UThr implements Runnable {
 //        try {
 //            TimeUnit.MINUTES.sleep(1);
 //        } catch (InterruptedException e) {
-//            System.out.println("mUThr" + mUThrID + " InterruptedException occured in UThr line 59");
+//            System.out.println("mUThr" + mUThrID + " InterruptedException occured in UThr_version_2 line 59");
 //        }
 //
 //        do {
@@ -60,7 +61,7 @@ public class UThr implements Runnable {
 //                    System.out.println("mUThr" + mUThrID + " take " + mResultQue.take() + ", after consumption size is " + mResultQue.size());
 //                    --mCounter;
 //                } catch (InterruptedException ex) {
-//                    Logger.getLogger(UThr.class.getName()).log(Level.SEVERE, null, ex);
+//                    Logger.getLogger(UThr_version_2.class.getName()).log(Level.SEVERE, null, ex);
 //                }
 //            }
 //

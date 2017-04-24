@@ -1,11 +1,12 @@
-package part_2_assignment;
+package part_2_assignment_version_2;
 
+import part_2_assignment_version_1.*;
 import static VALUE.VALUE.echo;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-public class test_part_2 {
+public class test_part_2_version_2 {
 
     public static void main(String[] args) {
 
@@ -37,7 +38,7 @@ public class test_part_2 {
 
     public static void runTest_one_time(String inputHostName) {
 
-        RuntimeThr runtime = new RuntimeThr(inputHostName);
+        RuntimeThr_version_2 runtime = new RuntimeThr_version_2(inputHostName);
 
         ExecutorService executor = Executors.newFixedThreadPool(2);
 

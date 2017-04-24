@@ -1,12 +1,13 @@
-package part_2_assignment;
+package part_2_assignment_version_2;
 
+import part_2_assignment_version_1.*;
 import java.io.*;
 import java.net.*;
 import java.util.concurrent.Callable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class NetworkThr implements Runnable, Callable<String> {
+public class NetworkThr_version_2 implements Runnable, Callable<String> {
 
     private String mHostName;
     private int mServerPort;
@@ -19,7 +20,7 @@ public class NetworkThr implements Runnable, Callable<String> {
     private String mFromUser;
     private boolean mFlag;
 
-    public NetworkThr(String hostName, int serverPort, int ClientID, String command) {
+    public NetworkThr_version_2(String hostName, int serverPort, int ClientID, String command) {
         mHostName = hostName;
         mServerPort = serverPort;
         mClientID = ClientID;
@@ -32,7 +33,7 @@ public class NetworkThr implements Runnable, Callable<String> {
             mIn = new BufferedReader(
                     new InputStreamReader(mSocket.getInputStream()));
         } catch (IOException ex) {
-            Logger.getLogger(NetworkThr.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NetworkThr_version_2.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

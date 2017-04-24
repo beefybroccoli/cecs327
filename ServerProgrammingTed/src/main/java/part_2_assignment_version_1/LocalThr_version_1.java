@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package part_2_assignment;
+package part_2_assignment_version_1;
 
 import static VALUE.VALUE.echo;
 import java.util.concurrent.Callable;
@@ -15,15 +15,15 @@ import java.util.concurrent.locks.ReentrantLock;
  *
  * @author fred
  */
-public class LocalThr implements Runnable, Callable<String> {
+public class LocalThr_version_1 implements Runnable, Callable<String> {
 
-    private Number mNumber;
+    private Number_version_1 mNumber;
     private ReentrantLock mLock;
     private int mCommand;
     private int mClientID;
     private String mResult;
 
-    public LocalThr(Number inputNumber, ReentrantLock inputLock, int inputClientID, int command) {
+    public LocalThr_version_1(Number_version_1 inputNumber, ReentrantLock inputLock, int inputClientID, int command) {
         mNumber = inputNumber;
         mLock = inputLock;
         mResult = "0";
