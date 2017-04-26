@@ -5,7 +5,6 @@
  */
 package part_2_assignment_version_2;
 
-import part_2_assignment_version_1.*;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Number_version_2 {

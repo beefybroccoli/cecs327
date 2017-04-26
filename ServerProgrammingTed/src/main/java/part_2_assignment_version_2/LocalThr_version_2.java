@@ -5,7 +5,7 @@
  */
 package part_2_assignment_version_2;
 
-import part_2_assignment_version_1.*;
+
 import static VALUE.VALUE.echo;
 import java.util.concurrent.Callable;
 import java.util.concurrent.LinkedBlockingQueue;

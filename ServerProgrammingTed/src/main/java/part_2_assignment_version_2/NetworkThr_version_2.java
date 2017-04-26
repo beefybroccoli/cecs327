@@ -1,6 +1,5 @@
 package part_2_assignment_version_2;
 
-import part_2_assignment_version_1.*;
 import java.io.*;
 import java.net.*;
 import java.util.concurrent.Callable;

@@ -1,6 +1,5 @@
 package part_2_assignment_version_2;
 
-import part_2_assignment_version_1.*;
 import static VALUE.VALUE.echo;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -15,9 +14,9 @@ public class test_part_2_version_2 {
 
         start_listener_on_local_machine();
 
-        runTest_one_time(inputHostName);
+//        runTest_one_time(inputHostName);
 
-//        repeat_test_1000_times(inputHostName);
+        repeat_test_1000_times(inputHostName);
     }
 
     public static void repeat_test_1000_times(String inputHostName) {

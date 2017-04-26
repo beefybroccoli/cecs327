@@ -1,6 +1,5 @@
 package part_2_assignment_version_2;
 
-import part_2_assignment_version_1.*;
 import object.SharedResource;
 import java.net.*;
 import java.io.*;

@@ -5,13 +5,8 @@
  */
 package part_2_assignment_version_2;
 
-import part_2_assignment_version_1.*;
 import java.util.Random;
 
-/**
- *
- * @author fred
- */
 public class Command_version_2 {
 
     private int mCommandID;

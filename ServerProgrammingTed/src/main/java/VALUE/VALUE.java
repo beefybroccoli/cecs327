@@ -1,5 +1,7 @@
 package VALUE;
 
+import java.util.Random;
+
 public class VALUE {
 
     public static final String LOCAL_HOST = "127.0.0.1";
@@ -8,7 +10,7 @@ public class VALUE {
     public static final int BUFFER_SIZE = 1024;
     public static final String HOST_NAME = "www.java2s.com";
     public static final int CLIENT_PORT_NUMBER = 50001;
-    public static final int PORT_DAY_TIME = 13 ; //a well-known daytime port
+    public static final int PORT_DAY_TIME = 13; //a well-known daytime port
     public static final int SLEEP_TIME = 1000;
     public static final int POP_3_PORT_NUMBER = 100;
 
@@ -19,7 +21,7 @@ public class VALUE {
     public static int getSLEEP_TIME() {
         return SLEEP_TIME;
     }
-    
+
     public static int getPORT_DAY_TIME() {
         return PORT_DAY_TIME;
     }
@@ -31,7 +33,6 @@ public class VALUE {
     public static String getHOST_NAME() {
         return HOST_NAME;
     }
-    
 
     public static int getPORT_NUMBER() {
         return PORT_NUMBER;
@@ -44,8 +45,14 @@ public class VALUE {
     public int getSERVER_PORT_NUMBER() {
         return SERVER_PORT_NUMBER;
     }
-    
-    public static void echo(String input){
+
+    public static void echo(String input) {
         System.out.println(input);
+    }
+
+    public static int getRandomNumberBetween(int max, int min) {
+        Random rn = new Random();
+        int answer = rn.nextInt(max) + min;
+        return answer;
     }
 }
