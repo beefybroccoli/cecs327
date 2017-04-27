@@ -1,0 +1,10 @@
+
+EvenFibIntType is accurat to only Fib 46. Beyond that, Integer type go crazy.
+
+EvenFibBigDecimalType is accurate to Fib_100. 
+    _test2() generate 100 fib numbers and the result is correct compare to the fib table
+        (http://www.miniwebtool.com/list-of-fibonacci-numbers/?number=100)
+    _test3() generate even fib numbers. The result seem to be correct compare to below reference
+        (http://www.miniwebtool.com/list-of-fibonacci-numbers/?number=100)
+
+LargerRandomNumber can generate random value and use BigDecimal format, so the value can be large.
