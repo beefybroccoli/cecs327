@@ -1,4 +1,4 @@
-package part_2_assignment_version_2;
+package part_2_assignment_version_3;
 
 import object.SharedResource;
 import VALUE.VALUE;

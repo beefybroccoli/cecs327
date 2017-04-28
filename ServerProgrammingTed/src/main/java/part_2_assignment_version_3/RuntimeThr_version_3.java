@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package part_2_assignment_version_2;
+package part_2_assignment_version_3;
 
 import VALUE.VALUE;
 import static VALUE.VALUE.echo;
@@ -20,11 +20,11 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class RuntimeThr_version_2 implements Runnable {
+public class RuntimeThr_version_3 implements Runnable {
 
     private LinkedBlockingQueue mSharedRequestQue;
     private ConcurrentHashMap<String, String> mSharedResultQue;
-    private Number_version_2 mNumberShareResource;
+    private Number_version_3 mNumberShareResource;
     private ReentrantLock mReentrantLock;
     private String mHOST_NAME;
     private int mHOST_SERVER_PORT;
@@ -33,12 +33,12 @@ public class RuntimeThr_version_2 implements Runnable {
     ReadWriteLock mRWLock;
     Lock mLock;
 
-    public RuntimeThr_version_2(String inputHostName, LinkedBlockingQueue inputRequestQue, ConcurrentHashMap<String, String> inputResultQue, Striped<ReadWriteLock> inputSharedRWLock) {
+    public RuntimeThr_version_3(String inputHostName, LinkedBlockingQueue inputRequestQue, ConcurrentHashMap<String, String> inputResultQue, Striped<ReadWriteLock> inputSharedRWLock) {
 
         mSharedRequestQue = inputRequestQue;
         mSharedResultQue = inputResultQue;
         mReentrantLock = new ReentrantLock();
-        mNumberShareResource = new Number_version_2(mReentrantLock);
+        mNumberShareResource = new Number_version_3(mReentrantLock);
         mHOST_NAME = inputHostName;
         mHOST_SERVER_PORT = VALUE.SERVER_PORT_NUMBER;
         mSharedRWLock = inputSharedRWLock;
@@ -71,16 +71,16 @@ public class RuntimeThr_version_2 implements Runnable {
 
         String mSharedRequestQueString = "\n" + "mSharedRequestQue = " + mSharedRequestQue.toString();
         String mSharedResultQueString = "\n" + "mSharedResultQue = " + mSharedResultQue.toString();
-        System.out.println("(runtimeThr Ended)\n" + mSharedRequestQueString + mSharedResultQueString);
+        System.out.println("(runtimeThr Ended, " + mSharedRequestQueString + mSharedResultQueString + ")\n");
 
     }
 
     public void fetch_command_and_startWorker() {
 
 //        System.out.println("size of mRequestQue is " + mSharedRequestQue.size() + ", size of mResultQue is " + mSharedRequestQue.size() + "\n");
-        Command_version_2 command;
+        Command_version_3 command;
         try {
-            command = (Command_version_2) mSharedRequestQue.take();
+            command = (Command_version_3) mSharedRequestQue.take();
 
             if (command.getmCommand() == 4 || command.getmCommand() == 5) {
                 runLocalThr(command.getmRequestorID(), command.getmCommand());
@@ -114,8 +114,8 @@ public class RuntimeThr_version_2 implements Runnable {
     }
 
     public String runLocalThr(int inputClientID, int inputCommand) {
-        //public LocalThr_version_2(Number_version_2 inputNumber, ReentrantLock inputLock, int command) {
-        LocalThr_version_2 task = new LocalThr_version_2(mNumberShareResource, mReentrantLock, inputClientID, inputCommand);
+        //public LocalThr_version_3(Number_version_3 inputNumber, ReentrantLock inputLock, int command) {
+        LocalThr_version_3 task = new LocalThr_version_3(mNumberShareResource, mReentrantLock, inputClientID, inputCommand);
 
         ExecutorService executor = Executors.newFixedThreadPool(1);
 
@@ -132,22 +132,26 @@ public class RuntimeThr_version_2 implements Runnable {
             result = future.get(5, TimeUnit.MINUTES);
             put_result_into_mResultQue("" + inputClientID, result);
         } catch (InterruptedException ex) {
+            result = "-1";
             echo("InterruptedException occured in runLocalThr() method" + "\n");
         } catch (ExecutionException ex) {
+            result = "-1";
             echo("ExecutionException occured in runLocalThr() method" + "\n");
         } catch (TimeoutException ex) {
+            result = "-1";
             echo("TimeoutException occured in runLocalThr() method" + "\n");
         } catch (NullPointerException ex) {
+            result = "-1";
             echo("NullPointerException occured in runLocalThr() method" + "\n");
         } finally {
-//            System.out.println("result = " + result);
+//            System.out.println("runLocalThr received result " + result);
             executor.shutdownNow();
         }
         return result;
     }
 
     public String runNetworkThr(int inputClientID, int input) {
-        NetworkThr_version_2 task = new NetworkThr_version_2(mHOST_NAME, mHOST_SERVER_PORT, inputClientID, "" + input);
+        NetworkThr_version_3 task = new NetworkThr_version_3(mHOST_NAME, mHOST_SERVER_PORT, inputClientID, "" + input);
 
         ExecutorService executor = Executors.newFixedThreadPool(1);
 
@@ -164,15 +168,19 @@ public class RuntimeThr_version_2 implements Runnable {
             result = future.get(5, TimeUnit.MINUTES);
             put_result_into_mResultQue("" + inputClientID, result);
         } catch (InterruptedException ex) {
+            result = "-1";
             echo("InterruptedException occured in runNetworkThr() method" + "\n");
         } catch (ExecutionException ex) {
+            result = "-1";
             echo("ExecutionException occured in runNetworkThr() method" + "\n");
         } catch (TimeoutException ex) {
+            result = "-1";
             echo("TimeoutException occured in runNetworkThr() method" + "\n");
         } catch (NullPointerException ex) {
+            result = "-1";
             echo("NullPointerException occured in runNetworkThr() method" + "\n");
         } finally {
-//            System.out.println("result = " + result);
+//            System.out.println("runNetworkThr received result " + result);
             executor.shutdownNow();
         }
         return result;

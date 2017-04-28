@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package part_2_assignment_version_2;
+package part_2_assignment_version_3;
 
 import static VALUE.VALUE.echo;
 import com.google.common.util.concurrent.Striped;
@@ -17,12 +17,12 @@ import java.util.concurrent.locks.ReadWriteLock;
  *
  * @author fred
  */
-public class UThr_version_2 implements Runnable {
+public class UThr_version_3 implements Runnable {
 
     private int mUThrID;
     private LinkedBlockingQueue mSharedRequestQue;
     private ConcurrentHashMap<String, String> mSharedResultQue;
-    private Command_version_2 mCommand;
+    private Command_version_3 mCommand;
     private int mCounter;
     private int mMaxCounter;
     private boolean mFlag;
@@ -30,7 +30,7 @@ public class UThr_version_2 implements Runnable {
     ReadWriteLock mRWLock;
     Lock mLock;
 
-    public UThr_version_2(int inputID, LinkedBlockingQueue inputRequestQue, ConcurrentHashMap<String, String> inputResultQue, Striped<ReadWriteLock> inputRWLock) {
+    public UThr_version_3(int inputID, LinkedBlockingQueue inputRequestQue, ConcurrentHashMap<String, String> inputResultQue, Striped<ReadWriteLock> inputRWLock) {
         mUThrID = inputID;
         mSharedRequestQue = inputRequestQue;
         mSharedResultQue = inputResultQue;
@@ -48,7 +48,7 @@ public class UThr_version_2 implements Runnable {
         do {
             try {
 
-                mCommand = new Command_version_2(++mCounter, mUThrID);
+                mCommand = new Command_version_3(++mCounter, mUThrID);
                 mSharedRequestQue.put(mCommand);
 
 //                echo("(UThr" + mUThrID + " sleep)\n");
@@ -69,7 +69,7 @@ public class UThr_version_2 implements Runnable {
 
                         String result = (String) mSharedResultQue.remove("" + mUThrID);
                         
-                        System.out.println("uThr" + mUThrID + " consume " + result);
+//                        System.out.println("uThr" + mUThrID + " consume " + result + "\n");
 //                                + ", after consumption, mMap size: " + mSharedResultQue.size()
 //                                + ", map : " + mSharedResultQue.toString()
 //                                + "\n");
@@ -78,6 +78,7 @@ public class UThr_version_2 implements Runnable {
                     }//end finally
                 }//end if
 
+                //stop the thread after 20 commands
                 if (mCounter == mMaxCounter) {
                     mFlag = false;
                 }
@@ -90,7 +91,7 @@ public class UThr_version_2 implements Runnable {
         } while (mFlag);
 
         System.out.println(
-                "(uThr " + mUThrID + " Ended, mCounter = " + this.mCounter +")" + "\n");
+                "(uThr " + mUThrID + " Ended, consumption count = " + this.mCounter +")" + "\n");
 
     }//end run method
 

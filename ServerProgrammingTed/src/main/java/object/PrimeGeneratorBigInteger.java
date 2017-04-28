@@ -9,20 +9,13 @@ calculate the next prime number
 public class PrimeGeneratorBigInteger {
 
     private BigInteger mPrimeNumber;
-    private int mCounter;
-    private int mMaxCounter;
 
     public PrimeGeneratorBigInteger() {
         mPrimeNumber = BigInteger.valueOf(1);
-        mCounter = 0;
-        mMaxCounter = 100;
     }
 
     private void reset() {
-        if (++mCounter == mMaxCounter) {
-            mPrimeNumber = BigInteger.valueOf(1);
-            mCounter = 0;
-        }
+        mPrimeNumber = BigInteger.valueOf(2);
     }
 
     public boolean testPrime(BigInteger number) {
@@ -47,20 +40,23 @@ public class PrimeGeneratorBigInteger {
 
     public BigInteger getNextPrime() {
 
-        reset();
-
         BigInteger result = mPrimeNumber;
 
         boolean flag = false;
 
         do {
+            try {
+                result = result.add(BigInteger.valueOf(1));
 
-            result = result.add(BigInteger.valueOf(1));
+                flag = testPrime(result);
 
-            flag = testPrime(result);
-
-            if (flag == true) {
-                mPrimeNumber = result;
+                if (flag == true) {
+                    mPrimeNumber = result;
+                }
+            } catch (OutOfMemoryError e) {
+                System.out.println("OutOfMemory Exception Occured");
+                reset();
+                result = mPrimeNumber;
             }
         } while (flag == false);
 
@@ -77,11 +73,13 @@ public class PrimeGeneratorBigInteger {
     public static void demoGetNextPrime() {
 
         PrimeGeneratorBigInteger obj = new PrimeGeneratorBigInteger();
+        obj.mPrimeNumber = new BigInteger("4444455566667778");
 
-        for (int i = 0; i < 200; i++) {
+        for (int i = 0; true; i++) {
+//        for (int i = 0; i < 200; i++) {
             System.out.println("next prime i = " + (i + 1) + ", " + obj.getNextPrime());
         }
-        System.out.println("");
+//        System.out.println("");
 
     }
 

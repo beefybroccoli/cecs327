@@ -10,8 +10,6 @@ public class EvenFibBigInteger {
     private BigInteger valueNMinus2;
     private BigInteger valueNMinus1;
     private BigInteger valueN;
-    private int mCounter;
-    private int mMaxCounter;
 
     /**
      * initialize EvenFibBigDecimalType with seed 0 and 1
@@ -20,8 +18,6 @@ public class EvenFibBigInteger {
         valueNMinus2 = new BigInteger("0");
         valueNMinus1 = new BigInteger("1");
         valueN = new BigInteger("-1");
-        mCounter = 0;
-        mMaxCounter = 100;
     }
 
     /**
@@ -40,12 +36,11 @@ public class EvenFibBigInteger {
     }
 
     private void reset() {
-        if (++mCounter == mMaxCounter) {
-            valueNMinus2 = new BigInteger("0");
-            valueNMinus1 = new BigInteger("1");
-            valueN = new BigInteger("-1");;
-            mCounter = 0;
-        }
+
+        valueNMinus2 = new BigInteger("0");
+        valueNMinus1 = new BigInteger("1");
+        valueN = new BigInteger("-1");;
+
     }
 
     /**
@@ -55,14 +50,17 @@ public class EvenFibBigInteger {
      */
     public BigInteger getNextFib() {
 
-        reset();
-        
-        if (valueN.equals("-1")) {
-            valueN = valueNMinus2.add(valueNMinus1);
-        } else {
+        try {
+            if (valueN.equals("-1")) {
+                valueN = valueNMinus2.add(valueNMinus1);
+            } else {
 
-            valueNMinus2 = valueNMinus1;
-            valueNMinus1 = valueN;
+                valueNMinus2 = valueNMinus1;
+                valueNMinus1 = valueN;
+                valueN = valueNMinus2.add(valueNMinus1);
+            }
+        } catch (OutOfMemoryError e) {
+            reset();
             valueN = valueNMinus2.add(valueNMinus1);
         }
 

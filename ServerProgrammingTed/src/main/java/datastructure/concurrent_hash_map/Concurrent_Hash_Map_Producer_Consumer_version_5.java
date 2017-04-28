@@ -145,7 +145,7 @@ public class Concurrent_Hash_Map_Producer_Consumer_version_5 {
 
         
         //half consumer and half producer
-        run_specified_number_of_threads(6);
+        run_specified_number_of_threads(10);
 
     }//end main method
 

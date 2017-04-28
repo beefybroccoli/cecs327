@@ -6,21 +6,26 @@ import java.util.Random;
 /**
  * generate the next larger random number
  */
-public class LargerRandomNumberBigInteger {
+public class LargerRandomNumberBigIntegerVersion2 {
 
     private BigInteger mValue;
+    private int mCounter;
+    private int mMaxCounter;
 
     /**
      * initialize a LargerRandomNumber object with seed value of 0
      */
-    public LargerRandomNumberBigInteger() {
+    public LargerRandomNumberBigIntegerVersion2() {
         mValue = BigInteger.valueOf(0);
+        mCounter = 0;
+        mMaxCounter = 500;
     }
 
     private void reset() {
-
-        mValue = BigInteger.valueOf(1);
-
+        if (++mCounter == mMaxCounter) {
+            mValue = BigInteger.valueOf(1);
+            mCounter = 0;
+        }
     }
 
     /**
@@ -28,14 +33,11 @@ public class LargerRandomNumberBigInteger {
      * @return the next larger random value
      */
     public BigInteger getNextLargerRand() {
+        reset();
 
-        try {
-            Random rn = new Random();
-            int randomNumber = rn.nextInt(10000) + 1;
-            mValue = mValue.add(BigInteger.valueOf(randomNumber));
-        } catch (OutOfMemoryError e) {
-            reset();
-        }
+        Random rn = new Random();
+        int randomNumber = rn.nextInt(10000) + 1;
+        mValue = mValue.add(BigInteger.valueOf(randomNumber));
 
         return mValue.abs();
     }
@@ -46,8 +48,15 @@ public class LargerRandomNumberBigInteger {
      */
     public static void main(String[] args) {
 
-        test2();
+//        test2();
 //        test1();
+        BigInteger value = new BigInteger("92233720368547758071111111118989797");
+        System.out.println("value = " + value.toString());
+
+        while (true) {
+            value = value.add(BigInteger.valueOf(1));
+            System.out.println("value = " + value.toString());
+        }
     }
 
     /**
@@ -55,7 +64,7 @@ public class LargerRandomNumberBigInteger {
      */
     public static void test2() {
 
-        LargerRandomNumberBigInteger value = new LargerRandomNumberBigInteger();
+        LargerRandomNumberBigIntegerVersion2 value = new LargerRandomNumberBigIntegerVersion2();
 
         for (int i = 0; i < 1000; i++) {
 
