@@ -52,10 +52,9 @@ public class UThr_version_4 implements Runnable {
                 /*
                 create new command if the previous command received valid result
                 otherwise, reprocess the command
-                */
-                if (mCommand.validateResult()) {
-                    mCommand = new Command_version_4(++mCounter, mUThrID);
-                }
+                 */
+                mCommand = new Command_version_4(++mCounter, mUThrID);
+
                 mSharedRequestQue.put(mCommand);
 
 //                echo("(UThr" + mUThrID + " sleep)\n");
