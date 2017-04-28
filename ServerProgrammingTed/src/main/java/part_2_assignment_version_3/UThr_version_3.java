@@ -38,6 +38,7 @@ public class UThr_version_3 implements Runnable {
         mMaxCounter = 20;
         mFlag = true;
         mSharedRWLock = inputRWLock;
+        mCommand = new Command_version_3();
     }
 
     @Override
@@ -47,8 +48,9 @@ public class UThr_version_3 implements Runnable {
 
         do {
             try {
-
-                mCommand = new Command_version_3(++mCounter, mUThrID);
+                if (mCommand.validateResult()) {
+                    mCommand = new Command_version_3(++mCounter, mUThrID);
+                }
                 mSharedRequestQue.put(mCommand);
 
 //                echo("(UThr" + mUThrID + " sleep)\n");
@@ -68,7 +70,7 @@ public class UThr_version_3 implements Runnable {
                         mLock.lock();
 
                         String result = (String) mSharedResultQue.remove("" + mUThrID);
-                        
+
 //                        System.out.println("uThr" + mUThrID + " consume " + result + "\n");
 //                                + ", after consumption, mMap size: " + mSharedResultQue.size()
 //                                + ", map : " + mSharedResultQue.toString()
@@ -91,7 +93,7 @@ public class UThr_version_3 implements Runnable {
         } while (mFlag);
 
         System.out.println(
-                "(uThr " + mUThrID + " Ended, consumption count = " + this.mCounter +")" + "\n");
+                "(uThr " + mUThrID + " Ended, consumption count = " + this.mCounter + ")" + "\n");
 
     }//end run method
 

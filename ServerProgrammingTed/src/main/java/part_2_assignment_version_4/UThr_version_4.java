@@ -38,6 +38,7 @@ public class UThr_version_4 implements Runnable {
         mMaxCounter = 20;
         mFlag = true;
         mSharedRWLock = inputRWLock;
+        mCommand = new Command_version_4();
     }
 
     @Override
@@ -48,7 +49,13 @@ public class UThr_version_4 implements Runnable {
         do {
             try {
 
-                mCommand = new Command_version_4(++mCounter, mUThrID);
+                /*
+                create new command if the previous command received valid result
+                otherwise, reprocess the command
+                */
+                if (mCommand.validateResult()) {
+                    mCommand = new Command_version_4(++mCounter, mUThrID);
+                }
                 mSharedRequestQue.put(mCommand);
 
 //                echo("(UThr" + mUThrID + " sleep)\n");

@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package part_2_assignment_version_3;
-
 import java.util.Random;
 
 public class Command_version_3 {
@@ -15,11 +14,15 @@ public class Command_version_3 {
     private String mResult;
     private boolean mResultStatus;
 
+    public Command_version_3(){
+        mResult = "";
+    }
+    
     public Command_version_3(int commandID, int requestorID) {
         mCommandID = commandID;
         mRequestorID = requestorID;
         mCommand = new Random().nextInt(5) + 1;
-        mResult = "0";
+        mResult = "";
         mResultStatus = false;
     }
 
@@ -40,28 +43,31 @@ public class Command_version_3 {
     }
 
     public String getmResult() {
-        mResultStatus = true;
         return mResult;
     }
 
-    public void setmResult(String mResult) {
-        
-        if(!mResult.equals("0")  && !mResult.equals("-1") ){
-            this.mResult = mResult;
-            this.mResultStatus = true;
+    public void setmResult(String inputResult) {
+        mResult = inputResult;
+    }
+
+    public boolean validateResult() {
+        boolean result = true;
+        if (mResult.equals("0") || mResult.equals("-1")) {
+            result = false;
         }
+        return result;
     }
 
     public boolean ismResultStatus() {
         return mResultStatus;
     }
-    
-    public void printOut(){
-        String result = "mCommandID " + mCommandID + ", mRequestorID " 
-                + mRequestorID +", mCommand " + mCommand + ", mResult " 
-                + mResult + ", mResultStatus " + mResultStatus ;
+
+    public void printOut() {
+        String result = "mCommandID " + mCommandID + ", mRequestorID "
+                + mRequestorID + ", mCommand " + mCommand + ", mResult "
+                + mResult + ", mResultStatus " + mResultStatus;
         System.out.println(result);
-        
+
     }
     
     public static void main(String[] args){
