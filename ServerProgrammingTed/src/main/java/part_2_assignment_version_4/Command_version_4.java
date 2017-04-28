@@ -15,10 +15,10 @@ public class Command_version_4 {
     private String mResult;
     private boolean mResultStatus;
 
-    public Command_version_4(){
+    public Command_version_4() {
         mResult = "";
     }
-    
+
     public Command_version_4(int commandID, int requestorID) {
         mCommandID = commandID;
         mRequestorID = requestorID;
@@ -73,6 +73,24 @@ public class Command_version_4 {
 
     public static void main(String[] args) {
 
+        test2();
+        test1();
+
+    }
+
+    public static void test1() {
+        Command_version_4[] commands = new Command_version_4[10];
+
+        for (int i = 0; i < 10; i++) {
+            int commandID = i + 1;
+            int reqestorID = 1;
+            commands[i] = new Command_version_4(commandID, reqestorID);
+            commands[i].setmResult("" + (new Random().nextInt(5) + -1));
+            commands[i].printOut();
+        }
+    }
+
+    public static void test2() {
         Command_version_4 command = new Command_version_4(1, 1);
         System.out.println("command.validateResult() = " + command.validateResult()); //return true
         command.setmResult("123");
@@ -81,7 +99,7 @@ public class Command_version_4 {
         System.out.println("command.validateResult() = " + command.validateResult()); //return false
         command.setmResult("-1");
         System.out.println("command.validateResult() = " + command.validateResult()); //return false
-        
+
         /*
         Building ServerProgrammingTed 1.0-SNAPSHOT
         ------------------------------------------------------------------------
@@ -91,17 +109,7 @@ public class Command_version_4 {
         command.validateResult() = true
         command.validateResult() = false
         command.validateResult() = false
-        */
-
-//        Command_version_4[] commands = new Command_version_4[10];
-//
-//        for (int i = 0; i < 10; i++) {
-//            int commandID = i + 1;
-//            int reqestorID = 1;
-//            commands[i] = new Command_version_4(commandID, reqestorID);
-//            commands[i].setmResult("" + (new Random().nextInt(5) + -1));
-//            commands[i].printOut();
-//        }
+         */
     }
 
 }

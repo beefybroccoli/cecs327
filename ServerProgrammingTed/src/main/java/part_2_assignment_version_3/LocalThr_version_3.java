@@ -35,12 +35,16 @@ public class LocalThr_version_3 implements Runnable, Callable<String> {
         mLock.lock();
         try {
             TimeUnit.MILLISECONDS.sleep(10);
-            if (mCommand == 4) {
-                mResult = "" + mNumber.getNextEvenNumber();
-            } else if (mCommand == 5) {
-                mResult = "" + mNumber.getNextOddNumber();
-            } else {
-                mResult = "" + "-1";
+            switch (mCommand) {
+                case 4:
+                    mResult = "" + mNumber.getNextEvenNumber();
+                    break;
+                case 5:
+                    mResult = "" + mNumber.getNextOddNumber();
+                    break;
+                default:
+                    mResult = "" + "-1";
+                    break;
             }
         } catch (InterruptedException ex) {
             echo("InterruptedException occured in LocalThr line 47");
