@@ -70,7 +70,8 @@ public class UThr_version_3 implements Runnable {
                         mLock.lock();
 
                         String result = (String) mSharedResultQue.remove("" + mUThrID);
-
+                        mCommand.setmResult(result);
+                        System.out.println("commandID " + mCommand.getCommandID() + " - uThr" + mUThrID + " consume " + mCommand.getmResult() + "\n");
 //                        System.out.println("uThr" + mUThrID + " consume " + result + "\n");
 //                                + ", after consumption, mMap size: " + mSharedResultQue.size()
 //                                + ", map : " + mSharedResultQue.toString()
