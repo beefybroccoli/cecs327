@@ -73,7 +73,7 @@ public class UThr_version_4 implements Runnable {
 //                        echo("(UThr" + mUThrID + " try mLock.lock()) + \n");
                         mLock.lock();
                         String result = (String) mSharedResultQue.remove("" + mUThrID);
-                        this.mCommand.setmResult(result);
+                        this.mCommand.setResult(result);
                         System.out.println("commandID " + mCommand.getCommandID() + " - uThr" + mUThrID + " consume " + result + "\n");
                     } finally {
                         mLock.unlock();

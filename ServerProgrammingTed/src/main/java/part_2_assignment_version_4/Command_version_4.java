@@ -27,7 +27,7 @@ public class Command_version_4 {
         mResultStatus = false;
     }
 
-    public int getmRequestorID() {
+    public int getmUThreadID() {
         return mRequestorID;
     }
 
@@ -35,19 +35,16 @@ public class Command_version_4 {
         return mCommandID;
     }
 
-    public Integer getmID() {
-        return mCommandID;
-    }
 
-    public int getmCommand() {
+    public int getCommand() {
         return mCommand;
     }
 
-    public String getmResult() {
+    public String getResult() {
         return mResult;
     }
 
-    public void setmResult(String inputResult) {
+    public void setResult(String inputResult) {
         mResult = inputResult;
     }
 
@@ -59,9 +56,6 @@ public class Command_version_4 {
         return result;
     }
 
-    public boolean ismResultStatus() {
-        return mResultStatus;
-    }
 
     public void printOut() {
         String result = "mCommandID " + mCommandID + ", mRequestorID "
@@ -85,7 +79,7 @@ public class Command_version_4 {
             int commandID = i + 1;
             int reqestorID = 1;
             commands[i] = new Command_version_4(commandID, reqestorID);
-            commands[i].setmResult("" + (new Random().nextInt(5) + -1));
+            commands[i].setResult("" + (new Random().nextInt(5) + -1));
             commands[i].printOut();
         }
     }
@@ -93,11 +87,11 @@ public class Command_version_4 {
     public static void test2() {
         Command_version_4 command = new Command_version_4(1, 1);
         System.out.println("command.validateResult() = " + command.validateResult()); //return true
-        command.setmResult("123");
+        command.setResult("123");
         System.out.println("command.validateResult() = " + command.validateResult()); //return true
-        command.setmResult("0");
+        command.setResult("0");
         System.out.println("command.validateResult() = " + command.validateResult()); //return false
-        command.setmResult("-1");
+        command.setResult("-1");
         System.out.println("command.validateResult() = " + command.validateResult()); //return false
         /*
         Building ServerProgrammingTed 1.0-SNAPSHOT

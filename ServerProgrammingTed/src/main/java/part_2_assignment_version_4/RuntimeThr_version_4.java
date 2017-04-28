@@ -82,11 +82,11 @@ public class RuntimeThr_version_4 implements Runnable {
         try {
             command = (Command_version_4) mSharedRequestQue.take();
 
-            if (command.getmCommand() == 4 || command.getmCommand() == 5) {
-//                runLocalThr(command.getmRequestorID(), command.getmCommand());
+            if (command.getCommand() == 4 || command.getCommand() == 5) {
+//                runLocalThr(command.getmUThreadID(), command.getCommand());
                 runLocalThr(command);
             } else {
-//                runNetworkThr(command.getmRequestorID(), command.getmCommand());
+//                runNetworkThr(command.getmUThreadID(), command.getCommand());
                 runNetworkThr(command);
             }
 
@@ -99,8 +99,8 @@ public class RuntimeThr_version_4 implements Runnable {
     public void put_result_into_mResultQue(Command_version_4 inputCommand) {
 
 //        String key = inputClientID;
-        String key = "" + inputCommand.getmRequestorID();
-        String value = "" + inputCommand.getmResult();
+        String key = "" + inputCommand.getmUThreadID();
+        String value = "" + inputCommand.getResult();
         mRWLock = mSharedRWLock.get(key);
         mLock = mRWLock.writeLock();
         try {
@@ -121,7 +121,7 @@ public class RuntimeThr_version_4 implements Runnable {
 
     public String runLocalThr(Command_version_4 inputCommand) {
 
-        LocalThr_version_4 task = new LocalThr_version_4(mNumberShareResource, mReentrantLock, inputCommand.getmRequestorID(), inputCommand.getmCommand());
+        LocalThr_version_4 task = new LocalThr_version_4(mNumberShareResource, mReentrantLock, inputCommand.getmUThreadID(), inputCommand.getCommand());
 
         ExecutorService executor = Executors.newFixedThreadPool(1);
 
@@ -152,9 +152,9 @@ public class RuntimeThr_version_4 implements Runnable {
             result = "-1";
             echo("NullPointerException occured in runLocalThr() method" + "\n");
         } finally {
-            inputCommand.setmResult(result);
+            inputCommand.setResult(result);
             if (result.equals("0") || result.equals("-1")) {
-                System.out.println("runLocalThr reprocess - coomandId " + inputCommand.getCommandID() + " " + inputCommand.getmRequestorID() + "," + inputCommand.getmCommand() + "," + inputCommand.getmResult() + "\n");
+                System.out.println("runLocalThr reprocess - coomandId " + inputCommand.getCommandID() + " " + inputCommand.getmUThreadID() + "," + inputCommand.getCommand() + "," + inputCommand.getResult() + "\n");
                 runLocalThr(inputCommand);
             } else {
                 put_result_into_mResultQue(inputCommand);
@@ -166,7 +166,7 @@ public class RuntimeThr_version_4 implements Runnable {
 
     public String runNetworkThr(Command_version_4 inputCommand) {
 
-        NetworkThr_version_4 task = new NetworkThr_version_4(mHOST_NAME, mHOST_SERVER_PORT, inputCommand.getmRequestorID(), "" + inputCommand.getmCommand());
+        NetworkThr_version_4 task = new NetworkThr_version_4(mHOST_NAME, mHOST_SERVER_PORT, inputCommand.getmUThreadID(), "" + inputCommand.getCommand());
 
         ExecutorService executor = Executors.newFixedThreadPool(1);
 
@@ -197,9 +197,9 @@ public class RuntimeThr_version_4 implements Runnable {
             result = "-1";
             echo("NullPointerException occured in runNetworkThr() method" + "\n");
         } finally {
-            inputCommand.setmResult(result);
+            inputCommand.setResult(result);
             if (result.equals("0") || result.equals("-1")) {
-                System.out.println("runNetworkThr reprocess - coomandId " + inputCommand.getCommandID() + " " + inputCommand.getmRequestorID() + "," + inputCommand.getmCommand() + "," + inputCommand.getmResult() + "\n");
+                System.out.println("runNetworkThr reprocess - coomandId " + inputCommand.getCommandID() + " " + inputCommand.getmUThreadID() + "," + inputCommand.getCommand() + "," + inputCommand.getResult() + "\n");
                 runNetworkThr(inputCommand);
             } else {
                 put_result_into_mResultQue(inputCommand);
