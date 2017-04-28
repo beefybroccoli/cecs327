@@ -114,7 +114,7 @@ public class RuntimeThr_version_3 implements Runnable {
     }
 
     public String runLocalThr(int inputClientID, int inputCommand) {
-        //public LocalThr_version_3(Number_version_3 inputNumber, ReentrantLock inputLock, int command) {
+        //public LocalThr_version_4(Number_version_4 inputNumber, ReentrantLock inputLock, int command) {
         LocalThr_version_3 task = new LocalThr_version_3(mNumberShareResource, mReentrantLock, inputClientID, inputCommand);
 
         ExecutorService executor = Executors.newFixedThreadPool(1);
@@ -130,7 +130,6 @@ public class RuntimeThr_version_3 implements Runnable {
 
         try {
             result = future.get(5, TimeUnit.MINUTES);
-            put_result_into_mResultQue("" + inputClientID, result);
         } catch (InterruptedException ex) {
             result = "-1";
             echo("InterruptedException occured in runLocalThr() method" + "\n");
@@ -144,14 +143,19 @@ public class RuntimeThr_version_3 implements Runnable {
             result = "-1";
             echo("NullPointerException occured in runLocalThr() method" + "\n");
         } finally {
+            if (result.equals("0") || result.equals("-1")) {
+                runLocalThr(inputClientID, inputCommand);
+            } else {
+                put_result_into_mResultQue("" + inputClientID, result);
+            }
 //            System.out.println("runLocalThr received result " + result);
             executor.shutdownNow();
         }
         return result;
     }
 
-    public String runNetworkThr(int inputClientID, int input) {
-        NetworkThr_version_3 task = new NetworkThr_version_3(mHOST_NAME, mHOST_SERVER_PORT, inputClientID, "" + input);
+    public String runNetworkThr(int inputClientID, int inputCommand) {
+        NetworkThr_version_3 task = new NetworkThr_version_3(mHOST_NAME, mHOST_SERVER_PORT, inputClientID, "" + inputCommand);
 
         ExecutorService executor = Executors.newFixedThreadPool(1);
 
@@ -166,7 +170,7 @@ public class RuntimeThr_version_3 implements Runnable {
 
         try {
             result = future.get(5, TimeUnit.MINUTES);
-            put_result_into_mResultQue("" + inputClientID, result);
+
         } catch (InterruptedException ex) {
             result = "-1";
             echo("InterruptedException occured in runNetworkThr() method" + "\n");
@@ -180,6 +184,11 @@ public class RuntimeThr_version_3 implements Runnable {
             result = "-1";
             echo("NullPointerException occured in runNetworkThr() method" + "\n");
         } finally {
+            if (result.equals("0") || result.equals("-1")) {
+
+            } else {
+                put_result_into_mResultQue("" + inputClientID, result);
+            }
 //            System.out.println("runNetworkThr received result " + result);
             executor.shutdownNow();
         }
