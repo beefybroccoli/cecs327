@@ -99,7 +99,6 @@ public class Command_version_4 {
         System.out.println("command.validateResult() = " + command.validateResult()); //return false
         command.setmResult("-1");
         System.out.println("command.validateResult() = " + command.validateResult()); //return false
-
         /*
         Building ServerProgrammingTed 1.0-SNAPSHOT
         ------------------------------------------------------------------------
