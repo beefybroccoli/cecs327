@@ -124,7 +124,7 @@ public class Runtime_version_5 implements Runnable {
         try {
             result = future.get(5, TimeUnit.MINUTES);
 
-//            result = simulate_error(result);
+            result = simulate_error(result);
         } catch (InterruptedException ex) {
             result = "-1";
             echo("InterruptedException occured in runWorker() method" + "\n");
@@ -138,12 +138,11 @@ public class Runtime_version_5 implements Runnable {
             result = "-1";
             echo("NullPointerException occured in runWorker() method" + "\n");
         } finally {
-
+            inputCommand.setResult(result);
             if (result.equals("0") || result.equals("-1")) {
                 System.out.println(inputWorker + " reprocess - coomandId " + inputCommand.getCommandID() + " " + inputCommand.getmUThreadID() + "," + inputCommand.getCommand() + "," + inputCommand.getResult() + "\n");
                 runWorker(inputWorker, inputCommand);
             } else {
-                inputCommand.setResult(result);
                 put_result_into_mResultQue(inputCommand);
             }
             executor.shutdownNow();
@@ -175,8 +174,8 @@ public class Runtime_version_5 implements Runnable {
         }
         return result;
     }
-    
-    public void debugHashMapInsertion(String key){
+
+    public void debugHashMapInsertion(String key) {
         System.out.println(
                 "RuntimeThr try to add to queue: String " + mSharedResultQue.get(key)
                 + ", the result was " + mSharedResultQue.containsKey(key)
