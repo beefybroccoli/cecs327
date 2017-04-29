@@ -13,8 +13,10 @@ public class test_part_2_version_5 {
     public static void main(String[] args) {
         String inputHostName = VALUE.VALUE.LOCAL_HOST;
 //        inputHostName = "192.168.1.5";
-//        runTest_one_time(inputHostName, 10);
-        runTest_one_time(inputHostName,100);
+        runTest_one_time(inputHostName, 10);
+//        runTest_one_time(inputHostName, 100);
+//        runTest_one_time(inputHostName, 1000);
+
     }
 
     public static void runTest_one_time(String inputHostName, int number_of_uThreads) {
@@ -34,13 +36,22 @@ public class test_part_2_version_5 {
         }
 
         int time_in_seconds = 1;
-        if (number_of_uThreads == 100) {
-            time_in_seconds = 30;
-        } else if (number_of_uThreads == 10) {
-            time_in_seconds = 15;
+        switch (number_of_uThreads) {
+
+            case 10:
+                time_in_seconds = 10;
+                break;
+            case 100:
+                time_in_seconds = 30;
+                break;
+            case 1000:
+                time_in_seconds = 200;
+                break;
+            default:
+                time_in_seconds = 200;
+                break;
         }
-        
-        
+
         shutExecutor(executorUThread, time_in_seconds);
         if (executorUThread.isShutdown()) {
             shutExecutor(executorRuntime);
@@ -583,4 +594,4 @@ Finished at: Fri Apr 28 16:54:51 PDT 2017
 Final Memory: 7M/245M
 ------------------------------------------------------------------------
 
-*/
+ */
