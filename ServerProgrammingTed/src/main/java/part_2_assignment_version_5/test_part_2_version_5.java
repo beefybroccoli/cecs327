@@ -1,10 +1,12 @@
 package part_2_assignment_version_5;
 
+import static VALUE.VALUE.echo;
 import com.google.common.util.concurrent.Striped;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReadWriteLock;
 
@@ -12,10 +14,62 @@ public class test_part_2_version_5 {
 
     public static void main(String[] args) {
         String inputHostName = VALUE.VALUE.LOCAL_HOST;
-//        inputHostName = "192.168.1.5";
+        inputHostName = "192.168.1.4";
 //        runTest_one_time(inputHostName, 10);
-        runTest_one_time(inputHostName, 100);
+//        runTest_one_time(inputHostName, 100);
 //        runTest_one_time(inputHostName, 1000);
+        test3(inputHostName);
+
+    }
+
+    public static void test3(String inputHostName) {
+
+        LinkedBlockingQueue inputRequestQue = new LinkedBlockingQueue();
+        ConcurrentHashMap<String, String> inputResultQue = new ConcurrentHashMap<String, String>();
+        Striped<ReadWriteLock> inputSharedRWLock = Striped.readWriteLock(12);
+
+        ExecutorService executorRuntime = Executors.newFixedThreadPool(1);
+        executorRuntime.submit(new Runtime_version_5(inputHostName, inputRequestQue, inputResultQue, inputSharedRWLock));
+        
+//        ExecutorService executorTask = Executors.newSingleThreadExecutor();
+
+        int number_of_batch = 10;
+        int number_of_uThreads = 10;
+        int time_in_seconds = 5;
+
+        Runnable task = () -> {
+
+            for (int i = 0; i < number_of_batch; i++) {
+
+                echo("Start batch " + (i + 1) + "-------------------------------------\n");
+
+                ExecutorService executorUThread = Executors.newFixedThreadPool(number_of_uThreads);
+
+                //spawn 10 uThr
+                for (int j = 0; j < number_of_uThreads; j++) {
+                    int id = j + 1;
+                    executorUThread.submit(new Client_version_5(id, inputRequestQue, inputResultQue, inputSharedRWLock));
+                }
+
+                shutExecutor(executorUThread, time_in_seconds * 2);
+
+                try {
+                    TimeUnit.SECONDS.sleep(time_in_seconds);
+                } catch (InterruptedException ex) {
+                    echo("Interruption occured in Runnable");
+                }
+
+                echo("-------------------------------------end batch " + (i+1) + "\n");
+
+            }//end for
+            
+            echo("exit for loop already");
+
+        };
+        
+        task.run();
+
+        shutExecutor(executorRuntime, number_of_batch*time_in_seconds);
 
     }
 
@@ -4990,4 +5044,4 @@ Total time: 30.469s
 Finished at: Fri Apr 28 17:41:51 PDT 2017
 Final Memory: 7M/245M
 ------------------------------------------------------------------------
-*/
+ */
