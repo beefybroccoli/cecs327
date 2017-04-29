@@ -123,6 +123,7 @@ public class Runtime_version_5 implements Runnable {
 
         try {
             result = future.get(5, TimeUnit.MINUTES);
+
 //            result = simulate_error(result);
         } catch (InterruptedException ex) {
             result = "-1";
