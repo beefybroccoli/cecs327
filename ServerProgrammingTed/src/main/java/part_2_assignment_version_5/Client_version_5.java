@@ -74,7 +74,6 @@ public class Client_version_5 implements Runnable {
                         mLock.lock();
                         String result = (String) mSharedResultQue.remove("" + mClientID);
                         this.mCommand.setResult(result);
-//                        echo("commandID " + mCommand.getCommandID() + " - Client" + mClientID + " consume " + result + "\n");
                     } finally {
                         mLock.unlock();
                     }//end finally
