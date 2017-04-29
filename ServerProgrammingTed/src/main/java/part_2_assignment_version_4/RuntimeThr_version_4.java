@@ -121,12 +121,11 @@ public class RuntimeThr_version_4 implements Runnable {
 
     public String runLocalThr(Command_version_4 inputCommand) {
 
-        LocalThr_version_4 task = new LocalThr_version_4(mNumberShareResource, mReentrantLock, inputCommand.getmUThreadID(), inputCommand.getCommand());
-
         ExecutorService executor = Executors.newFixedThreadPool(1);
 
         Future<String> future = executor.submit(
                 () -> {
+                    LocalThr_version_4 task = new LocalThr_version_4(mNumberShareResource, mReentrantLock, inputCommand.getmUThreadID(), inputCommand.getCommand());
                     task.run();
                     return task.call();
                 }
@@ -166,12 +165,11 @@ public class RuntimeThr_version_4 implements Runnable {
 
     public String runNetworkThr(Command_version_4 inputCommand) {
 
-        NetworkThr_version_4 task = new NetworkThr_version_4(mHOST_NAME, mHOST_SERVER_PORT, inputCommand.getmUThreadID(), "" + inputCommand.getCommand());
-
         ExecutorService executor = Executors.newFixedThreadPool(1);
 
         Future<String> future = executor.submit(
                 () -> {
+                    NetworkThr_version_4 task = new NetworkThr_version_4(mHOST_NAME, mHOST_SERVER_PORT, inputCommand.getmUThreadID(), "" + inputCommand.getCommand());
                     task.run();
                     return task.call();
                 }

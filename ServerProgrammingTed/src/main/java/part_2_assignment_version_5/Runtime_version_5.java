@@ -8,7 +8,6 @@ package part_2_assignment_version_5;
 import VALUE.VALUE;
 import static VALUE.VALUE.echo;
 import com.google.common.util.concurrent.Striped;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -96,30 +95,27 @@ public class Runtime_version_5 implements Runnable {
 
     public String runWorker(String inputWorker, Command_version_5 inputCommand) {
 
-        
         ExecutorService executor = Executors.newFixedThreadPool(1);
 
         Future<String> future = null;
 
         if (inputWorker.equals("networkWorker")) {
 
-            future = executor.submit(()->{
-
-                NetworkWorker_version_5 task = new NetworkWorker_version_5(mHOST_NAME, mHOST_SERVER_PORT, inputCommand.getmUThreadID(), "" + inputCommand.getCommand());
-
-                task.run ();
-
-                return task.call ();
-
-                }
+            future = executor.submit(
+                    () -> {
+                        NetworkWorker_version_5 task = new NetworkWorker_version_5(mHOST_NAME, mHOST_SERVER_PORT, inputCommand.getmUThreadID(), "" + inputCommand.getCommand());
+                        task.run();
+                        return task.call();
+                    }
             );
 
         } else if (inputWorker.equals("localWorker")) {
-            future = executor.submit(()->{
-                    LocalWorker_version_5 task = new LocalWorker_version_5(mNumberShareResource, mReentrantLock, inputCommand.getmUThreadID(), inputCommand.getCommand());
-                    task.run();
-                    return task.call();
-                }
+            future = executor.submit(
+                    () -> {
+                        LocalWorker_version_5 task = new LocalWorker_version_5(mNumberShareResource, mReentrantLock, inputCommand.getmUThreadID(), inputCommand.getCommand());
+                        task.run();
+                        return task.call();
+                    }
             );
         }
 
@@ -166,12 +162,7 @@ public class Runtime_version_5 implements Runnable {
             mLock.lock();
 
             mSharedResultQue.put(key, value);
-//            System.out.println(
-//                    "RuntimeThr try to add to queue: String " + mSharedResultQue.get(key)
-//                    + ", the result was " + mSharedResultQue.containsKey(key)
-//                    + ", size is " + mSharedResultQue.size()
-//                    + ", map : " + mSharedResultQue.toString()
-//                    + "\n");
+//            debugHashMapInsertion(key);
 
         } finally {
             mLock.unlock();
@@ -183,5 +174,14 @@ public class Runtime_version_5 implements Runnable {
             result = "" + -1;
         }
         return result;
+    }
+    
+    public void debugHashMapInsertion(String key){
+        System.out.println(
+                "RuntimeThr try to add to queue: String " + mSharedResultQue.get(key)
+                + ", the result was " + mSharedResultQue.containsKey(key)
+                + ", size is " + mSharedResultQue.size()
+                + ", map : " + mSharedResultQue.toString()
+                + "\n");
     }
 }
