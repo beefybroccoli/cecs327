@@ -13,8 +13,8 @@ public class test_part_2_version_5 {
     public static void main(String[] args) {
         String inputHostName = VALUE.VALUE.LOCAL_HOST;
 //        inputHostName = "192.168.1.5";
-        runTest_one_time(inputHostName, 10);
-//        runTest_one_time(inputHostName,100);
+//        runTest_one_time(inputHostName, 10);
+        runTest_one_time(inputHostName,100);
     }
 
     public static void runTest_one_time(String inputHostName, int number_of_uThreads) {
@@ -35,7 +35,7 @@ public class test_part_2_version_5 {
 
         int time_in_seconds = 1;
         if (number_of_uThreads == 100) {
-            time_in_seconds = 15;
+            time_in_seconds = 30;
         } else if (number_of_uThreads == 10) {
             time_in_seconds = 15;
         }
