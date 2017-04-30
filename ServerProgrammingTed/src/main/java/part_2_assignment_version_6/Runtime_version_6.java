@@ -121,25 +121,26 @@ public class Runtime_version_6 implements Runnable {
 
         String result = "";
 
-      try {
-            result = future.get(5, TimeUnit.MINUTES);
+        try {
+            result = future.get(1, TimeUnit.MINUTES);
 
 //            result = simulate_error(result);
         } catch (InterruptedException ex) {
             result = "-1";
             echo("InterruptedException occured in runWorker() method" + "\n");
         } catch (ExecutionException ex) {
-            result = "-1";
+            result = "-2";
             echo("ExecutionException occured in runWorker() method" + "\n");
         } catch (TimeoutException ex) {
-            result = "-2";
+            result = "-3";
             echo("TimeoutException occured in runWorker() method" + "\n");
         } catch (NullPointerException ex) {
-            result = "-1";
+            result = "-4";
             echo("NullPointerException occured in runWorker() method" + "\n");
         } finally {
+            //|| result.equals("-2")
             inputCommand.setResult(result);
-            if (result.equals("0") || result.equals("-1") || result.equals("-2")) {
+            if (result.equals("0") || result.equals("-1")) {
                 System.out.println(inputWorker + " reprocess - coomandId " + inputCommand.getCommandID() + " " + inputCommand.getmUThreadID() + "," + inputCommand.getCommand() + "," + inputCommand.getResult() + "\n");
                 runWorker(inputWorker, inputCommand);
             } else {
