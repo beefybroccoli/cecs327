@@ -124,19 +124,27 @@ public class Runtime_version_6 implements Runnable {
         try {
             result = future.get(1, TimeUnit.MINUTES);
 
+        /*
+        "-1" mean InterruptedException
+        "-2" mean ExecutionException
+        "-3" mean TimeoutException
+        "-4" mean NullPointerException
+        "-5" mean IOException
+        */
+            
 //            result = simulate_error(result);
         } catch (InterruptedException ex) {
             result = "-1";
-            echo("InterruptedException occured in runWorker() method" + "\n");
+            echo(inputWorker + ", " + "InterruptedException occured in runWorker() method" + "\n");
         } catch (ExecutionException ex) {
             result = "-2";
-            echo("ExecutionException occured in runWorker() method" + "\n");
+            echo(inputWorker + ", " + "ExecutionException occured in runWorker() method" + "\n");
         } catch (TimeoutException ex) {
             result = "-3";
-            echo("TimeoutException occured in runWorker() method" + "\n");
+            echo(inputWorker + ", " + "TimeoutException occured in runWorker() method" + "\n");
         } catch (NullPointerException ex) {
             result = "-4";
-            echo("NullPointerException occured in runWorker() method" + "\n");
+            echo(inputWorker + ", " + "NullPointerException occured in runWorker() method" + "\n");
         } finally {
             //|| result.equals("-2")
             inputCommand.setResult(result);

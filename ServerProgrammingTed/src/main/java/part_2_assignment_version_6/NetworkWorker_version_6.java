@@ -16,6 +16,7 @@ public class NetworkWorker_version_6 implements Runnable, Callable<String> {
     private String mFromServer;
     private String mFromUser;
     private boolean mFlag;
+    private String mResult;
 
     public NetworkWorker_version_6(String hostName, int serverPort, int ClientID, String command) {
         mHostName = hostName;
@@ -30,7 +31,8 @@ public class NetworkWorker_version_6 implements Runnable, Callable<String> {
             mIn = new BufferedReader(
                     new InputStreamReader(mSocket.getInputStream()));
         } catch (IOException ex) {
-             System.err.println("IOException occured");
+            mResult = "-5";
+             System.err.println("IOException occured in Networker " +  mClientID + "," + command + "," + mResult + "\n");
         }
     }
 
@@ -45,6 +47,7 @@ public class NetworkWorker_version_6 implements Runnable, Callable<String> {
 
             //received messge from server
             mFromServer = mIn.readLine();
+            mResult = mFromServer;
 //            System.out.println("Client " + mClientID + " receive : " + mFromServer + "\n");
 
             //quit the loop when the server or user receive -1
@@ -72,10 +75,10 @@ public class NetworkWorker_version_6 implements Runnable, Callable<String> {
 
     @Override
     public String call() throws Exception {
-        String result =  mFromServer;
+ 
         String command = mFromUser;
         //return mClientID + "," + mCommand + "," + mResult;
-        return mClientID + "," + command + "," + result;
+        return mClientID + "," + command + "," + mResult;
     }
 
 }

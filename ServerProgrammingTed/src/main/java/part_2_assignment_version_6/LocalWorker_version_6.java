@@ -43,7 +43,7 @@ public class LocalWorker_version_6 implements Runnable, Callable<String> {
                     break;
             }
         } catch (InterruptedException ex) {
-            echo("InterruptedException occured in LocalThr line 47");
+            echo("InterruptedException occured in LocalWorker" +  mClientID + "," + mCommand + "," + mResult);
         } finally {
             mLock.unlock();
         }

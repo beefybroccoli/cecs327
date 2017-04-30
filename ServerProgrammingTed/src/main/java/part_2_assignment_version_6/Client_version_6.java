@@ -50,8 +50,15 @@ public class Client_version_6 implements Runnable {
             try {
 
                 /*
-                create new command if the previous command received valid result
-                otherwise, reprocess the command
+                "-1" mean InterruptedException
+                "-2" mean ExecutionException
+                "-3" mean TimeoutException
+                "-4" mean NullPointerException
+                "-5" mean IOException
+                 */
+                
+                /*
+                rerun the command if error code is "0" or "-1"
                  */
                 if (mCommand.validateResult()) {
                     mCommand = new Command_version_6(++mCounter, mClientID);

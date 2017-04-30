@@ -55,4 +55,45 @@ public class VALUE {
         int answer = rn.nextInt(max) + min;
         return answer;
     }
+
+    public static String getException(String inputErrorCode) {
+        /*
+        "-1" mean InterruptedException
+        "-2" mean ExecutionException
+        "-3" mean TimeoutException
+        "-4" mean NullPointerException
+        "-5" mean IOException
+         */
+
+        String result = "";
+
+        switch (inputErrorCode) {
+
+            case "-1":
+                result = "InterruptedException";
+                break;
+
+            case "-2":
+                result = "ExecutionException";
+                break;
+
+            case "-3":
+                result = "TimeoutException";
+                break;
+
+            case "-4":
+                result = "NullPointerException";
+                break;
+
+            case "-5":
+                result = "IOException";
+                break;
+
+            default:
+                result = "Unknown Error";
+        };
+
+        return result;
+    }
+
 }
