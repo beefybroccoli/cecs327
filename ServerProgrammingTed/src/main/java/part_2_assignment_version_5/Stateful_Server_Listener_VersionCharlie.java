@@ -5,6 +5,7 @@ import VALUE.VALUE;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.concurrent.TimeUnit;
+import java.net.Inet4Address;
 
 public class Stateful_Server_Listener_VersionCharlie extends Thread {
 
@@ -21,7 +22,11 @@ public class Stateful_Server_Listener_VersionCharlie extends Thread {
 
         SharedResource sharedResource = new SharedResource();
 
-        System.out.println("(Server Listener Version Charlie started)");
+        try {
+            System.out.println("(Server Listener Version Charlie started at " + Inet4Address.getLocalHost().getHostAddress() + " )");
+        } catch (UnknownHostException ex) {
+            System.out.println("UnknownHostException occured");
+        }
 
         try (ServerSocket serverSocket = new ServerSocket(VALUE.SERVER_PORT_NUMBER)) {
 
