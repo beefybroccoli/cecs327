@@ -25,7 +25,7 @@ public class test_part_2_version_5 {
 
         LinkedBlockingQueue inputRequestQue = new LinkedBlockingQueue();
         ConcurrentHashMap<String, String> inputResultQue = new ConcurrentHashMap<String, String>();
-        Striped<ReadWriteLock> inputSharedRWLock = Striped.readWriteLock(12);
+        Striped<ReadWriteLock> inputSharedRWLock = Striped.readWriteLock(input_number_of_uThreads);
 
         ExecutorService executorRuntime = Executors.newFixedThreadPool(1);
         executorRuntime.submit(new Runtime_version_5(inputHostName, inputRequestQue, inputResultQue, inputSharedRWLock));
