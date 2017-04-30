@@ -17,7 +17,7 @@ public class test_part_2_version_5 {
 //        inputHostName = "192.168.1.4";
 //        test4(inputHostName, 10, 10);
 //        test4(inputHostName, 1, 1000);
-//        test4(inputHostName, 2, 100);
+        test4(inputHostName, 2, 100);
 
     }
     
