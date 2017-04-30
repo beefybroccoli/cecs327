@@ -21,7 +21,6 @@ class StatefulServerProtocolBetaVersion1 {
     }
 
     public String process(String input) {
-//        String result = input + " - ";
         String result = "";
 
         switch (input) {
@@ -34,17 +33,14 @@ class StatefulServerProtocolBetaVersion1 {
                 break;
 
             case "1":
-//                result += "Even Fib Big Decimal " + mSharedResource.getNextEvenFib();
                 result += mSharedResource.getNextEvenFib();
                 break;
 
             case "2":
-//                result += "Larger RandomNumber " + mSharedResource.getNextLargerRand();
                 result += mSharedResource.getNextLargerRand();
                 break;
 
             case "3":
-//                result += "Prime Number " + mSharedResource.getNextPrime();
                 result += mSharedResource.getNextPrime();
                 break;
 
