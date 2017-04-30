@@ -69,7 +69,7 @@ public class test_part_2_version_6 {
                     echo("Interruption occured in Runnable");
                 }
 
-                echo("-------------------------------------end batch " + (i + 1) + "\n");
+                echo("---------------------------------------end batch " + (i + 1) + "\n");
                 echo("time_in_seconds = " + executor_time_in_seconds);
             }//end for
 
