@@ -12,10 +12,11 @@ import java.util.concurrent.locks.ReadWriteLock;
 public class test_part_2_version_6 {
 
     public static void main(String[] args) {
+        
         String inputHostName = VALUE.VALUE.LOCAL_HOST;
 //        inputHostName = "192.168.1.4";
         test4(inputHostName, 2, 10);
-////        test4(inputHostName, 1, 1000);
+//        test4(inputHostName, 1, 1000);
 //        test4(inputHostName, 2, 100);
 
     }
