@@ -32,7 +32,7 @@ public class NetworkWorker_version_5 implements Runnable, Callable<String> {
             mIn = new BufferedReader(
                     new InputStreamReader(mSocket.getInputStream()));
         } catch (IOException ex) {
-            Logger.getLogger(NetworkWorker_version_5.class.getName()).log(Level.SEVERE, null, ex);
+             System.err.println("IOException occured");
         }
     }
 
