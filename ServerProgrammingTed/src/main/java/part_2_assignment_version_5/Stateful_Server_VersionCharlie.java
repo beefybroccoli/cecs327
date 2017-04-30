@@ -4,8 +4,6 @@ import object.SharedResource;
 import java.net.*;
 import java.io.*;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 class StatefulServerProtocolBetaVersion1 {
 
@@ -77,7 +75,7 @@ public class Stateful_Server_VersionCharlie extends Thread {
             mOut = new PrintWriter(mSocket.getOutputStream(), true);
             mIn = new BufferedReader(new InputStreamReader(mSocket.getInputStream()));
         } catch (IOException ex) {
-            System.out.println("IOException occured");
+            System.out.println("---------------------------------------IOException occured in Stateful Server " + mServerID + "\n");
         }
     }
 
@@ -117,24 +115,21 @@ public class Stateful_Server_VersionCharlie extends Thread {
                 TimeUnit.MILLISECONDS.sleep(1);
             } while (mFlag == true);
 
-           
-
         } catch (IOException ex) {
-            System.out.println("IOException occured");
+            System.out.println("---------------------------------------IOException occured in Stateful Server " + mServerID + "\n");
         } catch (InterruptedException ex) {
             System.out.println("Producer InterruptedException occured");
             mFlag = false;
         } finally {
-             System.out.println("(Stateful Server ID " + mServerID + "  ended)" + "\n");
+            System.out.println("(Stateful Server ID " + mServerID + "  ended)" + "\n");
             try {
                 //tell the client that sever will quit
                 mOut.println("-1");
                 mSocket.close();
             } catch (IOException ex) {
-                System.out.println("IOException occured");
+                System.out.println("---------------------------------------IOException occured in Stateful Server " + mServerID + "\n");
             }
         }
     }//end run
-
 
 }
