@@ -56,13 +56,8 @@ public class Client_version_6 implements Runnable {
                 "-4" mean NullPointerException
                 "-5" mean IOException
                  */
-                
-                /*
-                rerun the command if error code is "0" or "-1"
-                 */
-                if (mCommand.validateResult()) {
-                    mCommand = new Command_version_6(++mCounter, mClientID);
-                }
+
+                mCommand = new Command_version_6(++mCounter, mClientID);
 
                 mSharedRequestQue.put(mCommand);
 
