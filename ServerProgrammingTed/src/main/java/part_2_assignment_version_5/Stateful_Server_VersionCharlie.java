@@ -81,7 +81,7 @@ public class Stateful_Server_VersionCharlie extends Thread {
             mOut = new PrintWriter(mSocket.getOutputStream(), true);
             mIn = new BufferedReader(new InputStreamReader(mSocket.getInputStream()));
         } catch (IOException ex) {
-            Logger.getLogger(Stateful_Server_VersionCharlie.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("IOException occured");
         }
     }
 
@@ -124,7 +124,7 @@ public class Stateful_Server_VersionCharlie extends Thread {
            
 
         } catch (IOException ex) {
-            Logger.getLogger(Stateful_Server_VersionCharlie.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("IOException occured");
         } catch (InterruptedException ex) {
             System.out.println("Producer InterruptedException occured");
             mFlag = false;
@@ -135,7 +135,7 @@ public class Stateful_Server_VersionCharlie extends Thread {
                 mOut.println("-1");
                 mSocket.close();
             } catch (IOException ex) {
-                Logger.getLogger(Stateful_Server_VersionCharlie.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("IOException occured");
             }
         }
     }//end run
