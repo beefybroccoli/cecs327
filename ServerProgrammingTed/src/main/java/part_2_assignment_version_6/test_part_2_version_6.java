@@ -14,14 +14,13 @@ public class test_part_2_version_6 {
     public static void main(String[] args) {
         String inputHostName = VALUE.VALUE.LOCAL_HOST;
 //        inputHostName = "192.168.1.4";
-        test4(inputHostName, 10, 10);
+        test4(inputHostName, 2, 10);
 ////        test4(inputHostName, 1, 1000);
 //        test4(inputHostName, 2, 100);
-        
 
     }
-    
-        public static void test4(String inputHostName, int input_number_of_batch, int input_number_of_uThreads) {
+
+    public static void test4(String inputHostName, int input_number_of_batch, int input_number_of_uThreads) {
 
         LinkedBlockingQueue inputRequestQue = new LinkedBlockingQueue();
         ConcurrentHashMap<String, String> inputResultQue = new ConcurrentHashMap<String, String>();
