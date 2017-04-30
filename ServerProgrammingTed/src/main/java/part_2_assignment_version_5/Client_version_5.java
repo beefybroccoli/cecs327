@@ -53,7 +53,9 @@ public class Client_version_5 implements Runnable {
                 create new command if the previous command received valid result
                 otherwise, reprocess the command
                  */
-                mCommand = new Command_version_5(++mCounter, mClientID);
+                if (mCommand.validateResult()) {
+                    mCommand = new Command_version_5(++mCounter, mClientID);
+                }
 
                 mSharedRequestQue.put(mCommand);
 
