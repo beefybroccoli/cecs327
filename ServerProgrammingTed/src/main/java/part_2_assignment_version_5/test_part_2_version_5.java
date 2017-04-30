@@ -30,7 +30,6 @@ public class test_part_2_version_5 {
         ExecutorService executorRuntime = Executors.newFixedThreadPool(1);
         executorRuntime.submit(new Runtime_version_5(inputHostName, inputRequestQue, inputResultQue, inputSharedRWLock));
 
-//        ExecutorService executorTask = Executors.newSingleThreadExecutor();
         int number_of_batch = input_number_of_batch;
         int number_of_uThreads = input_number_of_uThreads;
 
