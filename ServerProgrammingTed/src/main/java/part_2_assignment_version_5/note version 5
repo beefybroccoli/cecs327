@@ -1,0 +1,6 @@
+version 5 has a fatal error - the runtimeThread does not know how to handle server down.
+
+to simulate this error
+_run Stateful_Server_Listener_VersionCharlie.java
+_then run test_part_2_version_6.java
+_then stop Stateful_Server_Listener_VersionCharlie.java listener thread
