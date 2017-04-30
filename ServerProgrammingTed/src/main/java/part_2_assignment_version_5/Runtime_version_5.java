@@ -121,7 +121,7 @@ public class Runtime_version_5 implements Runnable {
 
         String result = "";
 
-        try {
+      try {
             result = future.get(5, TimeUnit.MINUTES);
 
 //            result = simulate_error(result);
@@ -132,14 +132,14 @@ public class Runtime_version_5 implements Runnable {
             result = "-1";
             echo("ExecutionException occured in runWorker() method" + "\n");
         } catch (TimeoutException ex) {
-            result = "-1";
+            result = "-2";
             echo("TimeoutException occured in runWorker() method" + "\n");
         } catch (NullPointerException ex) {
             result = "-1";
             echo("NullPointerException occured in runWorker() method" + "\n");
         } finally {
             inputCommand.setResult(result);
-            if (result.equals("0") || result.equals("-1")) {
+            if (result.equals("0") || result.equals("-1") || result.equals("-2")) {
                 System.out.println(inputWorker + " reprocess - coomandId " + inputCommand.getCommandID() + " " + inputCommand.getmUThreadID() + "," + inputCommand.getCommand() + "," + inputCommand.getResult() + "\n");
                 runWorker(inputWorker, inputCommand);
             } else {
