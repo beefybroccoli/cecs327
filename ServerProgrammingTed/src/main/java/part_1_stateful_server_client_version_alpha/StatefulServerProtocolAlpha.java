@@ -1,15 +1,15 @@
 package part_1_stateful_server_client_version_alpha;
 
-import part_2_assignment_version_final.object.SharedResource;
+import part_2_assignment_version_final.object.ServerSharedResource;
 
 public class StatefulServerProtocolAlpha {
 
 
     int mServerID;
     public int mOtherCounter;
-    private SharedResource mSharedResource;
+    private ServerSharedResource mSharedResource;
 
-    public StatefulServerProtocolAlpha(int inputServerID, SharedResource inputSharedResource) {
+    public StatefulServerProtocolAlpha(int inputServerID, ServerSharedResource inputSharedResource) {
 
         mServerID = inputServerID;
         mOtherCounter = 0;

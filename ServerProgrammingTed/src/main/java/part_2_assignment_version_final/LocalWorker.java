@@ -1,6 +1,6 @@
 package part_2_assignment_version_final;
 
-import part_2_assignment_version_final.object.Number;
+import part_2_assignment_version_final.object.ClientSharedResource;
 import static part_2_assignment_version_final.object.VALUE.echo;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
@@ -8,13 +8,13 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class LocalWorker implements Runnable, Callable<String> {
 
-    private Number mNumber;
+    private ClientSharedResource mNumber;
     private ReentrantLock mLock;
     private int mCommand;
     private int mClientID;
     private String mResult;
 
-    public LocalWorker(Number inputNumber, ReentrantLock inputLock, int inputClientID, int command) {
+    public LocalWorker(ClientSharedResource inputNumber, ReentrantLock inputLock, int inputClientID, int command) {
         mNumber = inputNumber;
         mLock = inputLock;
         mResult = "0";

@@ -1,6 +1,6 @@
 package stateful_server_client_version_beta;
 
-import part_2_assignment_version_final.object.SharedResource;
+import part_2_assignment_version_final.object.ServerSharedResource;
 import java.net.*;
 import java.io.*;
 import java.util.concurrent.TimeUnit;
@@ -11,9 +11,9 @@ class StatefulServerProtocolBetaVersion1 {
 
     int mServerID;
     public int mOtherCounter;
-    private SharedResource mSharedResource;
+    private ServerSharedResource mSharedResource;
 
-    public StatefulServerProtocolBetaVersion1(int inputServerID, SharedResource inputSharedResource) {
+    public StatefulServerProtocolBetaVersion1(int inputServerID, ServerSharedResource inputSharedResource) {
 
         mServerID = inputServerID;
         mOtherCounter = 0;
@@ -69,7 +69,7 @@ public class StatefulServerThreadBetaVersion1 extends Thread {
     private boolean mFlag;
     private int mNullCounter;
 
-    public StatefulServerThreadBetaVersion1(Socket socket, int id, SharedResource inputSharedResource) {
+    public StatefulServerThreadBetaVersion1(Socket socket, int id, ServerSharedResource inputSharedResource) {
         mSocket = socket;
         mServerID = id;
         mProtocol = new StatefulServerProtocolBetaVersion1(mServerID, inputSharedResource);

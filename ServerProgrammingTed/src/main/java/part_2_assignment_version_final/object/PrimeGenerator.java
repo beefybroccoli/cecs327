@@ -5,11 +5,11 @@ import java.math.BigInteger;
 /*
 calculate the next prime number
  */
-public class PrimeGeneratorBigInteger {
+public class PrimeGenerator {
 
     private BigInteger mPrimeNumber;
 
-    public PrimeGeneratorBigInteger() {
+    public PrimeGenerator() {
         mPrimeNumber = BigInteger.valueOf(1);
     }
 

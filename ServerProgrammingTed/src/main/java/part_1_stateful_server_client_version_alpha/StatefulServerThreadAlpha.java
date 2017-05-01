@@ -1,6 +1,6 @@
 package part_1_stateful_server_client_version_alpha;
 
-import part_2_assignment_version_final.object.SharedResource;
+import part_2_assignment_version_final.object.ServerSharedResource;
 import java.net.*;
 import java.io.*;
 import java.util.logging.Level;
@@ -17,7 +17,7 @@ public class StatefulServerThreadAlpha extends Thread {
     private boolean mFlag;
     private int mNullCounter;
 
-    public StatefulServerThreadAlpha(Socket socket, int id, SharedResource inputSharedResource) {
+    public StatefulServerThreadAlpha(Socket socket, int id, ServerSharedResource inputSharedResource) {
         mSocket = socket;
         mServerID = id;
         mProtocol = new StatefulServerProtocolAlpha(mServerID, inputSharedResource);

@@ -1,6 +1,6 @@
 package part_2_assignment_version_final;
 
-import part_2_assignment_version_final.object.SharedResource;
+import part_2_assignment_version_final.object.ServerSharedResource;
 import java.net.*;
 import java.io.*;
 import java.util.concurrent.TimeUnit;
@@ -9,9 +9,9 @@ class StatefulServerProtocol {
 
     int mServerID;
     public int mOtherCounter;
-    private SharedResource mSharedResource;
+    private ServerSharedResource mSharedResource;
 
-    public StatefulServerProtocol(int inputServerID, SharedResource inputSharedResource) {
+    public StatefulServerProtocol(int inputServerID, ServerSharedResource inputSharedResource) {
 
         mServerID = inputServerID;
         mOtherCounter = 0;
@@ -59,7 +59,7 @@ public class Stateful_Server extends Thread {
     private boolean mFlag;
     private int mNullCounter;
 
-    public Stateful_Server(Socket socket, int id, SharedResource inputSharedResource) {
+    public Stateful_Server(Socket socket, int id, ServerSharedResource inputSharedResource) {
         mSocket = socket;
         mServerID = id;
         mProtocol = new StatefulServerProtocol(mServerID, inputSharedResource);

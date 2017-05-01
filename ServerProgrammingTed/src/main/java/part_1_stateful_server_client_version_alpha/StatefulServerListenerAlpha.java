@@ -1,6 +1,6 @@
 package part_1_stateful_server_client_version_alpha;
 
-import part_2_assignment_version_final.object.SharedResource;
+import part_2_assignment_version_final.object.ServerSharedResource;
 import part_2_assignment_version_final.object.VALUE;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -14,7 +14,7 @@ public class StatefulServerListenerAlpha extends Thread {
 
         int id = 0;
 
-        SharedResource sharedResource = new SharedResource();
+        ServerSharedResource sharedResource = new ServerSharedResource();
 
         System.out.println("Server Listener version alpha started");
 

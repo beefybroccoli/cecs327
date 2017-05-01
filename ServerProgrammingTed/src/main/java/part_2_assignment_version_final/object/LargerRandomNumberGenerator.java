@@ -5,14 +5,14 @@ import java.math.BigInteger;
 /**
  * generate the next larger random number
  */
-public class LargerRandomNumberBigInteger {
+public class LargerRandomNumberGenerator {
 
     private BigInteger mValue;
 
     /**
      * initialize a LargerRandomNumber object with seed value of 0
      */
-    public LargerRandomNumberBigInteger() {
+    public LargerRandomNumberGenerator() {
         mValue = BigInteger.valueOf(0);
     }
 

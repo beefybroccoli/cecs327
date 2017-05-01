@@ -3,13 +3,13 @@ package part_2_assignment_version_final.object;
 import static part_2_assignment_version_final.object.VALUE.echo;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class Number {
+public class ClientSharedResource {
 
     private int mEvenNumber;
     private int mOddNumber;
     private ReentrantLock mLock;
 
-    public Number(ReentrantLock lock) {
+    public ClientSharedResource(ReentrantLock lock) {
         mEvenNumber = 2;
         mOddNumber = 1;
         mLock = lock;

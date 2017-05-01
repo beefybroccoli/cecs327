@@ -1,7 +1,7 @@
 package part_2_assignment_version_final;
 
 import part_2_assignment_version_final.object.Command;
-import part_2_assignment_version_final.object.Number;
+import part_2_assignment_version_final.object.ClientSharedResource;
 import part_2_assignment_version_final.object.VALUE;
 import static part_2_assignment_version_final.object.VALUE.echo;
 import com.google.common.util.concurrent.Striped;
@@ -21,7 +21,7 @@ public class Runtime implements Runnable {
 
     private LinkedBlockingQueue mSharedRequestQue;
     private ConcurrentHashMap<String, String> mSharedResultQue;
-    private Number mNumberShareResource;
+    private ClientSharedResource mNumberShareResource;
     private ReentrantLock mReentrantLock;
     private String mHOST_NAME;
     private int mHOST_SERVER_PORT;
@@ -35,7 +35,7 @@ public class Runtime implements Runnable {
         mSharedRequestQue = inputRequestQue;
         mSharedResultQue = inputResultQue;
         mReentrantLock = new ReentrantLock();
-        mNumberShareResource = new Number(mReentrantLock);
+        mNumberShareResource = new ClientSharedResource(mReentrantLock);
         mHOST_NAME = inputHostName;
         mHOST_SERVER_PORT = VALUE.SERVER_PORT_NUMBER;
         mSharedRWLock = inputSharedRWLock;

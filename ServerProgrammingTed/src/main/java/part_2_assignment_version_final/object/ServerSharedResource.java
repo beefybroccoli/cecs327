@@ -2,11 +2,11 @@ package part_2_assignment_version_final.object;
 
 import java.util.concurrent.locks.ReentrantLock;
 
-public class SharedResource {
+public class ServerSharedResource {
 
-    EvenFibBigInteger mEvenFibBig = new EvenFibBigInteger();
-    LargerRandomNumberBigInteger mLargerRandomNumber = new LargerRandomNumberBigInteger();
-    PrimeGeneratorBigInteger mPrimeGenerator = new PrimeGeneratorBigInteger();
+    EvenFibGenerator mEvenFibBig = new EvenFibGenerator();
+    LargerRandomNumberGenerator mLargerRandomNumber = new LargerRandomNumberGenerator();
+    PrimeGenerator mPrimeGenerator = new PrimeGenerator();
     private ReentrantLock mSharedLock = new ReentrantLock();
 
     public String getNextEvenFib() {

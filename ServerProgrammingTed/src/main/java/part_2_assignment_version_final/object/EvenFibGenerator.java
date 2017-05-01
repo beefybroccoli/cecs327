@@ -5,7 +5,7 @@ import java.math.BigInteger;
 /**
  * calculate the next even fib
  */
-public class EvenFibBigInteger {
+public class EvenFibGenerator {
 
     private BigInteger valueNMinus2;
     private BigInteger valueNMinus1;
@@ -14,7 +14,7 @@ public class EvenFibBigInteger {
     /**
      * initialize EvenFibBigDecimalType with seed 0 and 1
      */
-    public EvenFibBigInteger() {
+    public EvenFibGenerator() {
         valueNMinus2 = new BigInteger("0");
         valueNMinus1 = new BigInteger("1");
         valueN = new BigInteger("-1");

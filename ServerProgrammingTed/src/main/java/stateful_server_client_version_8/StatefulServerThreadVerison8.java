@@ -1,6 +1,6 @@
 package stateful_server_client_version_8;
 
-import part_2_assignment_version_final.object.SharedResource;
+import part_2_assignment_version_final.object.ServerSharedResource;
 import java.net.*;
 import java.io.*;
 import java.util.logging.Level;
@@ -17,7 +17,7 @@ public class StatefulServerThreadVerison8 extends Thread {
     private boolean mFlag;
     private int mNullCounter;
 
-    public StatefulServerThreadVerison8(Socket socket, int id, SharedResource inputSharedResource) {
+    public StatefulServerThreadVerison8(Socket socket, int id, ServerSharedResource inputSharedResource) {
         mSocket = socket;
         mServerID = id;
         mProtocol = new StatefulServerProtocolVerison8(mServerID, inputSharedResource);

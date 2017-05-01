@@ -1,6 +1,6 @@
 package part_2_assignment_version_final;
 
-import part_2_assignment_version_final.object.SharedResource;
+import part_2_assignment_version_final.object.ServerSharedResource;
 import part_2_assignment_version_final.object.VALUE;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -11,17 +11,21 @@ import java.net.UnknownHostException;
 public class Stateful_Server_Listener extends Thread {
 
     private boolean mListeningBoolean;
+    private int mServerID;
 
     public Stateful_Server_Listener() {
         mListeningBoolean = true;
+        mServerID = 0;
+    }
+    
+    public int getServerID(){
+        return (mServerID == Integer.MAX_VALUE?mServerID = 1:mServerID++);
     }
 
     @Override
     public void run() {
 
-        int id = 0;
-
-        SharedResource sharedResource = new SharedResource();
+        ServerSharedResource sharedResource = new ServerSharedResource();
 
         try {
             System.out.println("(Server Listener started at " + Inet4Address.getLocalHost().getHostAddress() + " )");
@@ -32,9 +36,9 @@ public class Stateful_Server_Listener extends Thread {
         try (ServerSocket serverSocket = new ServerSocket(VALUE.SERVER_PORT_NUMBER)) {
 
             while (mListeningBoolean) {
-
+                
                 try {
-                    new Stateful_Server(serverSocket.accept(), ++id, sharedResource).start();
+                    new Stateful_Server(serverSocket.accept(), getServerID(), sharedResource).start();
                     TimeUnit.NANOSECONDS.sleep(1);
                 } catch (InterruptedException e) {
                     mListeningBoolean = false;
