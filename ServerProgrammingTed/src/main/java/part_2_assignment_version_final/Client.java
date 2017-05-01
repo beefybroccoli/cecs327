@@ -8,10 +8,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 
-/**
- *
- * @author fred
- */
+
 public class Client implements Runnable {
 
     private int mClientID;
