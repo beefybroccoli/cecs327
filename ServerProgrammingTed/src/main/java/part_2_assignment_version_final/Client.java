@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package part_2_assignment_version_6;
+package part_2_assignment_version_final;
 
 import static VALUE.VALUE.echo;
 import com.google.common.util.concurrent.Striped;
@@ -17,12 +12,12 @@ import java.util.concurrent.locks.ReadWriteLock;
  *
  * @author fred
  */
-public class Client_version_6 implements Runnable {
+public class Client implements Runnable {
 
     private int mClientID;
     private LinkedBlockingQueue mSharedRequestQue;
     private ConcurrentHashMap<String, String> mSharedResultQue;
-    private Command_version_6 mCommand;
+    private Command mCommand;
     private int mCounter;
     private int mMaxCounter;
     private boolean mFlag;
@@ -30,7 +25,7 @@ public class Client_version_6 implements Runnable {
     ReadWriteLock mRWLock;
     Lock mLock;
 
-    public Client_version_6(int inputID, LinkedBlockingQueue inputRequestQue, ConcurrentHashMap<String, String> inputResultQue, Striped<ReadWriteLock> inputRWLock) {
+    public Client(int inputID, LinkedBlockingQueue inputRequestQue, ConcurrentHashMap<String, String> inputResultQue, Striped<ReadWriteLock> inputRWLock) {
         mClientID = inputID;
         mSharedRequestQue = inputRequestQue;
         mSharedResultQue = inputResultQue;
@@ -38,7 +33,7 @@ public class Client_version_6 implements Runnable {
         mMaxCounter = 20;
         mFlag = true;
         mSharedRWLock = inputRWLock;
-        mCommand = new Command_version_6();
+        mCommand = new Command();
     }
 
     @Override
@@ -57,17 +52,14 @@ public class Client_version_6 implements Runnable {
                 "-5" mean IOException
                  */
 
-                mCommand = new Command_version_6(++mCounter, mClientID);
+                mCommand = new Command(++mCounter, mClientID);
 
                 mSharedRequestQue.put(mCommand);
-
-//                echo("(UThr" + mUThrID + " sleep)\n");
 
                 /*sleep while waiting for the result*/
                 while (!mSharedResultQue.containsKey("" + mClientID) && mFlag) {
                     TimeUnit.MILLISECONDS.sleep(100);
                 }
-//                echo("(UThr" + mUThrID + " wakeup)\n");
 
                 if (mSharedResultQue.containsKey("" + mClientID)) {
                     mRWLock = mSharedRWLock.get("" + mClientID);
