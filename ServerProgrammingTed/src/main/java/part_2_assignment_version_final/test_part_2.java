@@ -15,7 +15,7 @@ public class test_part_2 {
 
         String inputHostName = part_2_assignment_version_final.object.VALUE.LOCAL_HOST;
 //        inputHostName = "192.168.1.4";
-        test(inputHostName, 2, 10);
+        test(inputHostName, 10, 10);
 //        test(inputHostName, 1, 1000);
 //        test(inputHostName, 2, 100);
 
