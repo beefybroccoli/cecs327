@@ -1,5 +1,7 @@
 package part_2_assignment_version_final;
 
+import part_2_assignment_version_final.object.Command;
+import part_2_assignment_version_final.object.Number;
 import part_2_assignment_version_final.object.VALUE;
 import static part_2_assignment_version_final.object.VALUE.echo;
 import com.google.common.util.concurrent.Striped;

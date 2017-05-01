@@ -2,7 +2,6 @@ package part_2_assignment_version_final.object;
 
 import java.math.BigInteger;
 
-
 /*
 calculate the next prime number
  */
@@ -62,39 +61,6 @@ public class PrimeGeneratorBigInteger {
 
         return result;
 
-    }
-
-    public static void main(String[] args) {
-
-//        demonTestPrimeMthod();
-        demoGetNextPrime();
-    }
-
-    public static void demoGetNextPrime() {
-
-        PrimeGeneratorBigInteger obj = new PrimeGeneratorBigInteger();
-        obj.mPrimeNumber = new BigInteger("4444455566667778");
-
-        for (int i = 0; true; i++) {
-//        for (int i = 0; i < 200; i++) {
-            System.out.println("next prime i = " + (i + 1) + ", " + obj.getNextPrime());
-        }
-//        System.out.println("");
-
-    }
-
-    public static void demonTestPrimeMthod() {
-        PrimeGeneratorBigInteger obj = new PrimeGeneratorBigInteger();
-
-        for (int i = 2; i < 100; i++) {
-
-            boolean result = obj.testPrime(BigInteger.valueOf(i));
-
-            if (result == true) {
-                System.out.println("test prime number " + i + " : " + obj.testPrime(BigInteger.valueOf(i)));
-            }
-        }
-        System.out.println("");
     }
 
 }

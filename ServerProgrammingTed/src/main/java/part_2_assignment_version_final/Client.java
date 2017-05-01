@@ -1,5 +1,6 @@
 package part_2_assignment_version_final;
 
+import part_2_assignment_version_final.object.Command;
 import static part_2_assignment_version_final.object.VALUE.echo;
 import com.google.common.util.concurrent.Striped;
 import java.util.concurrent.ConcurrentHashMap;

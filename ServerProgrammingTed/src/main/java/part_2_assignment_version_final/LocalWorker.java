@@ -1,5 +1,6 @@
 package part_2_assignment_version_final;
 
+import part_2_assignment_version_final.object.Number;
 import static part_2_assignment_version_final.object.VALUE.echo;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;

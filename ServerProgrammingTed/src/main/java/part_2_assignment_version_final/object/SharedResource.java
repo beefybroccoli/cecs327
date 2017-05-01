@@ -1,9 +1,6 @@
 package part_2_assignment_version_final.object;
 
 import java.util.concurrent.locks.ReentrantLock;
-import part_2_assignment_version_final.object.EvenFibBigInteger;
-import part_2_assignment_version_final.object.LargerRandomNumberBigInteger;
-import part_2_assignment_version_final.object.PrimeGeneratorBigInteger;
 
 public class SharedResource {
 
@@ -11,10 +8,6 @@ public class SharedResource {
     LargerRandomNumberBigInteger mLargerRandomNumber = new LargerRandomNumberBigInteger();
     PrimeGeneratorBigInteger mPrimeGenerator = new PrimeGeneratorBigInteger();
     private ReentrantLock mSharedLock = new ReentrantLock();
-
-    public SharedResource() {
-
-    }
 
     public String getNextEvenFib() {
         String result = "";
@@ -24,7 +17,6 @@ public class SharedResource {
         } finally {
             mSharedLock.unlock();
         }
-
         return result;
     }
 
@@ -36,7 +28,6 @@ public class SharedResource {
         } finally {
             mSharedLock.unlock();
         }
-
         return result;
     }
 
@@ -48,7 +39,6 @@ public class SharedResource {
         } finally {
             mSharedLock.unlock();
         }
-
         return result;
     }
 

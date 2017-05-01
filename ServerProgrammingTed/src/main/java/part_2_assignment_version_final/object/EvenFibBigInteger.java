@@ -36,11 +36,9 @@ public class EvenFibBigInteger {
     }
 
     private void reset() {
-
         valueNMinus2 = new BigInteger("0");
         valueNMinus1 = new BigInteger("1");
         valueN = new BigInteger("-1");;
-
     }
 
     /**
@@ -75,39 +73,6 @@ public class EvenFibBigInteger {
      */
     public boolean evenNumber(BigInteger input) {
         return ((input.remainder(BigInteger.valueOf(2))).equals(BigInteger.valueOf(0)) ? (true) : (false));
-    }
-
-    /**
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
-        test3();
-//        test2();
-    }
-
-    /**
-     * test if the object generate a sequence of even fib numbers correctly
-     */
-    public static void test3() {
-        EvenFibBigInteger obj = new EvenFibBigInteger();
-
-        for (int i = 0; i < 105; i++) {
-            BigInteger result = obj.getNextEvenFib();
-            System.out.println("even Fib_" + i + " = " + result.abs());
-        }
-    }
-
-    /**
-     * test if the object generate a sequence of fib numbers correctly
-     */
-    public static void test2() {
-        EvenFibBigInteger obj = new EvenFibBigInteger();
-
-        for (int i = 0; i < 105; i++) {
-            BigInteger result = obj.getNextFib();
-            System.out.println("Fib_" + i + " = " + result.abs());
-        }
     }
 
 }
