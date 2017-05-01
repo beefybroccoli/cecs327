@@ -1,7 +1,7 @@
 package stateful_server_client_version_beta;
 
-import object.SharedResource;
-import VALUE.VALUE;
+import part_2_assignment_version_final.object.SharedResource;
+import part_2_assignment_version_final.object.VALUE;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.concurrent.TimeUnit;

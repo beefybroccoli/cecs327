@@ -5,7 +5,7 @@
  */
 package part_2_assignment_version_4;
 
-import static VALUE.VALUE.echo;
+import static part_2_assignment_version_final.object.VALUE.echo;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;

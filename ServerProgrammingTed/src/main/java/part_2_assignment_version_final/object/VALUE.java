@@ -1,4 +1,4 @@
-package VALUE;
+package part_2_assignment_version_final.object;
 
 import java.util.Random;
 

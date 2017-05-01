@@ -1,6 +1,6 @@
 package datastructure.modified_array_blocking_queue;
 
-import static VALUE.VALUE.echo;
+import static part_2_assignment_version_final.object.VALUE.echo;
 import java.util.Iterator;
 import java.util.concurrent.ArrayBlockingQueue;
 

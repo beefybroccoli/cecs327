@@ -1,6 +1,6 @@
 package reference_knock_knock;
 
-import VALUE.VALUE;
+import part_2_assignment_version_final.object.VALUE;
 import java.net.*;
 import java.io.*;
 import java.util.logging.Level;

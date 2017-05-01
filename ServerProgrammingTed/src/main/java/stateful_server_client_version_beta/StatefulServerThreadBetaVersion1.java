@@ -1,6 +1,6 @@
 package stateful_server_client_version_beta;
 
-import object.SharedResource;
+import part_2_assignment_version_final.object.SharedResource;
 import java.net.*;
 import java.io.*;
 import java.util.concurrent.TimeUnit;

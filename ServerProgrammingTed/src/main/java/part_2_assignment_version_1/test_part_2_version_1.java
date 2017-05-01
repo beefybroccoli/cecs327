@@ -1,6 +1,6 @@
 package part_2_assignment_version_1;
 
-import static VALUE.VALUE.echo;
+import static part_2_assignment_version_final.object.VALUE.echo;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -9,7 +9,7 @@ public class test_part_2_version_1 {
 
     public static void main(String[] args) {
 
-        String inputHostName = VALUE.VALUE.LOCAL_HOST;
+        String inputHostName = part_2_assignment_version_final.object.VALUE.LOCAL_HOST;
 //        inputHostName = "192.168.1.5";
 
         start_listener_on_local_machine();

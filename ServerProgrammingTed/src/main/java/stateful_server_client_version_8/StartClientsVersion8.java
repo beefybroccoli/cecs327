@@ -1,6 +1,6 @@
 package stateful_server_client_version_8;
 
-import VALUE.VALUE;
+import part_2_assignment_version_final.object.VALUE;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;

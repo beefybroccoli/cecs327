@@ -11,7 +11,7 @@ import java.util.concurrent.locks.ReadWriteLock;
 public class test_part_2_version_4 {
 
     public static void main(String[] args) {
-        String inputHostName = VALUE.VALUE.LOCAL_HOST;
+        String inputHostName = part_2_assignment_version_final.object.VALUE.LOCAL_HOST;
 //        inputHostName = "192.168.1.5";
         runTest_one_time(inputHostName, 10);
 //        runTest_one_time(inputHostName,100);

@@ -1,7 +1,7 @@
 package part_2_assignment_version_final;
 
-import VALUE.VALUE;
-import static VALUE.VALUE.echo;
+import part_2_assignment_version_final.object.VALUE;
+import static part_2_assignment_version_final.object.VALUE.echo;
 import com.google.common.util.concurrent.Striped;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;

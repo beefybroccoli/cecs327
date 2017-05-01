@@ -6,7 +6,7 @@ public class test_part_1 {
 
         new StatefulServerListenerAlpha().start();
         
-        new StartClients(VALUE.VALUE.LOCAL_HOST).start();
+        new StartClients(part_2_assignment_version_final.object.VALUE.LOCAL_HOST).start();
 
     }
 }

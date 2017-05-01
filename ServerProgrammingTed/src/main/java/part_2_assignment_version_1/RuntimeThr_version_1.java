@@ -5,8 +5,8 @@
  */
 package part_2_assignment_version_1;
 
-import VALUE.VALUE;
-import static VALUE.VALUE.echo;
+import part_2_assignment_version_final.object.VALUE;
+import static part_2_assignment_version_final.object.VALUE.echo;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

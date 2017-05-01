@@ -1,6 +1,6 @@
 package java_8_Concurrency_Tutorial;
 
-import static VALUE.VALUE.echo;
+import static part_2_assignment_version_final.object.VALUE.echo;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;

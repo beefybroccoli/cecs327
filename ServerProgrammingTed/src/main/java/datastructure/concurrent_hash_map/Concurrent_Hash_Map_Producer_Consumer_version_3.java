@@ -1,6 +1,6 @@
 package datastructure.concurrent_hash_map;
 
-import static VALUE.VALUE.echo;
+import static part_2_assignment_version_final.object.VALUE.echo;
 import com.google.common.util.concurrent.Striped;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;

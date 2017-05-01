@@ -1,6 +1,6 @@
 package part_1_stateful_server_client_version_alpha;
 
-import VALUE.VALUE;
+import part_2_assignment_version_final.object.VALUE;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

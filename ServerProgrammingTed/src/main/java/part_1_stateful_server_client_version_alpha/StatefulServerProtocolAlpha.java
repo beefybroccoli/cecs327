@@ -1,6 +1,6 @@
 package part_1_stateful_server_client_version_alpha;
 
-import object.SharedResource;
+import part_2_assignment_version_final.object.SharedResource;
 
 public class StatefulServerProtocolAlpha {
 

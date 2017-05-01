@@ -1,6 +1,6 @@
 package stateful_server_client_version_8;
 
-import object.SharedResource;
+import part_2_assignment_version_final.object.SharedResource;
 
 public class StatefulServerProtocolVerison8 {
 

@@ -1,6 +1,6 @@
 package part_2_assignment_version_final;
 
-import static VALUE.VALUE.echo;
+import static part_2_assignment_version_final.object.VALUE.echo;
 import com.google.common.util.concurrent.Striped;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
@@ -9,11 +9,11 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReadWriteLock;
 
-public class test_part_2{
+public class test_part_2 {
 
     public static void main(String[] args) {
-        
-        String inputHostName = VALUE.VALUE.LOCAL_HOST;
+
+        String inputHostName = part_2_assignment_version_final.object.VALUE.LOCAL_HOST;
 //        inputHostName = "192.168.1.4";
         test(inputHostName, 2, 10);
 //        test(inputHostName, 1, 1000);

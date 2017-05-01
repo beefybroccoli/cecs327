@@ -1,7 +1,7 @@
 package stateful_server_client_version_beta;
 
-import VALUE.VALUE;
-import static VALUE.VALUE.echo;
+import part_2_assignment_version_final.object.VALUE;
+import static part_2_assignment_version_final.object.VALUE.echo;
 import java.io.*;
 import java.net.*;
 import java.util.concurrent.Callable;

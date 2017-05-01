@@ -6,7 +6,7 @@ public class testVersionFinalVerison8 {
 
         new StatefulServerListenerVerison8().start();
         
-        new StartClientsVersion8(VALUE.VALUE.LOCAL_HOST).start();
+        new StartClientsVersion8(part_2_assignment_version_final.object.VALUE.LOCAL_HOST).start();
 
     }
 }

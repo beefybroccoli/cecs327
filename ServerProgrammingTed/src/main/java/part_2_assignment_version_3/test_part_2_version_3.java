@@ -18,7 +18,7 @@ public class test_part_2_version_3 {
     }
 
     public static void runTest_one_time(int number_of_uThreads) {
-        String inputHostName = VALUE.VALUE.LOCAL_HOST;
+        String inputHostName = part_2_assignment_version_final.object.VALUE.LOCAL_HOST;
         LinkedBlockingQueue inputRequestQue = new LinkedBlockingQueue();
         ConcurrentHashMap<String, String> inputResultQue = new ConcurrentHashMap<String, String>();
         Striped<ReadWriteLock> inputSharedRWLock = Striped.readWriteLock(12);

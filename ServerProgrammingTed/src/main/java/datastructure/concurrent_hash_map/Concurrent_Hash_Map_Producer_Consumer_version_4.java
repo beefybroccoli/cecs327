@@ -1,6 +1,6 @@
 package datastructure.concurrent_hash_map;
 
-import static VALUE.VALUE.echo;
+import static part_2_assignment_version_final.object.VALUE.echo;
 import com.google.common.util.concurrent.Striped;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
@@ -45,8 +45,8 @@ class Producer_Concurrent_Hash_Map_Version_4 implements Runnable {
         do {
             try {
                 if (mMap.size() < mNUMBER_OF_CONSUMER) {
-                    String key = "" + VALUE.VALUE.getRandomNumberBetween(mNUMBER_OF_CONSUMER, 1);
-                    String value = key + "." + VALUE.VALUE.getRandomNumberBetween(1000, 1);
+                    String key = "" + part_2_assignment_version_final.object.VALUE.getRandomNumberBetween(mNUMBER_OF_CONSUMER, 1);
+                    String value = key + "." + part_2_assignment_version_final.object.VALUE.getRandomNumberBetween(1000, 1);
                     mRWLock = mSharedRWLock.get(key);
                     mLock = mRWLock.writeLock();
                     try {

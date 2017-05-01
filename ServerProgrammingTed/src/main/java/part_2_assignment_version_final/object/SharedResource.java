@@ -1,9 +1,9 @@
-package object;
+package part_2_assignment_version_final.object;
 
 import java.util.concurrent.locks.ReentrantLock;
-import object.EvenFibBigInteger;
-import object.LargerRandomNumberBigInteger;
-import object.PrimeGeneratorBigInteger;
+import part_2_assignment_version_final.object.EvenFibBigInteger;
+import part_2_assignment_version_final.object.LargerRandomNumberBigInteger;
+import part_2_assignment_version_final.object.PrimeGeneratorBigInteger;
 
 public class SharedResource {
 
