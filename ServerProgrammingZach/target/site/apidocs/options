@@ -1,0 +1,24 @@
+-classpath
+'C:/Users/Zach/.m2/repository/com/google/guava/guava/18.0/guava-18.0.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'C:/Users/Zach/Documents/GitHub/cecs327/ServerProgrammingTed/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2017. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/Zach/Documents/GitHub/cecs327/ServerProgrammingTed/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'ServerProgrammingTed 1.0-SNAPSHOT API'
+-linkoffline
+'http://docs.oracle.com/javase/8/docs/api' 'C:/Users/Zach/Documents/GitHub/cecs327/ServerProgrammingTed/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'ServerProgrammingTed 1.0-SNAPSHOT API'
