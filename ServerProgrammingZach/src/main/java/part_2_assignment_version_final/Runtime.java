@@ -17,6 +17,15 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantLock;
 
+/***************************************************************************
+     * Runtime Class
+     * 
+     * This Class contains the information of the Runtime Thread. The runtime 
+     * will handle the shared request queue and the shared result queue. Using 
+     * a reentrant lock, the Runtime will create the lock and pass the lock to 
+     * the task of the network worker or the client worker depending on the 
+     * Command requested from the client.
+     **************************************************************************/
 public class Runtime implements Runnable {
 
     private LinkedBlockingQueue mSharedRequestQue;
@@ -30,6 +39,16 @@ public class Runtime implements Runnable {
     ReadWriteLock mRWLock;
     Lock mLock;
 
+    /**
+     * Default constructor creates an instance of the Runtime thread and 
+     * initializes the values specified:
+     *  
+     *  @param  inputHostName        - the hosts name
+     *  @param inputRequestQue       - the request queue
+     *  @param inputResultQue        - the result queue
+     *  @param inputSharedRWLock     - The shared resource lock
+     * 
+    **/
     public Runtime(String inputHostName, LinkedBlockingQueue inputRequestQue, ConcurrentHashMap<String, String> inputResultQue, Striped<ReadWriteLock> inputSharedRWLock) {
 
         mSharedRequestQue = inputRequestQue;
@@ -42,6 +61,13 @@ public class Runtime implements Runnable {
         mFlag = true;
     }
 
+    /**
+     *  This is the overridden method for the implemented thread runnable.
+     * 
+     * This run will start the Runtime thread. The runtime thread will fetch a 
+     * command from the client and start the worker to handle the command.
+     *  
+    **/
     @Override
     public void run() {
 
@@ -72,10 +98,17 @@ public class Runtime implements Runnable {
 
     }
 
+    /**
+     *  The fetch command and start worker method will get the clients command
+     *  from the request queue and start a worker to handle the request. 
+     * 
+    **/
     public void fetch_command_and_startWorker() {
 
 //        System.out.println("size of mRequestQue is " + mSharedRequestQue.size() + ", size of mResultQue is " + mSharedRequestQue.size() + "\n");
-        Command command;
+        Command command; // new command
+        
+        //Try to request command and run the worker 
         try {
             command = (Command) mSharedRequestQue.take();
 
@@ -90,8 +123,19 @@ public class Runtime implements Runnable {
         }
     }
 
+    /**
+     *  The run worker method will run either the local or network worker
+     * depending on which worker is passed through. The worker will create a 
+     * new task to handle the clients request and return the call from the task 
+     * using the executor submit method.
+     * 
+     * @param inputWorker
+     * @param inputCommand
+     * @return result
+    **/
     public String runWorker(String inputWorker, Command inputCommand) {
 
+        //Create an executor service
         ExecutorService executor = Executors.newFixedThreadPool(1);
 
         Future<String> future = null;
@@ -119,6 +163,7 @@ public class Runtime implements Runnable {
         String result = "";
 
         try {
+            //stores the result of the worker task
             result = future.get(1, TimeUnit.MINUTES);
 
         /*
@@ -144,15 +189,23 @@ public class Runtime implements Runnable {
             echo(inputWorker + ", " + "NullPointerException occured in runWorker() method" + "\n");
         } finally {
             //|| result.equals("-2")
+            //Set the result of the input command
             inputCommand.setResult(result);
+            
+            //If result is 0 or -1 an error occured, run the worker again
             if (result.equals("0") || result.equals("-1")) {
                 System.out.println(inputWorker + " reprocess - coomandId " + inputCommand.getCommandID() + " " + inputCommand.getmUThreadID() + "," + inputCommand.getCommand() + "," + inputCommand.getResult() + "\n");
                 runWorker(inputWorker, inputCommand);
             } else {
+                
+                //Else put the valid result into the result queue
                 put_result_into_mResultQue(inputCommand);
             }
+            //Shutdown executor after finished
             executor.shutdownNow();
         }
+        
+        //return the result
         return result;
     }
 
@@ -174,6 +227,7 @@ public class Runtime implements Runnable {
         }
     }
 
+    //Debugging method
     public String simulate_error(String result) {
         if (VALUE.getRandomNumberBetween(10, 1) == 3) {
             result = "" + -1;
@@ -181,6 +235,7 @@ public class Runtime implements Runnable {
         return result;
     }
 
+    //Debugging method
     public void debugHashMapInsertion(String key) {
         System.out.println(
                 "RuntimeThr try to add to queue: String " + mSharedResultQue.get(key)

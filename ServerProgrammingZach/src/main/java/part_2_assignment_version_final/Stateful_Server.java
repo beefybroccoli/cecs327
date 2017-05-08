@@ -5,18 +5,38 @@ import java.net.*;
 import java.io.*;
 import java.util.concurrent.TimeUnit;
 
+    /***************************************************************************
+     * StatefulServerProtocol Class
+     * 
+     * This Class contains the process for the server. Whenever a client makes a
+     * request, the server protocol decides which process to carry out.
+     **************************************************************************/
 class StatefulServerProtocol {
 
-    int mServerID;
-    public int mOtherCounter;
-    private ServerSharedResource mSharedResource;
+    int mServerID;                                  //The server ID
+    public int mOtherCounter;                       //Counter
+    private ServerSharedResource mSharedResource;   //Server shared resources
 
+    /**
+     * Default constructor creates an instance of the Stateful server. The
+     * default constructor initializes the class variables
+     * 
+     * @param inputServerID        - the server id
+     * @param inputSharedResource  - the servers shared resource
+    **/
     public StatefulServerProtocol(int inputServerID, ServerSharedResource inputSharedResource) {
 
         mServerID = inputServerID;
         mOtherCounter = 0;
         mSharedResource = inputSharedResource;
     }
+
+    /**
+     *  The process method handles which server process to execute based on the 
+     * clients command.
+     *  
+     *  input - which process to carry out
+    **/
 
     public String process(String input) {
         String result = "";
@@ -48,17 +68,33 @@ class StatefulServerProtocol {
     }
 }
 
+/***************************************************************************
+     * Stateful_Server Class
+     * 
+     * This Class contains the stateful server class information.
+     * 
+     * The stateful server will handle connecting clients and their requests.
+     **************************************************************************/
 public class Stateful_Server extends Thread {
 
-    private Socket mSocket;
-    private int mServerID;
-    private PrintWriter mOut;
-    private BufferedReader mIn;
-    private StatefulServerProtocol mProtocol;
-    private String mInputLine, mOutputLine;
-    private boolean mFlag;
-    private int mNullCounter;
+    private Socket mSocket;                     //The TCP stream socket
+    private int mServerID;                      // The server ID
+    private PrintWriter mOut;                   //Output stream
+    private BufferedReader mIn;                 //Input stream
+    private StatefulServerProtocol mProtocol;   //The server protocol
+    private String mInputLine, mOutputLine;     //Input and output strings
+    private boolean mFlag;                      //Simple boolean flag               
+    private int mNullCounter;                   //Null counter
 
+    /**
+     * Default constructor creates an instance of the Stateful server and 
+     * initializes the classes variables.
+     *  
+     *  @param  socket              - the TCP stream socket
+     *  @param id                   - the server id
+     *  @param inputSharedResource  - the server shared resource
+     * 
+    **/
     public Stateful_Server(Socket socket, int id, ServerSharedResource inputSharedResource) {
         mSocket = socket;
         mServerID = id;
@@ -75,6 +111,13 @@ public class Stateful_Server extends Thread {
         }
     }
 
+    /**
+     *  This is the overridden method for the implemented thread runnable.
+     * 
+     * This run will start the servers thread to handle client connections and 
+     * requests.
+     *  
+    **/
     @Override
     public void run() {
 
@@ -124,5 +167,4 @@ public class Stateful_Server extends Thread {
             }
         }
     }//end run
-
 }

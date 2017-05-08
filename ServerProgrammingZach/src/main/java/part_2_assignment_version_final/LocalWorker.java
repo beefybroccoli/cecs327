@@ -41,7 +41,7 @@ public class LocalWorker implements Runnable, Callable<String> {
     /**
      *  Thread run - overridden
      *  
-     *  This is the overridden method for the implemented thread runnable.\n
+     *  This is the overridden method for the implemented thread runnable.
      * 
      * This run will start the LocalWorker thread to complete a local Command.
      *  

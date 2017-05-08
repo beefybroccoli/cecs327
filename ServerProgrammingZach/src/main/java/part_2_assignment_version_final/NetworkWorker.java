@@ -45,6 +45,8 @@ public class NetworkWorker implements Runnable, Callable<String> {
         mFromServer = "0";
         mFromUser = command;
         mFlag = true;
+        
+        //Try to initialze the socket, output stream and input stream
         try {
             mSocket = new Socket(mHostName, mServerPort);
             mOut = new PrintWriter(mSocket.getOutputStream(), true);
@@ -56,6 +58,13 @@ public class NetworkWorker implements Runnable, Callable<String> {
         }
     }
 
+    /**
+     *  This is the overridden method for the implemented thread runnable.
+     * 
+     * This run will start the NetworkWorker thread and send a message to the
+     * server and receive a message from the server
+     *  
+    **/
     @Override
     public void run() {
 
@@ -92,7 +101,7 @@ public class NetworkWorker implements Runnable, Callable<String> {
     }
 
     /**
-     * This is the overridden method for the implemented thread runnable.\n
+     * This is the overridden method for the implemented thread runnable.
      * 
      * This call will output the client ID, its command, and the result
      *  
