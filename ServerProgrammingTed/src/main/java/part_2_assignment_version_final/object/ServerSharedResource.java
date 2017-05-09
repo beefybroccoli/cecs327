@@ -2,6 +2,9 @@ package part_2_assignment_version_final.object;
 
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * ServerShareResource is a shared resource and it is used by StatefulServer class
+ */
 public class ServerSharedResource {
 
     EvenFibGenerator mEvenFibBig = new EvenFibGenerator();
@@ -9,6 +12,10 @@ public class ServerSharedResource {
     PrimeGenerator mPrimeGenerator = new PrimeGenerator();
     private ReentrantLock mSharedLock = new ReentrantLock();
 
+    /**
+     * get the next even fib number
+     * @return String result
+     */
     public String getNextEvenFib() {
         String result = "";
         mSharedLock.lock();
@@ -20,6 +27,10 @@ public class ServerSharedResource {
         return result;
     }
 
+    /**
+     * get the next larger random number
+     * @return String result
+     */
     public String getNextLargerRand() {
         String result = "";
         mSharedLock.lock();
@@ -31,6 +42,10 @@ public class ServerSharedResource {
         return result;
     }
 
+    /**
+     * get the next prime number
+     * @return String result
+     */
     public String getNextPrime() {
         String result = "";
         mSharedLock.lock();

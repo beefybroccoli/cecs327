@@ -35,6 +35,9 @@ public class EvenFibGenerator {
         return result;
     }
 
+    /**
+     * reset the object
+     */
     private void reset() {
         valueNMinus2 = new BigInteger("0");
         valueNMinus1 = new BigInteger("1");

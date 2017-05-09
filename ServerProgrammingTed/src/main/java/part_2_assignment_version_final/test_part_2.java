@@ -14,10 +14,10 @@ public class test_part_2 {
     public static void main(String[] args) {
 
         String inputHostName = part_2_assignment_version_final.object.VALUE.LOCAL_HOST;
-//        inputHostName = "192.168.1.4";
-        test(inputHostName, 10, 10);
+        inputHostName = "192.168.1.4";
+        test(inputHostName, 2, 10);
 //        test(inputHostName, 1, 1000);
-//        test(inputHostName, 2, 100);
+//        test(inputHostName, 10, 100);
 
     }
 
@@ -35,14 +35,14 @@ public class test_part_2 {
 
         int time_in_seconds = 0;
         if (number_of_uThreads == 100) {
-            time_in_seconds = 20;
+            time_in_seconds = 100;
         }
         if (number_of_uThreads == 10) {
-            time_in_seconds = 3;
+            time_in_seconds = 5;
         }
 
         if (number_of_uThreads == 1000) {
-            time_in_seconds = 120;
+            time_in_seconds = 300;
         }
 
         int executor_time_in_seconds = time_in_seconds;
