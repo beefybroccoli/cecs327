@@ -14,17 +14,14 @@ public class LargerRandomNumberGenerator {
     }
 
     /**
-     *
      * @return the next larger random value
      */
     public String getNextLargerRand() {
-
         try {
             mValue = mValue.add(BigInteger.valueOf(VALUE.getRandomNumberBetween(1000, 1)));
         } catch (OutOfMemoryError e) {
             reset();
         }
-
         return mValue.toString();
     }
 }

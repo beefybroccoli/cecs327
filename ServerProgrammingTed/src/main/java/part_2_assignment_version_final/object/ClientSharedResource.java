@@ -37,7 +37,6 @@ public class ClientSharedResource {
         } finally {
             mLock.unlock();
         }
-
     }
 
     /**
@@ -56,7 +55,6 @@ public class ClientSharedResource {
         } finally {
             mLock.unlock();
         }
-
     }
 
 }

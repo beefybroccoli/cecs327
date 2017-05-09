@@ -7,9 +7,9 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class ServerSharedResource {
 
-    EvenFibGenerator mEvenFibBig = new EvenFibGenerator();
-    LargerRandomNumberGenerator mLargerRandomNumber = new LargerRandomNumberGenerator();
-    PrimeGenerator mPrimeGenerator = new PrimeGenerator();
+    private EvenFibGenerator mEvenFibBig = new EvenFibGenerator();
+    private LargerRandomNumberGenerator mLargerRandomNumber = new LargerRandomNumberGenerator();
+    private PrimeGenerator mPrimeGenerator = new PrimeGenerator();
     private ReentrantLock mSharedLock = new ReentrantLock();
 
     /**

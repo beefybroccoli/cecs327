@@ -21,25 +21,20 @@ public class Runtime implements Runnable {
 
     private LinkedBlockingQueue mSharedRequestQue;
     private ConcurrentHashMap<String, String> mSharedResultQue;
-    private ClientSharedResource mNumberShareResource;
-    private ReentrantLock mReentrantLock;
+    private ReentrantLock mReentrantLock = new ReentrantLock();
+    private ClientSharedResource mNumberShareResource = new ClientSharedResource(mReentrantLock);
     private String mHOST_NAME;
-    private int mHOST_SERVER_PORT;
-    private boolean mFlag;
-    Striped<ReadWriteLock> mSharedRWLock;
-    ReadWriteLock mRWLock;
-    Lock mLock;
+    private int mHOST_SERVER_PORT = VALUE.SERVER_PORT_NUMBER;
+    private boolean mFlag = true;
+    private Striped<ReadWriteLock> mSharedRWLock;
+    private ReadWriteLock mRWLock;
+    private Lock mLock;
 
     public Runtime(String inputHostName, LinkedBlockingQueue inputRequestQue, ConcurrentHashMap<String, String> inputResultQue, Striped<ReadWriteLock> inputSharedRWLock) {
-
         mSharedRequestQue = inputRequestQue;
         mSharedResultQue = inputResultQue;
-        mReentrantLock = new ReentrantLock();
-        mNumberShareResource = new ClientSharedResource(mReentrantLock);
         mHOST_NAME = inputHostName;
-        mHOST_SERVER_PORT = VALUE.SERVER_PORT_NUMBER;
         mSharedRWLock = inputSharedRWLock;
-        mFlag = true;
     }
 
     @Override
@@ -48,22 +43,16 @@ public class Runtime implements Runnable {
         System.out.println("(Runtime Started)\n");
 
         do {
-
             try {
-
                 //sleep when the request data structure is empty
                 while (mSharedRequestQue.isEmpty() && mFlag) {
                     TimeUnit.MILLISECONDS.sleep(100);
                 }
-
                 fetch_command_and_startWorker();
-
             } catch (InterruptedException e) {
                 echo("Interruption occured in Rumtime\n");
                 mFlag = false;
-
             }//end try 
-
         } while (mFlag);
 
         String mSharedRequestQueString = "\n" + "mSharedRequestQue = " + mSharedRequestQue.toString();
@@ -73,7 +62,6 @@ public class Runtime implements Runnable {
     }
 
     public void fetch_command_and_startWorker() {
-
         Command command;
         try {
             command = (Command) mSharedRequestQue.take();
@@ -120,13 +108,13 @@ public class Runtime implements Runnable {
         try {
             result = future.get(1, TimeUnit.MINUTES);
 
-            /*
+        /*
         "-1" mean InterruptedException
         "-2" mean ExecutionException
         "-3" mean TimeoutException
         "-4" mean NullPointerException
         "-5" mean IOException
-             */
+         */
 //            result = simulate_error(result);
         } catch (InterruptedException ex) {
             result = "-1";

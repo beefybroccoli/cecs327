@@ -39,7 +39,6 @@ public class EvenFibGenerator {
      * @return fib number in BigDecimal type
      */
     private BigInteger getNextFib() {
-
         try {
             if (valueN.equals("-1")) {
                 valueN = valueNMinus2.add(valueNMinus1);
@@ -52,7 +51,6 @@ public class EvenFibGenerator {
             reset();
             valueN = valueNMinus2.add(valueNMinus1);
         }
-
         return valueN;
     }
 

@@ -12,15 +12,19 @@ public class Stateful_Server_Listener extends Thread {
 
     private boolean mListeningBoolean = true;
     private int mServerID = 0;
+    private ServerSharedResource mSharedResource = new ServerSharedResource();
 
-    public int getServerID(){
-        return (mServerID == Integer.MAX_VALUE?mServerID = 1:mServerID++);
+    /**
+     * return the Server's ID
+     *
+     * @return int mServerID
+     */
+    public int getServerID() {
+        return (mServerID == Integer.MAX_VALUE ? mServerID = 1 : mServerID++);
     }
 
     @Override
     public void run() {
-
-        ServerSharedResource sharedResource = new ServerSharedResource();
 
         try {
             System.out.println("(Server Listener started at " + Inet4Address.getLocalHost().getHostAddress() + " )");
@@ -29,11 +33,9 @@ public class Stateful_Server_Listener extends Thread {
         }
 
         try (ServerSocket serverSocket = new ServerSocket(VALUE.SERVER_PORT_NUMBER)) {
-
             while (mListeningBoolean) {
-                
                 try {
-                    new Stateful_Server(serverSocket.accept(), getServerID(), sharedResource).start();
+                    new Stateful_Server(serverSocket.accept(), getServerID(), mSharedResource).start();
                     TimeUnit.NANOSECONDS.sleep(1);
                 } catch (InterruptedException e) {
                     mListeningBoolean = false;
