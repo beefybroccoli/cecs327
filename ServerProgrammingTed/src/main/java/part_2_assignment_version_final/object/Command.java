@@ -3,39 +3,32 @@ package part_2_assignment_version_final.object;
 import java.util.Random;
 
 /**
- *Command is an object for passing request to runtime
+ * Command is an object for passing request to runtime
+ *
  * @author macbook
  */
 public class Command {
 
     private int mCommandID;
     private int mRequestorID;
-    private int mCommand;
-    private String mResult;
-    private boolean mResultStatus;
+    private int mCommand = new Random().nextInt(5) + 1;
+    private String mResult = "";
+    private boolean mResultStatus = false;
 
     /**
-     *default constructor
-     */
-    public Command() {
-        mResult = "";
-    }
-
-    /**
-     *construct a Command object with specified inputs
+     * construct a Command object with specified inputs
+     *
      * @param commandID
      * @param requestorID
      */
     public Command(int commandID, int requestorID) {
         mCommandID = commandID;
         mRequestorID = requestorID;
-        mCommand = new Random().nextInt(5) + 1;
-        mResult = "";
-        mResultStatus = false;
     }
 
     /**
-     *get the requestor ID
+     * get the requestor ID
+     *
      * @return int requestorID
      */
     public int getmUThreadID() {
@@ -43,7 +36,8 @@ public class Command {
     }
 
     /**
-     *get the command ID
+     * get the command ID
+     *
      * @return int id
      */
     public int getCommandID() {
@@ -51,7 +45,8 @@ public class Command {
     }
 
     /**
-     *get the command, which is "1", "2", "3", "4" or "5"
+     * get the command, which is "1", "2", "3", "4" or "5"
+     *
      * @return int mCommand
      */
     public int getCommand() {
@@ -59,7 +54,8 @@ public class Command {
     }
 
     /**
-     *get the result from the Command object
+     * get the result from the Command object
+     *
      * @return string result
      */
     public String getResult() {
@@ -67,7 +63,8 @@ public class Command {
     }
 
     /**
-     *set the result of the in the command
+     * set the result of the in the command
+     *
      * @param inputResult
      */
     public void setResult(String inputResult) {
@@ -75,7 +72,8 @@ public class Command {
     }
 
     /**
-     *validate the result is correct
+     * validate the result is correct
+     *
      * @return boolean true/false
      */
     public boolean validateResult() {
@@ -87,7 +85,7 @@ public class Command {
     }
 
     /**
-     *print out the command in string
+     * print out the command in string
      */
     public void printOut() {
         String result = "mCommandID " + mCommandID + ", mRequestorID "

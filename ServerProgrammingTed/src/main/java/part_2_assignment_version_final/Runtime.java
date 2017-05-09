@@ -74,7 +74,6 @@ public class Runtime implements Runnable {
 
     public void fetch_command_and_startWorker() {
 
-//        System.out.println("size of mRequestQue is " + mSharedRequestQue.size() + ", size of mResultQue is " + mSharedRequestQue.size() + "\n");
         Command command;
         try {
             command = (Command) mSharedRequestQue.take();
@@ -121,14 +120,13 @@ public class Runtime implements Runnable {
         try {
             result = future.get(1, TimeUnit.MINUTES);
 
-        /*
+            /*
         "-1" mean InterruptedException
         "-2" mean ExecutionException
         "-3" mean TimeoutException
         "-4" mean NullPointerException
         "-5" mean IOException
-        */
-            
+             */
 //            result = simulate_error(result);
         } catch (InterruptedException ex) {
             result = "-1";
@@ -189,4 +187,5 @@ public class Runtime implements Runnable {
                 + ", map : " + mSharedResultQue.toString()
                 + "\n");
     }
+
 }

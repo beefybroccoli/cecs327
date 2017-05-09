@@ -9,16 +9,15 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 
-
 public class Client implements Runnable {
 
     private int mClientID;
     private LinkedBlockingQueue mSharedRequestQue;
     private ConcurrentHashMap<String, String> mSharedResultQue;
     private Command mCommand;
-    private int mCounter;
-    private int mMaxCounter;
-    private boolean mFlag;
+    private int mCounter = 0;
+    private int mMaxCounter = 20;
+    private boolean mFlag = true;
     Striped<ReadWriteLock> mSharedRWLock;
     ReadWriteLock mRWLock;
     Lock mLock;
@@ -27,11 +26,7 @@ public class Client implements Runnable {
         mClientID = inputID;
         mSharedRequestQue = inputRequestQue;
         mSharedResultQue = inputResultQue;
-        mCounter = 0;
-        mMaxCounter = 20;
-        mFlag = true;
         mSharedRWLock = inputRWLock;
-        mCommand = new Command();
     }
 
     @Override
@@ -49,7 +44,6 @@ public class Client implements Runnable {
                 "-4" mean NullPointerException
                 "-5" mean IOException
                  */
-
                 mCommand = new Command(++mCounter, mClientID);
 
                 mSharedRequestQue.put(mCommand);

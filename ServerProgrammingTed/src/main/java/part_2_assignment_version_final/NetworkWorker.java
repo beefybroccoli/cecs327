@@ -13,18 +13,17 @@ public class NetworkWorker implements Runnable, Callable<String> {
     private PrintWriter mOut;
     private BufferedReader mIn;
     //0 mean unprocessed, -1 mean error, otherwise valid value
-    private String mFromServer;
+    private String mFromServer = "0";
     private String mFromUser;
-    private boolean mFlag;
+    private boolean mFlag = true;
     private String mResult;
 
     public NetworkWorker(String hostName, int serverPort, int ClientID, String command) {
         mHostName = hostName;
         mServerPort = serverPort;
         mClientID = ClientID;
-        mFromServer = "0";
         mFromUser = command;
-        mFlag = true;
+
         try {
             mSocket = new Socket(mHostName, mServerPort);
             mOut = new PrintWriter(mSocket.getOutputStream(), true);
@@ -32,7 +31,7 @@ public class NetworkWorker implements Runnable, Callable<String> {
                     new InputStreamReader(mSocket.getInputStream()));
         } catch (IOException ex) {
             mResult = "-5";
-             System.err.println("IOException occured in Networker " +  mClientID + "," + command + "," + mResult + "\n");
+            System.err.println("IOException occured in Networker " + mClientID + "," + command + "," + mResult + "\n");
         }
     }
 
@@ -71,7 +70,7 @@ public class NetworkWorker implements Runnable, Callable<String> {
 
     @Override
     public String call() throws Exception {
- 
+
         String command = mFromUser;
         //return mClientID + "," + mCommand + "," + mResult;
         return mClientID + "," + command + "," + mResult;

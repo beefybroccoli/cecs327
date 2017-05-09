@@ -12,12 +12,11 @@ public class LocalWorker implements Runnable, Callable<String> {
     private ReentrantLock mLock;
     private int mCommand;
     private int mClientID;
-    private String mResult;
+    private String mResult = "0";
 
     public LocalWorker(ClientSharedResource inputNumber, ReentrantLock inputLock, int inputClientID, int command) {
         mNumber = inputNumber;
         mLock = inputLock;
-        mResult = "0";
         mClientID = inputClientID;
         mCommand = command;
     }

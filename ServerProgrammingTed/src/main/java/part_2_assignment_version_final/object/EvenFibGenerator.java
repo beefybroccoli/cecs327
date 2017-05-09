@@ -7,32 +7,21 @@ import java.math.BigInteger;
  */
 public class EvenFibGenerator {
 
-    private BigInteger valueNMinus2;
-    private BigInteger valueNMinus1;
-    private BigInteger valueN;
-
-    /**
-     * initialize EvenFibBigDecimalType with seed 0 and 1
-     */
-    public EvenFibGenerator() {
-        valueNMinus2 = new BigInteger("0");
-        valueNMinus1 = new BigInteger("1");
-        valueN = new BigInteger("-1");
-    }
+    private BigInteger valueNMinus2 = new BigInteger("0");
+    private BigInteger valueNMinus1 = new BigInteger("1");
+    private BigInteger valueN = new BigInteger("-1");
 
     /**
      * get the next even Fib number
      *
      * @return even Fib in BigDecimal type
      */
-    public BigInteger getNextEvenFib() {
+    public String getNextEvenFib() {
         BigInteger result;
         do {
             result = getNextFib();
-
         } while (evenNumber(result) == false);
-
-        return result;
+        return result.toString();
     }
 
     /**
@@ -49,13 +38,12 @@ public class EvenFibGenerator {
      *
      * @return fib number in BigDecimal type
      */
-    public BigInteger getNextFib() {
+    private BigInteger getNextFib() {
 
         try {
             if (valueN.equals("-1")) {
                 valueN = valueNMinus2.add(valueNMinus1);
             } else {
-
                 valueNMinus2 = valueNMinus1;
                 valueNMinus1 = valueN;
                 valueN = valueNMinus2.add(valueNMinus1);
@@ -70,11 +58,10 @@ public class EvenFibGenerator {
 
     /**
      * test if an input is even number or not
-     *
      * @param input
      * @return true if input is an even number
      */
-    public boolean evenNumber(BigInteger input) {
+    private boolean evenNumber(BigInteger input) {
         return ((input.remainder(BigInteger.valueOf(2))).equals(BigInteger.valueOf(0)) ? (true) : (false));
     }
 

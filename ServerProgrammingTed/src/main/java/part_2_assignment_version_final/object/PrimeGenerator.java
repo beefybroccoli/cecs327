@@ -2,25 +2,20 @@ package part_2_assignment_version_final.object;
 
 import java.math.BigInteger;
 
+
 /**
  * calculate the next prime number
  */
 public class PrimeGenerator {
 
-    private BigInteger mPrimeNumber;
-
-    /**
-     * construct a PrimeGenerator object
-     */
-    public PrimeGenerator() {
-        mPrimeNumber = BigInteger.valueOf(1);
-    }
+    private BigInteger mPrimeNumber = BigInteger.valueOf(1);
 
     /**
      * reset the object to value of 2
      */
-    private void reset() {
+    private BigInteger reset() {
         mPrimeNumber = BigInteger.valueOf(2);
+        return mPrimeNumber;
     }
 
     /**
@@ -28,7 +23,7 @@ public class PrimeGenerator {
      *
      * @return BigInteger result
      */
-    public BigInteger getNextPrime() {
+    public String getNextPrime() {
 
         BigInteger result = mPrimeNumber;
 
@@ -38,20 +33,18 @@ public class PrimeGenerator {
             try {
                 result = result.add(BigInteger.valueOf(1));
 
-                //test if result is a value of prime at 80% probability
+                //test if result is a prime at 80% probability
                 flag = result.isProbablePrime(80);
-
-                if (flag == true) {
-                    mPrimeNumber = result;
-                }
+  
             } catch (OutOfMemoryError e) {
                 System.out.println("OutOfMemory Exception Occured");
-                reset();
-                result = mPrimeNumber;
+                result = reset();
             }
         } while (flag == false);
 
-        return result;
+        mPrimeNumber = result;
+        
+        return result.toString();
 
     }
     

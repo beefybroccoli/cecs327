@@ -20,7 +20,7 @@ public class ServerSharedResource {
         String result = "";
         mSharedLock.lock();
         try {
-            result = "" + mEvenFibBig.getNextEvenFib().abs();
+            result = mEvenFibBig.getNextEvenFib().toString();
         } finally {
             mSharedLock.unlock();
         }
@@ -35,7 +35,7 @@ public class ServerSharedResource {
         String result = "";
         mSharedLock.lock();
         try {
-            result = "" + mLargerRandomNumber.getNextLargerRand().abs();
+            result = mLargerRandomNumber.getNextLargerRand();
         } finally {
             mSharedLock.unlock();
         }
@@ -50,7 +50,7 @@ public class ServerSharedResource {
         String result = "";
         mSharedLock.lock();
         try {
-            result = "" + mPrimeGenerator.getNextPrime().abs();
+            result = mPrimeGenerator.getNextPrime();
         } finally {
             mSharedLock.unlock();
         }

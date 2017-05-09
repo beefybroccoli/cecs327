@@ -10,14 +10,9 @@ import java.net.UnknownHostException;
 
 public class Stateful_Server_Listener extends Thread {
 
-    private boolean mListeningBoolean;
-    private int mServerID;
+    private boolean mListeningBoolean = true;
+    private int mServerID = 0;
 
-    public Stateful_Server_Listener() {
-        mListeningBoolean = true;
-        mServerID = 0;
-    }
-    
     public int getServerID(){
         return (mServerID == Integer.MAX_VALUE?mServerID = 1:mServerID++);
     }

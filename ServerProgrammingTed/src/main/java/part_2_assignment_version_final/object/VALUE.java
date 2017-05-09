@@ -71,6 +71,12 @@ public class VALUE {
         int answer = rn.nextInt(max) + min;
         return answer;
     }
+    
+    public static boolean getRandomTrueFalse(){
+        Random rn = new Random();
+        int answer = rn.nextInt(100) + 1;
+        return ((answer == 5)?true:false);
+    }
 
     /**
      * generate an exception message

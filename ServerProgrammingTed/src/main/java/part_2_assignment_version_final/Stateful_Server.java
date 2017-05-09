@@ -8,13 +8,11 @@ import java.util.concurrent.TimeUnit;
 class StatefulServerProtocol {
 
     int mServerID;
-    public int mOtherCounter;
+    public int mOtherCounter = 0;
     private ServerSharedResource mSharedResource;
 
     public StatefulServerProtocol(int inputServerID, ServerSharedResource inputSharedResource) {
-
         mServerID = inputServerID;
-        mOtherCounter = 0;
         mSharedResource = inputSharedResource;
     }
 

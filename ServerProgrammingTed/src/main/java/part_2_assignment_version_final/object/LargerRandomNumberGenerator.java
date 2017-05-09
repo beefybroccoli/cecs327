@@ -7,14 +7,7 @@ import java.math.BigInteger;
  */
 public class LargerRandomNumberGenerator {
 
-    private BigInteger mValue;
-
-    /**
-     * initialize a LargerRandomNumber object with seed value of 0
-     */
-    public LargerRandomNumberGenerator() {
-        mValue = BigInteger.valueOf(0);
-    }
+    private BigInteger mValue = BigInteger.valueOf(0);
 
     private void reset() {
         mValue = BigInteger.valueOf(1);
@@ -24,7 +17,7 @@ public class LargerRandomNumberGenerator {
      *
      * @return the next larger random value
      */
-    public BigInteger getNextLargerRand() {
+    public String getNextLargerRand() {
 
         try {
             mValue = mValue.add(BigInteger.valueOf(VALUE.getRandomNumberBetween(1000, 1)));
@@ -32,6 +25,6 @@ public class LargerRandomNumberGenerator {
             reset();
         }
 
-        return mValue.abs();
+        return mValue.toString();
     }
 }
