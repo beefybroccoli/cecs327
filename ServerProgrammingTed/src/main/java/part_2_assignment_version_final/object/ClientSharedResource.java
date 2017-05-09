@@ -27,16 +27,17 @@ public class ClientSharedResource {
      * @return int number
      */
     public int getNextEvenNumber() {
+        int result = -1;
         mLock.lock();
         try {
             mEvenNumber += 2;
-            return mEvenNumber;
+            result = mEvenNumber;
         } catch (Exception e) {
             echo("Exception occured in getNextEvenNumber() method");
-            return -1;
         } finally {
             mLock.unlock();
         }
+        return result;
     }
 
     /**
@@ -45,16 +46,17 @@ public class ClientSharedResource {
      * @return int number
      */
     public int getNextOddNumber() {
+        int result = -1;
         mLock.lock();
         try {
             mOddNumber += 2;
-            return mOddNumber;
+            result = mOddNumber;
         } catch (Exception e) {
             echo("Exception occured in getNextOddNumber() method");
-            return -1;
         } finally {
             mLock.unlock();
         }
+        return result;
     }
 
 }

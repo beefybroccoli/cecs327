@@ -19,6 +19,7 @@ public class PrimeGenerator {
 
     /**
      * get the next prime number
+     *
      * @return BigInteger result
      */
     public String getNextPrime() {
@@ -48,9 +49,9 @@ public class PrimeGenerator {
     public static void main(String[] args) {
         PrimeGenerator generator = new PrimeGenerator();
         int counter = 0;
-        do {
-            System.out.println(generator.getNextPrime().toString());
-        } while (counter++ < 20);
+        while (counter++ < 10) {
+            System.out.println(generator.getNextPrime());
+        }
     }
 
 }
