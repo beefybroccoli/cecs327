@@ -7,8 +7,8 @@ import java.util.concurrent.TimeUnit;
 
 class StatefulServerProtocol {
 
-    int mServerID;
-    public int mOtherCounter = 0;
+    private int mServerID;
+    protected int mOtherCounter = 0;
     private ServerSharedResource mSharedResource;
 
     public StatefulServerProtocol(int inputServerID, ServerSharedResource inputSharedResource) {
@@ -54,17 +54,13 @@ public class Stateful_Server extends Thread {
     private BufferedReader mIn;
     private StatefulServerProtocol mProtocol;
     private String mInputLine, mOutputLine;
-    private boolean mFlag;
-    private int mNullCounter;
+    private boolean mFlag = true;
+    private int mNullCounter = 0;
 
-    public Stateful_Server(Socket socket, int id, ServerSharedResource inputSharedResource) {
-        mSocket = socket;
-        mServerID = id;
+    public Stateful_Server(Socket input_socket, int input_id, ServerSharedResource inputSharedResource) {
+        mSocket = input_socket;
+        mServerID = input_id;
         mProtocol = new StatefulServerProtocol(mServerID, inputSharedResource);
-        mInputLine = "";
-        mOutputLine = "";
-        mFlag = true;
-        mNullCounter = 0;
         try {
             mOut = new PrintWriter(mSocket.getOutputStream(), true);
             mIn = new BufferedReader(new InputStreamReader(mSocket.getInputStream()));

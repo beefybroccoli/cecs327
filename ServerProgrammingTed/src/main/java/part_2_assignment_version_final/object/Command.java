@@ -17,7 +17,6 @@ public class Command {
 
     /**
      * construct a Command object with specified inputs
-     *
      * @param commandID
      * @param requestorID
      */

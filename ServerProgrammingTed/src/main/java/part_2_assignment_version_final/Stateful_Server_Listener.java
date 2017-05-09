@@ -16,7 +16,6 @@ public class Stateful_Server_Listener extends Thread {
 
     /**
      * return the Server's ID
-     *
      * @return int mServerID
      */
     public int getServerID() {
@@ -25,7 +24,6 @@ public class Stateful_Server_Listener extends Thread {
 
     @Override
     public void run() {
-
         try {
             System.out.println("(Server Listener started at " + Inet4Address.getLocalHost().getHostAddress() + " )");
         } catch (UnknownHostException ex) {
@@ -46,8 +44,7 @@ public class Stateful_Server_Listener extends Thread {
         } finally {
             System.out.println("(Server Listener ended)");
         }
-
-    }
+    }//end run
 
     public static void main(String[] args) {
         new Stateful_Server_Listener().start();

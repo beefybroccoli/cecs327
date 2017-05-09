@@ -9,10 +9,6 @@ public class LargerRandomNumberGenerator {
 
     private BigInteger mValue = BigInteger.valueOf(0);
 
-    private void reset() {
-        mValue = BigInteger.valueOf(1);
-    }
-
     /**
      * @return the next larger random value
      */
@@ -20,7 +16,8 @@ public class LargerRandomNumberGenerator {
         try {
             mValue = mValue.add(BigInteger.valueOf(VALUE.getRandomNumberBetween(1000, 1)));
         } catch (OutOfMemoryError e) {
-            reset();
+            //reset if OUtOfMemoryError exception occur
+            mValue = BigInteger.valueOf(1);
         }
         return mValue.toString();
     }

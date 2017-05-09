@@ -35,7 +35,6 @@ public class VALUE {
         return SLEEP_TIME;
     }
 
-
     /**
      * get LOCAL HOST reference value
      * @return String Local_Host value
@@ -70,12 +69,6 @@ public class VALUE {
         Random rn = new Random();
         int answer = rn.nextInt(max) + min;
         return answer;
-    }
-    
-    public static boolean getRandomTrueFalse(){
-        Random rn = new Random();
-        int answer = rn.nextInt(100) + 1;
-        return ((answer == 5)?true:false);
     }
 
     /**

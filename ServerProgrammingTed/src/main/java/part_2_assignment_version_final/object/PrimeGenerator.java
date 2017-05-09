@@ -24,7 +24,6 @@ public class PrimeGenerator {
     public String getNextPrime() {
 
         BigInteger result = mPrimeNumber;
-
         boolean flag = false;
 
         do {

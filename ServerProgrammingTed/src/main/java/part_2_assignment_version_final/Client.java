@@ -18,9 +18,9 @@ public class Client implements Runnable {
     private int mCounter = 0;
     private int mMaxCounter = 20;
     private boolean mFlag = true;
-    Striped<ReadWriteLock> mSharedRWLock;
-    ReadWriteLock mRWLock;
-    Lock mLock;
+    private Striped<ReadWriteLock> mSharedRWLock;
+    private ReadWriteLock mRWLock;
+    private Lock mLock;
 
     public Client(int inputID, LinkedBlockingQueue inputRequestQue, ConcurrentHashMap<String, String> inputResultQue, Striped<ReadWriteLock> inputRWLock) {
         mClientID = inputID;

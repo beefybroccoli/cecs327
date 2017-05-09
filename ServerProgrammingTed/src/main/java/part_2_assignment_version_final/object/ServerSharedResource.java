@@ -20,7 +20,7 @@ public class ServerSharedResource {
         String result = "";
         mSharedLock.lock();
         try {
-            result = mEvenFibBig.getNextEvenFib().toString();
+            result = mEvenFibBig.getNextEvenFib();
         } finally {
             mSharedLock.unlock();
         }

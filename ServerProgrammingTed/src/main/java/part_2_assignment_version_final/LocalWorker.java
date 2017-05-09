@@ -14,11 +14,11 @@ public class LocalWorker implements Runnable, Callable<String> {
     private int mClientID;
     private String mResult = "0";
 
-    public LocalWorker(ClientSharedResource inputNumber, ReentrantLock inputLock, int inputClientID, int command) {
+    public LocalWorker(ClientSharedResource inputNumber, ReentrantLock inputLock, int inputClientID, int inputCommand) {
         mNumber = inputNumber;
         mLock = inputLock;
         mClientID = inputClientID;
-        mCommand = command;
+        mCommand = inputCommand;
     }
 
     @Override
