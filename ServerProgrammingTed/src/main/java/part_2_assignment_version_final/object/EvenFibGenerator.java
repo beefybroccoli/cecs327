@@ -13,7 +13,6 @@ public class EvenFibGenerator {
 
     /**
      * get the next even Fib number
-     *
      * @return even Fib in BigDecimal type
      */
     public String getNextEvenFib() {
@@ -35,7 +34,6 @@ public class EvenFibGenerator {
 
     /**
      * get the next Fib number
-     *
      * @return fib number in BigDecimal type
      */
     private BigInteger getNextFib() {

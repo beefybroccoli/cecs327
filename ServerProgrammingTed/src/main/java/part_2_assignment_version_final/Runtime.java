@@ -151,10 +151,8 @@ public class Runtime implements Runnable {
         mLock = mRWLock.writeLock();
         try {
             mLock.lock();
-
             mSharedResultQue.put(key, value);
 //            debugHashMapInsertion(key);
-
         } finally {
             mLock.unlock();
         }

@@ -70,7 +70,6 @@ public class NetworkWorker implements Runnable, Callable<String> {
 
     @Override
     public String call() throws Exception {
-
         String command = mFromUser;
         //return mClientID + "," + mCommand + "," + mResult;
         return mClientID + "," + command + "," + mResult;

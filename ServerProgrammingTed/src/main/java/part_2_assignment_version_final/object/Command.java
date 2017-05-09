@@ -28,7 +28,6 @@ public class Command {
 
     /**
      * get the requestor ID
-     *
      * @return int requestorID
      */
     public int getmUThreadID() {
@@ -37,7 +36,6 @@ public class Command {
 
     /**
      * get the command ID
-     *
      * @return int id
      */
     public int getCommandID() {
@@ -46,7 +44,6 @@ public class Command {
 
     /**
      * get the command, which is "1", "2", "3", "4" or "5"
-     *
      * @return int mCommand
      */
     public int getCommand() {
@@ -55,7 +52,6 @@ public class Command {
 
     /**
      * get the result from the Command object
-     *
      * @return string result
      */
     public String getResult() {
@@ -64,7 +60,6 @@ public class Command {
 
     /**
      * set the result of the in the command
-     *
      * @param inputResult
      */
     public void setResult(String inputResult) {
@@ -73,7 +68,6 @@ public class Command {
 
     /**
      * validate the result is correct
-     *
      * @return boolean true/false
      */
     public boolean validateResult() {
@@ -92,7 +86,6 @@ public class Command {
                 + mRequestorID + ", mCommand " + mCommand + ", mResult "
                 + mResult + ", mResultStatus " + mResultStatus;
         System.out.println(result);
-
     }
 
 }
