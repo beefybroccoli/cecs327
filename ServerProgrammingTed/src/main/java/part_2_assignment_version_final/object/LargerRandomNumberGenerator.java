@@ -79,6 +79,7 @@ public class LargerRandomNumberGenerator {
 
         System.out.println(temp[0] + " compare to " + temp[1] + " = " + temp[0].compareTo(temp[1]));
         System.out.println(temp[1] + " compare to " + temp[0] + " = " + temp[1].compareTo(temp[0]));
+        
         /*
         --- exec-maven-plugin:1.2.1:exec (default-cli) @ ServerProgrammingTed ---
         56456270
@@ -94,6 +95,6 @@ public class LargerRandomNumberGenerator {
         
         56456270 compare to 762464213 = -1
         762464213 compare to 56456270 = 1
-         */
+        */
     }
 }
